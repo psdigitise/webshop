@@ -1,0 +1,66 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block page_content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <h3 class="mb-4 text-center">Edit Profile</h3>
+
+          <form id="edit-profile-form">
+            
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Full Name</label>
+              <input type="text" class="form-control" name="full_name" 
+                     value="{{ user_doc.full_name }}">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Email</label>
+              <input type="email" class="form-control" name="email" 
+                     value="{{ user_doc.email }}">
+            </div>
+
+            <!-- Username -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Username</label>
+              <input type="text" class="form-control" name="username" 
+                     value="{{ user_doc.username }}">
+            </div>
+
+            <!-- Language -->
+            <!-- <div class="mb-3">
+              <label class="form-label fw-bold">Language</label>
+              <input type="text" class="form-control" name="language" 
+                     value="{{ user_doc.language or '' }}">
+            </div> -->
+
+            <!-- Timezone -->
+            <!-- <div class="mb-3">
+              <label class="form-label fw-bold">Time Zone</label>
+              <input type="text" class="form-control" name="time_zone" 
+                     value="{{ user_doc.time_zone or '' }}">
+            </div> -->
+
+            <!-- Save Button -->
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                <i class="fa fa-save me-2"></i> Save Changes
+              </button>
+              <a href="/user-details" class="btn btn-outline-secondary px-4 py-2 rounded-pill ms-2">
+                Cancel
+              </a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

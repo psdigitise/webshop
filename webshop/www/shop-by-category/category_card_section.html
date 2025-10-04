@@ -1,0 +1,33 @@
+{%- macro card(title, image, type, url=None, text_primary=False) -%}
+<!-- style defined at shop-by-category index -->
+<div class="col-lg-6 col-12  ">
+<a href="{{ url or '#' }}"  class="card " data-type="{{ type }}" data-name="{{ title }}" style="border-radius:0;height: auto;">
+	
+	{% if image %}
+	<img class="card-img-top" src="{{ image }}" alt="{{ title }}" style="height: 80%;border-radius:0">
+	{% else %}
+	<div class="placeholder-div">
+		<span class="placeholder">
+			{{ frappe.utils.get_abbr(title) }}
+		</span>
+	</div>
+	{% endif %}
+	<div class="card-body text-center text-muted">
+		{{ title or '' }}
+	</div>
+	</a>
+
+</div>
+{%- endmacro -%}
+
+<div class="col-12 item-card-group-section pb-4">
+	<div class="row gy-3 products-list product-category-section">
+		{%- for row in data -%}
+			{%- set title = row.name -%}
+			{%- set image = row.get("image") -%}
+			{%- if title -%}
+				{{ card(title, image, type, row.get("route")) }}
+			{%- endif -%}
+		{%- endfor -%}
+	</div>
+</div>

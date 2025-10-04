@@ -1,0 +1,90 @@
+{% set width_class = "expand" if not slides else "" %}
+{% set cart_settings = shopping_cart.cart_settings %}
+{% set product_info = shopping_cart.product_info %}
+{% set price_info = product_info.get('price') or {} %}
+{% set show_recommended_items = recommended_items and shopping_cart.cart_settings.enable_recommendations %}
+<div class="col-md-8 product-details {{ width_class }}" 
+     style="padding:30px; background:#f2f2f2; border-radius:10px; font-family:'Jost', sans-serif;">
+
+	<div class="d-flex align-items-start" style="margin-bottom:15px;">
+		<!-- title -->
+		<div class="section-title text-purple col-11 p-0 m-0" itemprop="name">
+			{{ _(doc.web_item_name) }}
+		</div>
+
+		<!-- Wishlist -->
+		{% if cart_settings.enable_wishlist %}
+			<div class="like-action-item-fp like-action {{ 'like-action-wished' if wished else ''}} ml-2"
+			     data-item-code="{{ doc.item_code }}"
+			     style="width:40px;height:40px;cursor:pointer; background:#f9f9fb; border-radius:50%; padding:8px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+				<svg class="icon sm" style="width:20px; height:20px; fill:#5a2ca0;">
+					<use class="{{ 'wished' if wished else 'not-wished' }} wish-icon" href="#icon-heart"></use>
+				</svg>
+			</div>
+		{% endif %}
+	</div>
+
+	<p class="product-code m-0" style="font-size:14px; color:#777;">
+		<span class="product-item-group" style="font-weight:500; color:#333;">
+			{{ _(doc.item_group) }}
+		</span>
+		<span class="product-item-code" itemprop="name" style="margin-left:10px; color:#333;">
+			{{ _("Item Code") }}:
+		</span>
+		<span itemprop="name" style="color:#333; font-weight:500;">{{ _(doc.item_code) }}</span>
+	</p>
+
+	{% if has_variants %}
+		<!-- configure template -->
+		<div >
+			{% include "templates/generators/item/item_configure.html" %}
+		</div>
+	{% else %}
+		<!-- add variant to cart -->
+		<div>
+			{% include "templates/generators/item/item_add_to_cart.html" %}
+		</div>
+	{% endif %}
+
+	<!-- description -->
+	<div class="product-description" itemprop="description"
+	     style="font-size:16px; line-height:1.6; color:#444;">
+	{% if frappe.utils.strip_html(doc.web_long_description or '') %}
+		{{ _(doc.web_long_description) | safe }}
+	{% elif frappe.utils.strip_html(doc.description or '')  %}
+		{{ _(doc.description) | safe }}
+	{% else %}
+		{{ "" }}
+	{% endif  %}
+	</div>
+	{% if show_recommended_items %}
+		<div class="all-items-carousel container mt-5">
+		<h4 class="mb-3 text-purple">{{ _("Recommended Items") }}</h4>
+
+		<div class="carousel-wrapper">
+			<!--<button class="carousel-arrow left">&#10094;</button>-->
+
+			<div class="carousel-track track1">
+			{% for item in recommended_items %}
+				{{ recommended_item_row(item) }}
+			{% endfor %}
+			</div>
+
+			<!--<button class="carousel-arrow right">&#10095;</button>-->
+		</div>
+		</div>
+		{% endif %}
+</div>
+
+{% block base_scripts %}
+<!-- js should be loaded in body! -->
+<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+{% endblock %}
+
+<script>
+	$('.page_content').on('click', '.like-action-item-fp', (e) => {
+		// Bind action on wishlist button
+		const $btn = $(e.currentTarget);
+		webshop.webshop.wishlist.wishlist_action($btn);
+	});
+</script>

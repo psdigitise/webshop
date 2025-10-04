@@ -1,0 +1,22 @@
+<!-- Is reused to render within tabs as well as independently -->
+{% if website_specifications %}
+<div class="{{ 'mt-2' if not show_tabs else 'mt-5'}} item-website-specification col-lg-6 col-12 d-none">
+	<div class="col-md-11">
+		{% if not show_tabs %}
+			<div class="product-title" style="color: #570987;">
+				{{ _("Product Details") }}
+			</div>
+		{% endif %}
+		<table class="table w-100">
+		{% for d in website_specifications -%}
+			<tr>
+				<td class="spec-label text-purple">{{ _(d.label) }}</td>
+				<td class="spec-content">{{ _(d.description) }}</td>
+			</tr>
+		{%- endfor %}
+		</table>
+		{{ doc.website_content or '' }}
+	</div>
+
+</div>
+{% endif %}

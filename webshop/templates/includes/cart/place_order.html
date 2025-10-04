@@ -1,0 +1,22 @@
+<style>
+	.btn.btn-primary.btn-place-order.font-md.w-100:hover{
+		background-color: #f8f9fa !important;
+		border-color: #570987 !important;
+		color: #570987 !important;
+
+	}
+</style>
+
+<div class="card h-100" style="margin-top: 10px;">
+	<div class="card-body p-0">
+		{% if cart_settings.enable_checkout %}
+			<button class="btn btn-primary btn-place-order font-md w-100" type="button" style="background-color: #570987; border-color: #570987; color: #ffffff;">
+				{{ _("Place Order") }}
+			</button>
+		{% else %}
+			<button class="btn btn-primary btn-request-for-quotation font-md w-100" type="button">
+				{{ _("Request for Quote") }}
+			</button>
+		{% endif %}
+	</div>
+</div>

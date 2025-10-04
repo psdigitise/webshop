@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSD Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="http://103.214.132.20:8007/psd/assets/css/style.css" />
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="top-bar d-flex justify-content-between align-items-center">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <span class="mx-2"><i class="fa fa-phone"></i> 0844 940 9410</span>
+          |
+          <span class="mx-2"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</span>
+        </div>
+        <div>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fa fa-user"></i> Hi There! Your Account</a>
+          <a href="#"><i class="fa fa-bolt"></i> Quick Order</a>
+          <a href="#"><i class="fa fa-shopping-bag"></i> £0.00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo + Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">
+        <img src="https://dummyimage.com/100x50/003366/fff&text=PSD" alt="PSD Logo" height="40" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catering Supplies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Office Supplies</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Furniture</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ink & Toners</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Packaging</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hygiene Supplies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Safety & PPE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Facilities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Technology</a>
+          </li>
+        </ul>
+        <form class="d-flex search-bar">
+          <input class="form-control me-2" type="search" placeholder="Search All Categories" />
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div id="heroCarousel" class="hero-section carousel slide" >
+    <!-- <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8 text-center text-md-start">
+            <h2>EXCEEDING EXPECTATIONS</h2>
+            <p>
+              Whether you’re a multi-site organisation or one person working
+              from home, we’ll leave you delighted
+            </p>
+            <div class="hero-buttons">
+              <a href="#" class="btn">LOGIN</a>
+              <a href="#" class="btn">SHOP AS GUEST</a>
+              <a href="#" class="btn">REQUEST CREDIT</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="./assets/img/banner-image.jpg"
+              alt="Smiley"
+              class="img-fluid rounded-circle"
+            />
+          </div>
+        </div>
+      </div> -->
+    <!-- <div class="hero-section">
+      {% if slideshow %}
+      {{ web_block(
+      "Hero Slider",
+      values=slideshow,
+      add_container=1,
+      add_top_padding=1,
+      add_bottom_padding=1
+      ) }}
+      {% endif %}
+    </div> -->
+    {% if slideshow %}
+    <!-- <div id="heroCarousel" class="carousel slide" > -->
+      <!-- Indicators -->
+      <!-- <div class="carousel-indicators">
+        {% for i in range(1, slideshow|length) %}
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ i-1 }}"
+          class="{% if i == 1 %}active{% endif %}"></button>
+        {% endfor %}
+      </div> -->
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+        {% for i in range(1, slideshow|length) %}
+        <div class="carousel-item {% if i == 1 %}active{% endif %}">
+          <!-- <img src="{{ slideshow['slide_' ~ i ~ '_image'] }}" class="d-block w-100"
+            alt="{{ slideshow['slide_' ~ i ~ '_title'] }}"> -->
+          <div class="carousel-caption d-none d-md-block text-{{ slideshow['slide_' ~ i ~ '_content_align']|lower }}">
+            <h2>{{ slideshow['slide_' ~ i ~ '_title'] }}</h2>
+            <p>{{ slideshow['slide_' ~ i ~ '_subtitle'] }}</p>
+            {% if slideshow['slide_' ~ i ~ '_primary_action'] %}
+            <a href="{{ slideshow['slide_' ~ i ~ '_primary_action'] }}" class="btn btn-primary">Shop Now</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Controls -->
+      <!-- <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button> -->
+    <!-- </div> -->
+    {% endif %}
+
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col"><i class="fa fa-gift"></i> Promotional Products</div>
+        <div class="col"><i class="fa fa-print"></i> Managed Print</div>
+        <div class="col">
+          <i class="fa fa-tshirt"></i> Embroidered Workwear
+        </div>
+        <div class="col"><i class="fa fa-copy"></i> Printing Services</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center py-lg-5 py-3">
+    <div class="container">
+      <!-- Title -->
+      <h2 class="section-title-orange">
+        We don’t just sell product - we provide workplace solutions
+      </h2>
+
+      <!-- Description -->
+      <p class="section-desc">
+        From your day to day office stationery supplies to document solutions,
+        MPS, design and print, we’re committed to providing real benefit to
+        the functioning of business. Our Business Health Check will allow us
+        to conduct a thorough analysis of your spend and functions, offering
+        beneficial solutions to streamline your processes. You will not only
+        save money but increase productivity and efficiency throughout your
+        whole business.
+      </p>
+
+      <!-- Product Image Grid -->
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-card">
+            <!-- Office Stationery Pack -->
+            <img src="./assets/img/print.jpg" alt="Office Stationery - Freepik" />
+            <div class="overlay">
+              <h4>PRINT by JKL</h4>
+              <a href="#">Discover more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="image-card">
+            <!-- Printer with overlay -->
+            <img src="./assets/img/printer.jpg" alt="Printer - Freepik" />
+            <div class="overlay">
+              <h4>MANAGED PRINT by JKL</h4>
+              <a href="#">Discover more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="image-card">
+            <!-- Food & Office Supplies -->
+            <img src="./assets/img/office-item.jpg" alt="Office Supplies - Freepik" />
+            <div class="overlay">
+              <h4>OFFICE SUPPLIES by JKL</h4>
+              <a href="#">Discover more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="image-card">
+            <!-- Office Desk -->
+            <img src="./assets/img/office-furniture.jpg" alt="Office Desk - Freepik" />
+            <div class="overlay">
+              <h4>OFFICE FURNITURE by JKL</h4>
+              <a href="#">Discover more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-lg-5 py-3">
+    <div class="container">
+      <h2 class="section-title-orange text-center mb-5">Hot off the press</h2>
+
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-photo/birthday-cake-decorated-colorful-candles_23-2148243375.jpg"
+              class="card-img-top" alt="15 years celebration" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between text-muted small mb-2">
+                <span>3 min</span>
+                <span>Jun 4, 2024</span>
+              </div>
+              <h5 class="card-title">
+                Celebrate 15 years of business with us!!
+              </h5>
+              <p class="card-text">
+                What a great 15 years it has been! We began with a two-man
+                team and grew into something remarkable.
+              </p>
+              <p class="fw-bold small mb-0">By Admin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-photo/close-up-risk-assessment-text-keyboard_23-2149400610.jpg"
+              class="card-img-top" alt="Risk assessment" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between text-muted small mb-2">
+                <span>7 min</span>
+                <span>Jul 5, 2021</span>
+              </div>
+              <h5 class="card-title">
+                The implications for Employers of staff working from home
+              </h5>
+              <p class="card-text">
+                Employers owe a duty to take steps that are reasonably
+                necessary to ensure health, safety and welfare.
+              </p>
+              <p class="fw-bold small mb-0">By Admin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-photo/medical-equipment-blue-background_23-2148459658.jpg"
+              class="card-img-top" alt="Return to work" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between text-muted small mb-2">
+                <span>3 min</span>
+                <span>Aug 20, 2020</span>
+              </div>
+              <h5 class="card-title">
+                7 Tips to help you safely return to work
+              </h5>
+              <p class="card-text">
+                As we head towards the end of summer, many of us will be
+                returning to work in some capacity.
+              </p>
+              <p class="fw-bold small mb-0">By Ann D’Ambrosi</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-photo/work-from-home-message-lightbox_23-2148961235.jpg"
+              class="card-img-top" alt="Work from home" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between text-muted small mb-2">
+                <span>2 min</span>
+                <span>Jul 15, 2020</span>
+              </div>
+              <h5 class="card-title">
+                5 ways to keep motivated whilst working from home
+              </h5>
+              <p class="card-text">
+                If you’re currently working from home, your motivation levels
+                may become a little stalled.
+              </p>
+              <p class="fw-bold small mb-0">By Ann D’Ambrosi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <div class="newsletter-section">
+    <h2><strong>Sign up to our newsletter</strong></h2>
+    <div class="newsletter-input">
+      <input type="text" placeholder="Enter name" />
+      <button><i class="fas fa-arrow-right"></i></button>
+    </div>
+    <p>Please fill the field before continuing</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="row justify-content-between">
+
+
+        <!-- Contact Us -->
+        <div class="col-md-4 mb-4">
+          <h5>CONTACT US</h5>
+          <p>
+            Need help? Just ask. Contact us on any of the below or via our
+            instant chat service:
+          </p>
+          <p><i class="fas fa-phone-alt"></i> 0844 940 9410</p>
+          <p><i class="fas fa-envelope"></i> orders@jklsolutions.co.uk</p>
+          <p><a href="#" class="text-white">See more contact details</a></p>
+          <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-twitter"></i>
+          </div>
+        </div>
+        <!-- Useful Links -->
+        <div class="col-md-4 mb-4">
+          <h5>USEFUL LINKS</h5>
+          <a href="#">About us</a>
+          <a href="#">Our Services</a>
+          <a href="#">Testimonials</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Statement</a>
+          <a href="#">Terms And Conditions</a>
+          <div class="mt-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" width="40" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+              width="40" />
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="col-md-2 text-start">
+          <h5>SOCIAL </h5>
+
+          <!-- <img
+              src="https://dummyimage.com/100x50/003366/fff&text=PSD"
+              alt="JKL Logo"
+            /> -->
+          <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-twitter"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom d-flex justify-content-center align-items-center px-3">
+    <div>
+      © 2020 Copyright © JKL Solutions Ltd – Registered in England & Wales
+      06874834
+    </div>
+    <!-- <div>
+            <button class="contact-button">
+                Contact us 
+                <i class="fas fa-envelope"></i>
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-comment-alt"></i>
+            </button>
+        </div> -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

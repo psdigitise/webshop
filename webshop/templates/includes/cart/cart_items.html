@@ -1,0 +1,174 @@
+
+{% macro item_subtotal(item) %}
+<div>{{ item.get_formatted('amount') }}</div>
+
+{% if item.is_free_item %}
+<div class="text-success mt-4">
+  <span class="free-tag"> {{ _('FREE') }} </span>
+</div>
+{% else %}
+<span class="item-rate" style="color: #000; font-weight:600;">
+  {{ _('Rate:') }} {{ item.get_formatted('rate') }}
+</span>
+{% endif %} {% endmacro %}
+{% macro product_image4(website_image, css_class="product-image", alt="", no_border=False) %}
+	<div class="{{ 'border' if not no_border else ''}} text-center {{ css_class }}" style="overflow: hidden;">
+		{% if website_image %}
+			<img itemprop="image" class="website-image h-100 w-100" style="max-height:none;width: 150px !important;height: 150px !important;border-radius: 6px;" alt="{{ _(alt) }}" src="{{ frappe.utils.quoted(website_image) | abs_url }}">
+		{% else %}
+			<div itemprop="image" class="card-img-top no-image-item">
+				{{ frappe.utils.get_abbr(alt) or "NA" }}
+			</div>
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% for d in doc.items %}
+<tr data-name="{{ d.name }}">
+  <td style="width: 60%">
+    <div class="d-flex">
+      <div class="cart-item-image mr-4" style="width: auto;">
+        {% if d.thumbnail %} {{ product_image4(d.thumbnail,
+        alt="d.web_item_name", no_border=True) }} {% else %}
+        <div class="no-image-cart-item">
+          {{ frappe.utils.get_abbr(d.web_item_name) or "NA" }}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="d-flex w-100" style="flex-direction: column;justify-content: center;gap:0.5rem;">
+        <div
+          class="item-title mb-1 mr-3"
+          style="color: #000; font-size: 18px; font-weight: 500"
+        >
+          {{ d.get("web_item_name") or d.item_name }}
+        </div>
+        <div class="item-subtitle mr-2 text-black">
+        	{% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
+			{% if website_item_list %}
+				{% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
+				{% if website_item.item_group %}
+					{{website_item.item_group}}
+          		{% endif %} 
+			{% endif %}
+        </div>
+        
+        <div class="item-subtitle mr-2 text-black">
+        	{% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
+			{% if website_item_list %}
+				{% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
+				{% if website_item.short_description %}
+					{{website_item.short_description}}
+          		{% endif %} 
+			{% endif %}
+        </div>
+        {%- set variant_of = frappe.db.get_value('Item', d.item_code,
+        'variant_of') %} {% if variant_of %}
+        <span class="item-subtitle mr-2">
+          {{ _('Variant of') }}
+          <a
+            href="{{frappe.db.get_value('Website Item', {'item_code': variant_of}, 'route') or '#'}}"
+          >
+            {{ variant_of }}
+          </a>
+        </span>
+        {% endif %}
+        <div class="d-flex">
+          <!--style="margin-left: 20px !important;"-->
+          {% set disabled = 'disabled' if d.is_free_item else '' %}
+          <div class="input-group number-spinner m-2" style="    border: 3px solid #ef5ffa;
+    border-radius: 8px;width: fit-content;">
+            <span class="input-group-prepend d-sm-inline-block">
+              <button
+                class="btn cart-btn"
+                data-dir="dwn"
+				style="background: #fff;width: 35px;"
+                {{
+                disabled
+                }}
+              >
+                <!--{{ '–' if not d.is_free_item else ''}}-->
+                <img
+                  src="https://img.icons8.com/?size=100&id=7DbfyX80LGwU&format=png&color=000000"
+                />
+              </button>
+            </span>
+
+            <input
+              class="form-control text-center cart-qty"
+              value="{{ d.get_formatted('qty') }}"
+              data-item-code="{{ d.item_code }}"
+              style="max-width: 70px; border:none !important;"
+              {{
+              disabled
+              }}
+            />
+
+            <span class="input-group-append d-sm-inline-block">
+              <button
+                class="btn cart-btn"
+                data-dir="up"
+				style="background: #fff;font-size: 29px;font-weight: 400;padding-bottom: 4px;color: #000;"
+                {{
+                disabled
+                }}
+              >
+                {{ '+' if not d.is_free_item else ''}}
+              </button>
+            </span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </td>
+
+  <!-- Qty column -->
+
+  <td class="text-right" style="width: 25%">
+    <!-- Shown on mobile view, else hidden -->
+    {% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation
+    %}
+    <div class="text-right sm-item-subtotal">{{ item_subtotal(d) }}</div>
+	
+    {% endif %}
+  </td>
+
+  <!-- Subtotal column -->
+  {% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation
+  %}
+  <td
+    class="text-right item-subtotal column-sm-view"
+    style="gap:0.5rem;color: #000; padding-right: 10px; font-size: 18px; font-weight: 700;display: flex;flex-direction: column;justify-content: center;"
+  >
+    {{ item_subtotal(d) }}
+	<div>
+          {% if not d.is_free_item %}
+          <div
+            class="remove-cart-item column-sm-view d-flex"
+            data-item-code="{{ d.item_code }}"
+            style="    width: fit-content;
+    height: auto !important;
+	font-weight: 500 !important;
+    background-color: #590088;
+	float:none;
+    cursor: pointer;
+    margin-top: 0.25rem;
+    padding: 2px 20px;
+    color: #fff;
+    border-radius: 4px !important;
+    border: 1px solid #590088 !important;
+	
+	"
+          >
+            <span
+              ><a>Delete</a>
+            </span>
+          </div>
+          {% endif %}
+        </div>
+  </td>
+  
+  {% endif %}
+</tr>
+{% endfor %}

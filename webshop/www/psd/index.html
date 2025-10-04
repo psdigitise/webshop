@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSD Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="http://103.214.132.20:8007/psd/assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <style>
+
+    :root {
+    --violet-primary: #570987;
+    --violet-secondary: #6a11cb;
+    --violet-light: #f0ebff;
+    --violet-gradient: linear-gradient(135deg, #570987, #2575fc);
+  }
+
+    .animated-card {
+      animation: pop-glow 2s ease-in-out infinite;
+    }
+    .btn.purple-btn {
+    background: var(--violet-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn.purple-btn:hover {
+    background: var(--violet-gradient);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(87, 9, 135, 0.3);
+    color: white !important;
+  }
+
+  /* Animated Card (Subtle) */
+  .animated-card {
+    animation: pop-glow 3s ease-in-out infinite;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  @keyframes pop-glow {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(87, 9, 135, 0.1); }
+    50% { transform: scale(1.02); box-shadow: 0 8px 20px rgba(87, 9, 135, 0.25); }
+  }
+    /* @keyframes pop-glow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(106, 17, 203, 0.3);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }*/
+    #search-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: absolute;
+    right: 0;
+    top:100%;
+      z-index:10;
+    }
+    #search-results .list-group-item {
+    padding: 0.5rem 1rem;
+    border: none;
+    color: var(--violet-primary);
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  #search-results .list-group-item:hover {
+    background: var(--violet-light);
+    text-decoration: none;
+  }
+
+    .btn.purple-btn.btn-sm:hover {
+      color: #570987;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .overlay {
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .hover-opacity-100:hover {
+      opacity: 1 !important;
+    }
+
+    .card-img-top {
+      overflow: hidden;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+    /* For screens smaller than 600px (e.g., mobile phones) */
+   .feature-box {
+    padding: 1rem;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .feature-box i {
+    font-size: 2rem;
+    color: var(--violet-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .feature-box p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+  }
+  .image-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 200px;
+  }
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .image-card:hover img {
+    transform: scale(1.05);
+  }
+   .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(87, 9, 135, 0.85);
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .image-card:hover .overlay {
+    transform: translateY(0);
+  }
+  .overlay h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+  }
+  .overlay a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .faq{
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display, inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    font-weight: var(--fa-style, 900);
+  }
+  .footer {
+    background: #f0ebff !important;
+    color: #333;
+  }
+  .footer h5 {
+    color: var(--violet-primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .footer a {
+    color: #555;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .footer a:hover {
+    color: var(--violet-primary);
+  }
+   .social-icons i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: var(--violet-primary);
+    transition: transform 0.3s;
+  }
+  .social-icons i:hover {
+    transform: translateY(-3px);
+  }
+   .top-bar {
+    background: var(--violet-primary);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+  }
+  .top-bar a {
+    color: #e0d5ff !important;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+  .top-bar a:hover {
+    color: white !important;
+    text-decoration: underline;
+  }
+  .bottom-bar {
+    background: var(--violet-secondary);
+    padding: 1rem 0;
+  }
+  .bottom-bar .btn {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .bottom-bar .btn:hover {
+    background: white;
+    color: var(--violet-primary) !important;
+    border-color: white;
+  }
+   @media (max-width: 768px) {
+    .section-title { font-size: 1.75rem; }
+    .section-desc { font-size: 1rem; }
+    .offer-card { padding: 1rem; }
+    .offer-card h4 { font-size: 1.2rem; }
+    .feature-box i { font-size: 1.5rem; }
+    .image-card { height: 160px; }
+    .newsletter-section h2 { font-size: 1.5rem; }
+    .top-bar .d-lg-block { display: none; }
+    .navbar-nav { margin-top: 1rem; }
+  }
+
+  @media (max-width: 576px) {
+    .section-padding { padding: 1.5rem 0 !important; }
+    .feature-box { padding: 0.75rem; }
+    .bottom-bar .col-12 { margin-bottom: 0.75rem; }
+    .newsletter-section { padding: 1.5rem 0.5rem; }
+  }
+  .search-bar .form-control {
+    border: 2px solid #eae6ff;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 250px;
+    transition: border-color 0.3s;
+  }
+  .search-bar .form-control:focus {
+    border-color: var(--violet-primary);
+    box-shadow: 0 0 0 0.2rem rgba(87, 9, 135, 0.25);
+  }
+  .press-section .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+  }
+  .press-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(87, 9, 135, 0.1);
+  }
+  .press-section .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--violet-primary);
+  }
+.bg-light-purple {
+  background-color: #6a1b9a; /* Rich purple tone */
+  padding: 60px 0;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.btn-light {
+  background-color: #fff;
+  color: #6a1b9a;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: #f3e5f5;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="bottom-bar d-flex justify-content-between align-items-center">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-lg-between justify-content-center align-items-center">
+        <div class="text-center">
+          <span class="mx-1"><i class="fa fa-phone"></i> 0844 940 9410</span>
+          |
+          <span class="mx-1"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</span>
+        </div>
+        <div class="d-lg-block d-none">
+          <a href="#" class="btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="btn"><i class="fab fa-x-twitter"></i></a>
+          <!-- <a href="#" class="btn"><i class="fa fa-user"></i> Hi There! Your Account</a> -->
+          <!-- <a href="#" class="btn"><i class="fa fa-bolt"></i> Quick Order</a> -->
+          <a href="/cart/" class="btn"><i class="fa fa-shopping-bag"></i> Cart</a>
+          <a href="/me" class="btn purple-btn m-0"><i class="fa fa-user"></i> Account</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo + Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom bg-white"><!-- style="background-color: #f0ebff;"-->
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">
+        <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" alt="PSD Logo" height="40" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <!-- {% for cat in nav_categories %}
+            <li class="nav-item">
+              <a class="nav-link" href="/{{ cat.route }}">{{ cat.name }}</a>
+            </li>
+            {% endfor %} -->
+        </ul>
+        <form class="d-flex search-bar w-auto" onsubmit="return false;">
+          <input
+            class="form-control me-2"
+            type="search"
+            name="q"
+            id="item-group-search"
+            placeholder="Search Categories"
+            aria-label="Search"
+            autocomplete="off"
+          />
+      <div id="search-results" class="mt-3"></div>
+
+        </form>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Logo + Navbar // -->
+
+  <!-- Hero Section -->
+
+  <div id="heroCarousel" class="hero-section carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="hero-section-content">
+          <img src="/assets/webshop/images/banner-bg.svg" class="banner-bg d-block w-100" alt="banner-bg" />
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-8 text-center text-md-start">
+                <div class="carousel-caption text-center">
+
+
+                  <div >
+                    <h3 class="section-title" style="color: #570987;padding-bottom: 23px;">Supplying Excellence
+                    </h3>
+                    <p class="section-desc" >
+                      From large multi-site operations to individuals working remotely, we provide everything you need
+                      to succeed.</p>
+                  </div>
+                  {% if user_test == 1 %}
+                  <div class="hero-buttons d-flex gap-3 flex-md-row flex-wrap" style="justify-content: center;">
+                    <a href="/login" class="btn purple-btn">LOGIN / REGISTER</a>
+                    <a href="/all-products" class="btn purple-btn">SHOP AS GUEST</a>
+                    <!-- <a href="#" class="btn purple-btn">REQUEST CREDIT</a> -->
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-4 text-center">
+                <img src="/assets/webshop/images/banner-image.jpg" alt="Smiley"
+                  class="img-fluid rounded-circle hero-section-content-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="container">
+      <div class="row justify-content-center gy-3 align-items-center">
+        <div class="col-lg-3 col-md-6 col-12 text-center">
+          <a href="/office-supplies" class="btn" style="color: #ffffff;"> <i class="fa fa-pencil-ruler"></i> Office
+            Supplies</a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12 text-center">
+          <a href="/print-consumables" class="btn" style="color: #ffffff;"><i class="fa fa-print"></i> Print
+            Consumables</a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12 text-center">
+          <a href="/refreshment-supplies" class="btn" style="color: #ffffff;"><i class="fa fa-mug-hot"></i> Refreshment
+            Supplies</a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-12 text-center">
+          <a href="/cleaning-items" class="btn" style="color: #ffffff;"><i class="fa fa-broom"></i> Cleaning Items</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom bar -->
+   <!-- {% for offer in offer%}
+   <a href="/{{offer.route}}" class="btn" style="margin: auto;
+      width: 100%;
+      text-align: center;">
+    <div class="offer-card animated-card" style="
+      
+      border: none;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      margin: 20px auto;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none; /* Remove underline from the link */
+      display: block; /* Make the entire div clickable */
+    ">
+      <h4 style="
+        color: #6a11cb;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(106, 17, 203, 0.2);
+      ">
+        🎉 {{offer.offer_title}}
+      </h4>
+      <h6 style="
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 600;
+      ">
+        {{offer.offer_subtitle}}
+      </h6>
+      <div class="offer-details" style="
+        font-size: 16px;
+        color: #444;
+        line-height: 1.6;
+      ">
+        <p>{{offer.offer_details}}</p>
+      </div>
+    </div>
+  </a>
+   {% endfor %}  -->
+
+
+  <!-- nationwide provider -->
+
+  <div class="section-padding text-center">
+    <div class="container">
+      <!-- Common Title -->
+      <h2 class="section-title text-purple">
+        Your Partner in Workplace Efficiency
+      </h2>
+
+      <!-- Common Description -->
+      <p class="section-desc" >
+        Tekstag is an independent, multi award-winning provider of business products and services based in London. Our
+        established team delivers dedicated support to organisations of every size across the UK. Our core principles
+        are integral to everything we do, and our customer-centric approach allows us to build powerful partnerships
+        that add genuine value and drive efficiency within your business.
+      </p>
+
+    <div class="row g-4 justify-content-center text-center">
+      <!-- Feature Item -->
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/fa314a/pencil.png" alt="Creative" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Creative & Inspiring</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/000000/box.png" alt="Range" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Wide Range</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/4caf50/money.png" alt="Affordable" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Affordable Quality</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/007bff/clock.png" alt="Fast" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Fast Delivery</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/28a745/leaf.png" alt="Eco" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Eco-Friendly Choices</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/f0ad4e/handshake.png" alt="Trusted" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Trusted by Customers</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/6610f2/shopping-cart.png" alt="Shopping" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Easy Shopping</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="feature-box p-4 h-100 shadow-sm rounded bg-white">
+          <img src="https://img.icons8.com/ios-filled/50/17a2b8/phone.png" alt="Support" style="width: 30px;height: 30px;"/>
+          <h6 class="mt-3">Friendly Support</h6>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
+
+      <!-- CTA Section -->
+<div class="cta-banner-section section-padding text-center " style="background-color:#f0ebff">
+  <div class="container">
+    <h2 class="section-title text-black">Ready to Elevate Your Workplace?</h2>
+    <p class="section-desc text-black mb-4">
+      Discover Tekstag’s full range of business essentials designed to streamline operations, boost productivity, and support your team every step of the way. Whether you're browsing, shopping, or placing an order — we make it simple, fast, and reliable.
+    </p>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-3 mb-3">
+        <a href="/all-products" class="btn purple-btn w-100">🛍️ SHOP</a>
+      </div>
+      <div class="col-12 col-md-3 mb-3">
+        <a href="/shop-by-category" class="btn purple-btn w-100">🔍 EXPLORE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- nationwide provider // -->
+
+  <!-- workplace solutions -->
+  <div class="section-padding bg-white text-center"><!--bg-grey-->
+    <div class="container p-0">
+      <!-- Title -->
+      <h2 class="section-title text-purple">
+         We do more than just supply stationery – we deliver complete workplace
+        solutions. </h2>
+       <!-- Description -->
+      <p class="section-desc">
+         From everyday office essentials to document management, managed
+        print services, design, and print, our focus is on helping your business work smarter. With our <strong>
+          Business Health Check </strong>, we’ll review your spending and processes in detail, then recommend tailored
+        solutions to cut costs, improve efficiency, and boost productivity across your organisation. </p>
+      <div class="row g-4">
+         {% for product in item_groups %} 
+         <div class="col-md-6">
+          <div class="image-card"> <img src="{{ product.image or '/assets/frappe/images/no-image.png' }}"
+              alt="{{ product.item_group_name}}" />
+            <div class="overlay">
+              <h4>{{ product.item_group_name }}</h4> 
+              <a href="/{{ product.route }}">Discover more</a>
+            </div>
+          </div>
+        </div> 
+      {% endfor %} 
+    </div>
+    </div>
+
+  </div>
+  <div class="cta-banner-section section-padding text-center mt-4" style="background-color:#f0ebff">
+  <div class="container">
+    <h3 class="text-black mb-3">Everything Your Workplace Needs — All in One Place</h3>
+    <p class="section-desc text-black mb-4">
+      From crisp printing to clean spaces and coffee breaks, we’ve got your office covered. Explore our full range of essentials designed to keep your team productive, your environment fresh, and your operations running smoothly.
+    </p>
+     <div class="row justify-content-center">
+      <div class="col-12 col-md-4 mb-3">
+        <a href="/all-products" class="btn purple-btn w-100">🛍️ SEE ALL PRODUCTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-padding bg-white text-center">
+  <div class="container">
+    <!-- Title -->
+    <h2 class="section-title text-purple">Featured Products</h2>
+
+    <!-- Description -->
+    <p class="section-desc">
+      Discover our top solutions—from office essentials to managed print services and design. Our <strong>Business Health Check</strong> helps you streamline operations, reduce costs, and boost productivity.
+    </p>
+
+    <!-- Swiper Slider -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper" style="padding-bottom: 20px;">
+        {% for product in feature %}
+        <div class="swiper-slide" style="width: 190.667px;">
+          <div class="card bg-transparent border-0" style="border-radius:50%; width: 100%; aspect-ratio: 1 / 1;">
+            <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}" class="card-img-top p-2" alt="{{ product.web_item_name }}" style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 1px solid #283a62;background: #283a62;">
+            <div class="">
+              <a href="/{{ product.route }}" class="btn"><h5 class="card-title mt-3">{{ product.web_item_name }}</h5></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination mt-5"></div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- workplace solutions // -->
+
+  <!-- press-section  -->
+<section class="press-section section-padding p-2">
+  <div class="container-fluid">
+    <h2 class="section-title text-center mb-5 text-purple">Hot off the press</h2>
+
+    <div class="row g-4">
+      <!-- Card 1: Anniversary -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0">
+          <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg"
+            class="card-img-top" alt="Anniversary Sale" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between text-muted small mb-2">
+              <span>3 min</span>
+              <span>Sep 20, 2025</span>
+            </div>
+            <h5 class="card-title">Celebrating 15 Years with Mega Discounts</h5>
+            <p class="card-text">
+              We’re turning 15! Enjoy sitewide discounts, flash deals, and surprise rewards as a thank-you to our loyal shoppers.
+            </p>
+            <p class="fw-bold small mb-0">By eShop Team</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Product Launch -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0">
+          <img src="https://img.freepik.com/free-photo/smart-home-automation_23-2149376901.jpg"
+            class="card-img-top" alt="Smart Gadgets" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between text-muted small mb-2">
+              <span>5 min</span>
+              <span>Sep 15, 2025</span>
+            </div>
+            <h5 class="card-title">New Arrival: Smart Home Essentials</h5>
+            <p class="card-text">
+              Control, connect, and simplify your lifestyle with our latest smart home collection — now available online.
+            </p>
+            <p class="fw-bold small mb-0">By Product Team</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Customer Story -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0">
+          <img src="https://img.freepik.com/free-photo/happy-woman-receiving-package_23-2148745671.jpg"
+            class="card-img-top" alt="Customer success story" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between text-muted small mb-2">
+              <span>4 min</span>
+              <span>Aug 30, 2025</span>
+            </div>
+            <h5 class="card-title">From Browsing to Thriving: A Customer’s Journey</h5>
+            <p class="card-text">
+              Discover how one small business scaled their sales using our platform’s marketplace and tools.
+            </p>
+            <p class="fw-bold small mb-0">By Community Team</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Seasonal Trends -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0">
+          <img src="https://img.freepik.com/free-photo/fall-fashion-flat-lay_23-2149415678.jpg"
+            class="card-img-top" alt="Fall trends" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between text-muted small mb-2">
+              <span>2 min</span>
+              <span>Sep 25, 2025</span>
+            </div>
+            <h5 class="card-title">Autumn Must-Haves: Shop the Season</h5>
+            <p class="card-text">
+              Fresh fashion, cozy décor, and trending deals — curated just for your fall shopping wishlist.
+            </p>
+            <p class="fw-bold small mb-0">By Style Editor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- press-section // -->
+
+  <!-- Newsletter Section -->
+  <div class="newsletter-section section-padding ">
+    <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 20px;">
+      Ready to Upgrade Your Workspace?
+    </h2>
+    <p style="font-size: 18px; margin-bottom: 30px;">
+      Discover unbeatable deals on office supplies, print consumables, and refreshment essentials. Shop smarter, save bigger.
+    </p>
+    <a href="/all-products" class="btn btn-light btn-lg" style="
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #6a11cb;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    ">
+      🛒 Shop Now
+    </a>
+  </div>
+
+  <!-- Newsletter Section // -->
+
+  <!-- Footer -->
+  <div class="footer section-padding " style="background-color:#e1e1e1;">
+    <div class="container">
+      <div class="row justify-content-between">
+        <!-- Contact Us -->
+        <div class="col-md-4 mb-4">
+          <a class="navbar-brand fw-bold" href="#">
+            <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" alt="PSD Logo" width="120px"
+              height="60" />
+          </a>
+          <!-- <h5>CONTACT US</h5> -->
+          <p>
+            Need help? Just ask. Contact us on any of the below or via our
+            instant chat service:
+          </p>
+          <p><i class="fas fa-phone-alt"></i> 0844 940 9410</p>
+          <p><i class="fas fa-envelope"></i> orders@tekstag.co.uk</p>
+          <!-- <p><a href="#" class="text-black">See more contact details</a></p> -->
+          <div class="d-flex gap-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" width="40" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+              width="40" />
+          </div>
+        </div>
+        <!-- Useful Links -->
+        <div class="col-md-4 mb-4">
+          <div class="footer-link">
+            <h5>USEFUL LINKS</h5>
+            <a href="/all-products"><i class="fa-solid fa-chevron-right"></i>All products</a>
+            <a href="/shop-by-category"><i class="fa-solid fa-chevron-right"></i>Shop By Category</a>
+            <a href="/cleaning-items"><i class="fa-solid fa-chevron-right"></i>Cleaning Items</a>
+            <a href="/office-supplies"><i class="fa-solid fa-chevron-right"></i>Office Supplies</a>
+            <a href="/refreshment-supplies"><i class="fa-solid fa-chevron-right"></i>Refreshment Supplies</a>
+            <a href="/print-consumables"><i class="fa-solid fa-chevron-right"></i>Print Consumables</a>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="col-md-2 text-start">
+          <h5>SOCIAL</h5>
+
+          <!-- <img
+              src="https://dummyimage.com/100x50/003366/fff&text=PSD"
+              alt="JKL Logo"
+            /> -->
+          <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-twitter"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom d-flex justify-content-center align-items-center px-3">
+    <div>
+      © 2025 Copyright © tekstag Solutions Ltd
+      <!-- – Registered in England & Wales 06874834 -->
+    </div>
+    <!-- <div>
+            <button class="contact-button">
+                Contact us 
+                <i class="fas fa-envelope"></i>
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-comment-alt"></i>
+            </button>
+        </div> -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ <script>
+  const swiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation:false,
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 5,
+      },
+      1024: {
+        slidesPerView: 5,
+      }
+    }
+  });
+</script>
+
+ 
+
+  <script>
+  document.getElementById("item-group-search").addEventListener("input", function () {
+  const query = this.value.trim();
+  if (query.length < 2) {
+    document.getElementById("search-results").innerHTML = "";
+    return;
+  }
+
+  fetch(`/api/method/webshop.api.search_item_groups_with_route?txt=${query}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log("result",data)
+    const results = data.message || [];
+    const container = document.getElementById("search-results");
+    container.innerHTML = "";
+
+    if (results.length === 0) {
+      container.innerHTML = '<ul class="list-group"><li class="list-group-item">No matching Category found.</li></ul>';
+      return;
+    }
+
+    const list = document.createElement("ul");
+    list.className = "list-group";
+
+    results.forEach(item => {
+      const li = document.createElement("a");
+      li.href = "/" + item.route;
+      li.className = "list-group-item";
+      li.textContent = item.item_group_name;
+      list.appendChild(li);
+    });
+
+    container.appendChild(list);
+  });
+});
+
+</script>
+
+</body>
+
+</html>

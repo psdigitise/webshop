@@ -1,0 +1,260 @@
+{% extends "templates/web.html" %}
+{% from "webshop/templates/includes/macros.html" import recommended_item_row,all_item_row %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block breadcrumbs %}
+<!--<div class="item-breadcrumbs small text-muted">
+	{% include "templates/includes/breadcrumbs.html" %}
+</div>-->
+{% endblock %}
+ {% block header %}
+  <style>
+  .product-banner {
+    background: linear-gradient(90deg, #570987, #2d2c2c);
+    color: #ffffff;
+    padding: 4rem 0;
+}
+.breadcrumb_a a {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+     /*opacity: 0.8; */
+    transition: opacity 0.3s ease;
+}
+ 
+.breadcrumb_a span {
+    margin: 0 9px;
+    color: #ffffff;
+}
+ 
+.product-banner-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    padding-top: 2rem;
+}
+</style>
+<section class="product-banner mb-5">
+<div class="container-fluid">
+  <nav class="breadcrumb_a">
+<a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a><span>/</span> <a>{{ _(doc.web_item_name) }}</a>
+</nav>
+<h1 class="product-banner-title">{{ _(doc.web_item_name) }}</h1>
+</div>
+</section>
+<!-- <div class="mb-6 " style="color: #570987;">{{ _("All Products") }}</div> -->
+{% endblock header %}
+{% block page_content %}
+<div class="product-container container item-main" style="background-color:#f2f2f2 !important;">
+	{% from "webshop/templates/includes/macros.html" import product_image %}
+	<div class="item-content">
+		<div class="product-page-content" itemscope itemtype="http://schema.org/Product">
+			<!-- Image, Description, Add to Cart -->
+			<div class="row">
+				{% include "templates/generators/item/item_image.html" %}
+        
+				{% include "templates/generators/item/item_details.html" %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Additional Info/Reviews, Recommendations -->
+<div class="d-flex">
+	{% set show_recommended_items = recommended_items and shopping_cart.cart_settings.enable_recommendations %}
+	{% set info_col = 'col-12' if show_recommended_items else 'col-12' %}
+
+	{% set padding_top = 'pt-0' if (show_tabs and tabs) else '' %}
+
+	<div class="product-container container pt-0 {{ padding_top }} {{ info_col }}" style="background-color:#f2f2f2 !important;">
+		<div class="item-content {{ 'mt-minus-2' if (show_tabs and tabs) else '' }}">
+			<div class="product-page-content row" itemscope itemtype="http://schema.org/Product" style="display:flex">
+
+				<!-- Product Specifications Table Section -->
+				{% if show_tabs and tabs %}
+					<div class="category-tabs">
+						<!-- tabs -->
+							{{ web_block("Section with Tabs", values=tabs, add_container=0,
+								add_top_padding=0, add_bottom_padding=0)
+							}}
+					</div>
+				{% elif website_specifications %}
+					{% include "templates/generators/item/item_specifications.html"%}
+				{% endif %}
+
+				<!-- Advanced Custom Website Content -->
+				
+
+				<!-- Reviews and Comments -->
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- Recommended Items -->
+	<!--{% if show_recommended_items %}
+		<div class="mt-4 col-3 recommended-item-section">
+			<span class="recommendation-header">{{ _("Recommended") }}</span>
+			<div class="product-container mt-2 recommendation-container">
+				{% for item in recommended_items %}
+					{{ recommended_item_row(item) }}
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}-->
+
+</div>
+<style>
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.recommended-item {
+  flex: 0 0 auto;
+  width: 190px;
+  background: #f2f2f2;
+  border-radius:0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 0;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #570987;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.carousel-arrow.left {
+  left: 0.5rem;
+}
+
+.carousel-arrow.right {
+  right: 0.5rem;
+}
+</style>
+
+{% if all_items %}
+<div class="all-items-carousel container mt-5">
+  <h4 class="mb-3 text-purple">{{ _("Explore More Items") }}</h4>
+
+  <div class="carousel-wrapper">
+    <!-- <button class="carousel-arrow left left2">&#10094;</button>-->
+
+    <div class="carousel-track track2">
+      {% for item in all_items %}
+        {{ all_item_row(item) }}
+      {% endfor %}
+    </div>
+
+    <!-- <button class="carousel-arrow right right2">&#10095;</button>-->
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block base_scripts %}
+<!-- js should be loaded in body! -->
+<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/slick-carousel/slick/slick.min.js"></script>
+{{ include_script("frappe-web.bundle.js") }}
+{{ include_script("controls.bundle.js") }}
+{{ include_script("dialog.bundle.js") }}
+<!--<script>
+  $(document).ready(function () {
+    const track = document.querySelector('.carousel-track');
+    const leftArrow = document.querySelector('.carousel-arrow.left');
+    const rightArrow = document.querySelector('.carousel-arrow.right');
+
+    leftArrow.addEventListener('click', () => {
+      track.scrollBy({ left: -240, behavior: 'smooth' });
+    });
+
+    rightArrow.addEventListener('click', () => {
+      track.scrollBy({ left: 240, behavior: 'smooth' });
+    });
+	const track2 = document.querySelector('.carousel-track.track2');
+    const leftArrow2 = document.querySelector('.carousel-arrow.left.left2');
+    const rightArrow2 = document.querySelector('.carousel-arrow.right.right2');
+
+    leftArrow2.addEventListener('click', () => {
+      track2.scrollBy({ left: -240, behavior: 'smooth' });
+    });
+
+    rightArrow2.addEventListener('click', () => {
+      track2.scrollBy({ left: 240, behavior: 'smooth' });
+    });
+  });
+</script> --> 
+<script>
+
+
+  /*$(document).ready(function () {
+    const autoScroll = (track, interval = 2000, step = 240) => {
+      let direction = 1;
+
+      setInterval(() => {
+        track.scrollBy({ left: step * direction, behavior: 'smooth' });
+
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+          direction = -1;
+        } else if (track.scrollLeft <= 0) {
+          direction = 1;
+        }
+      }, interval);
+    };
+
+    const track1 = document.querySelector('.carousel-track.track1');
+    const track2 = document.querySelector('.carousel-track.track2');
+    if (track1) {
+      autoScroll(track1);
+    } else {
+      console.warn("track1 not found");
+    }
+
+    if (track1) autoScroll(track1);
+    if (track2) autoScroll(track2);
+  });*/
+  document.addEventListener("DOMContentLoaded", function () {
+     const element = document.querySelector('.container.my-4');
+      const breadcrumbs = document.querySelector('.page-breadcrumbs');
+      const header = document.querySelector('.page-header');
+      const pageheader = document.querySelector('.page-header-wrapper');
+      if (pageheader){
+          pageheader.classList.add('p-0');
+      }
+      if (header){
+          header.style.width = "100%";
+      }
+      if (breadcrumbs) {
+          breadcrumbs.style.display = "none";
+      }
+      if (element) {
+        element.classList.remove('container');
+        element.classList.remove('my-4');
+        element.classList.add('bg-white');
+        }
+     }
+  )
+</script>
+{% endblock %}
