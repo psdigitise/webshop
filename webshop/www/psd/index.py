@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from webshop.api import get_top_rated_items
 
 sitemap = 1
 
@@ -129,7 +130,39 @@ def get_context(context):
 		fields=["name", "route"],
 		order_by="name asc"
 		)
+
+	office_supplies = frappe.get_all(
+		"Website Item",
+		filters={"item_group":"Office Supplies"},
+		fields=["name", "web_item_name", "item_name", "website_image", "route", "description"],
+		limit_page_length=10
+	)
+	context.office_supplies = office_supplies
 	
+	print_consumables = frappe.get_all(
+			"Website Item",
+			filters={"item_group":"Print Consumables"},
+			fields=["name", "web_item_name", "item_name", "website_image", "route", "description"],
+			limit_page_length=10
+		)
+	context.print_consumables = print_consumables
+	reference_supplies = frappe.get_all(
+			"Website Item",
+			filters={"item_group":"Refreshment Supplies"},
+			fields=["name", "web_item_name", "item_name", "website_image", "route", "description"],
+			limit_page_length=10
+		)
+	context.reference_supplies = reference_supplies
+	cleaning_items = frappe.get_all(
+			"Website Item",
+			filters={"item_group":"Cleaning Items"},
+			fields=["name", "web_item_name", "item_name", "website_image", "route", "description"],
+			limit_page_length=10
+		)
+ 
+	top_rated=get_top_rated_items(limit=10)
+	context.top_rated = top_rated
+	context.cleaning_items = cleaning_items
 	if frappe.session.user != "Guest":
 		context.user_test = 0
 	else:

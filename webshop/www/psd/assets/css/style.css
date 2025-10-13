@@ -304,7 +304,7 @@ position:static;
 
 /* .newsletter-section  */
 .newsletter-section {
-  background: linear-gradient(135deg, #570987 0%, #d397f8 100%);
+  background-color: #570987;
   color: white;
   text-align: center;
   padding: 40px 20px;
