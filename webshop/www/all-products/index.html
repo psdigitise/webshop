@@ -63,7 +63,7 @@
       </div>
       {% endif %}
        <div class="text-lg font-semibold text-purple-700 pb-4" style="color: #570987;font-size:x-large;">Top Rated Products</div>
-      {% for item in frappe.call('webshop.api.get_top_rated_items') %}
+      {% for item in top_rated %}
        
 
         <div class="product-card mb-3 pb-3" style="border-bottom: 1px solid #eaeaea;">

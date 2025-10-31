@@ -12,7 +12,10 @@ required_apps = ["payments", "erpnext"]
 
 web_include_css = "webshop-web.bundle.css"
 
-app_include_css = "/assets/webshop/css/style.css"
+app_include_css = [
+    "/assets/webshop/css/style.css",
+    "/assets/webshop/css/desk.css"
+    ]
 
 web_include_js = "web.bundle.js"
 
@@ -38,11 +41,17 @@ override_doctype_class = {
     "Payment Request": "webshop.webshop.doctype.override_doctype.payment_request.PaymentRequest",
     "Item Group": "webshop.webshop.doctype.override_doctype.item_group.WebshopItemGroup",
     "Item": "webshop.webshop.doctype.override_doctype.item.WebshopItem",
+    "Quotation": "webshop.overrides.custom_quotation.CustomQuotation",
 }
-
+permission_query_conditions = {
+    "Quotation": "webshop.overrides.custom_quotation.quotation_permission_query",
+    "Sales Order": "webshop.overrides.custom_sales_order.sales_order_permission_query",
+}
 doctype_js = {
     "Item": "public/js/override/item.js",
     "Homepage": "public/js/override/homepage.js",
+    "Quotation": "public/js/quotation_custom.js",
+    "Sales Order": "public/js/sales_order.js"
 }
 
 doc_events = {

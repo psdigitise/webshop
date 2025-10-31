@@ -1,0 +1,49 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"d3dQWZuTts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\"><b>Home</b></span><span class=\\\"h4\\\"></span>\",\"col\":12}},{\"id\":\"niSU8LmyKp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cart Request List\",\"col\":3}},{\"id\":\"LKq7-0g0l6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Placed Orders\",\"col\":3}}]",
+ "creation": "2025-10-30 13:17:48.101245",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Sales",
+ "links": [],
+ "modified": "2025-10-30 15:40:42.433501",
+ "modified_by": "Administrator",
+ "module": "Webshop",
+ "name": "Sales",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Sales Manager"
+  }
+ ],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Cart Request List",
+   "link_to": "Quotation",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Placed Orders",
+   "link_to": "Sales Order",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Sales"
+}

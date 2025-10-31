@@ -15,6 +15,8 @@
 
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Roboto', sans-serif !important;
       background-color: #f1eaff !important;
     }
@@ -94,6 +96,7 @@
     }
 
     #search-results .list-group-item {
+      width: 700px !important;
       padding: 0.5rem 1rem;
       border: none;
       color: var(--violet-primary);
@@ -102,9 +105,32 @@
     }
 
     #search-results .list-group-item:hover {
-      background: var(--violet-light);
-      text-decoration: none;
+     background: #570987;
+    text-decoration: none;
+    color: #fff;
     }
+
+    @media (max-width: 767px) {
+  #search-results {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    gap: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  #search-results .list-group-item {
+    width: 100% !important;
+    font-size: 14px;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  #search-results .list-group-item:last-child {
+    border-bottom: none;
+  }
+}
 
     .btn.purple-btn.btn-sm:hover {
       color: #570987;
@@ -801,6 +827,394 @@
       font-weight: 600;
       letter-spacing: 0.5px;
     }
+
+    .customer-service-container {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .hover-popup {
+
+      position: absolute;
+
+      top: 120%;
+
+      left: 50%;
+
+      transform: translate(-50%, 10px);
+      /* Start slightly lower */
+
+      width: 280px;
+
+      height: max-content;
+
+      background-color: #f2e9ff;
+
+      border-radius: 8px;
+
+      box-shadow: #570987 0px 0px 0px 3px;
+
+      padding: 15px;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      z-index: 100;
+
+      /* Hidden by default */
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      /* Smooth transition */
+
+      transition: all 0.4s ease-in-out;
+
+    }
+
+    /* When parent is hovered */
+
+    .parent:hover .hover-popup {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transform: translate(-50%, 0);
+      /* Slide up smoothly */
+
+    }
+
+
+    .customer-service-container:hover .hover-popup {
+      display: block;
+    }
+
+    .hover-popup strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .hover-popup i {
+      margin-right: 6px;
+      color: #570987;
+    }
+
+    .hover-popup p {
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      #heroCarousel {
+        top: 60px;
+        height: auto;
+        padding-bottom: 40px;
+      }
+
+      .hero-section-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .swiper-slide {
+        width: 45% !important;
+      }
+
+      .card-img-top {
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: none;
+        background: aqua;
+        width: 90%;
+      }
+
+      .card-title {
+        font-size: 0.75rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .swiper-slide {
+        width: 80% !important;
+      }
+
+      .card-title {
+        font-size: 0.7rem !important;
+      }
+    }
+
+    @media (min-midth:480px) {
+      .card-img-top {
+        border-radius: 50%;
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: none;
+        background: aqua;
+        width: 60%;
+      }
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      border-radius: 50%;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-img-top {
+      border-radius: 50%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border: none;
+      background: aqua;
+      width: 100%;
+    }
+
+    .btn {
+      text-align: center;
+    }
+
+    .bottom-bar .container-fluid {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .bottom-bar .navbar-brand img {
+      height: 40px;
+      max-width: 100%;
+    }
+
+    .customer-service-container {
+      position: relative;
+      cursor: pointer;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .hover-popup {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      font-size: 14px;
+      z-index: 10;
+    }
+
+    .customer-service-container:hover .hover-popup {
+      display: block;
+    }
+
+    .search-bar input {
+      width: 250px;
+      max-width: 100%;
+    }
+
+    .custom-display-lg a {
+      margin-left: 8px;
+      font-size: 16px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 992px) {
+      .bottom-bar .d-flex {
+        flex-wrap: wrap;
+        justify-content: center !important;
+        text-align: center;
+      }
+
+      .customer-service-container {
+        margin-top: 10px;
+      }
+
+      .search-bar {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .search-bar input {
+        width: 80%;
+      }
+
+      .custom-display-lg {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .custom-display-lg a {
+        margin: 5px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hover-popup {
+        width: 90vw;
+        font-size: 13px;
+      }
+
+      .search-bar input {
+        font-size: 14px;
+      }
+
+      .custom-display-lg a {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .bottom-bar .d-flex {
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .custom-display-lg,
+      .customer-service-container span,
+      .customer-service-container br,
+      .customer-service-container .hover-popup {
+        display: none !important;
+      }
+
+      .customer-service-container {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      .customer-service-container i {
+        font-size: 20px;
+        color: #fff;
+      }
+
+      .search-bar {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 10px;
+      }
+
+      .search-bar input {
+        width: 100%;
+        max-width: 180px;
+        height: 35px;
+        font-size: 14px;
+      }
+
+      .bottom-bar .navbar-brand img {
+        height: 35px;
+      }
+    }
+    .card-img-top2 {
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border: none;
+      background: aqua;
+      width: 100%;
+    }
+    @media (min-width: 1440px) {
+      #heroCarousel {
+        height: 65vh;
+      }
+      .hero-section-content h3 {
+        font-size: 2rem;
+      }
+      .swiper-slide .card {
+        width: 60% !important;
+      }
+    }
+    @media (max-width: 1439px) and (min-width: 1024px) {
+      #heroCarousel {
+        height: 60vh;
+      }
+      .hero-section-content h3 {
+        font-size: 1.8rem;
+      }
+      .swiper-slide .card {
+        width: 70% !important;
+      }
+    }
+    
+    @media (max-width: 1023px) and (min-width: 768px) {
+      #heroCarousel {
+        top: 80px;
+        height: 55vh;
+      }
+      .hero-section-content h3 {
+        font-size: 1.5rem;
+        margin-top: 26px !important;
+      }
+      .swiper-slide {
+        width: 180px !important;
+      }
+      .swiper-slide .card {
+        width: 75% !important;
+      }
+    }
+    
+    @media (max-width: 767px) and (min-width: 480px) {
+      #heroCarousel {
+        top: 60px;
+        height: 50vh;
+      }
+      .hero-section-content h3 {
+        font-size: 1.2rem;
+      }
+      .swiper-slide {
+        width: 150px !important;
+      }
+      .swiper-slide .card {
+        width: 80% !important;
+      }
+      .card-title {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    @media (max-width: 479px) {
+      #heroCarousel {
+        top: 50px;
+        height: auto;
+        padding-bottom: 30px;
+      }
+      .hero-section-content h3 {
+        font-size: 1rem;
+      }
+      .swiper-slide {
+        width: 130px !important;
+      }
+      .swiper-slide .card {
+        width: 85% !important;
+      }
+      .card-title {
+        font-size: 0.7rem !important;
+      }
+    }
   </style>
 </head>
 
@@ -815,14 +1229,29 @@
           <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" style="filter: invert(1);"
             alt="PSD Logo" height="40" />
         </a>
+        <div class="parent customer-service-container text-center">
+          <span class="mx-1"><i class="fa fa-phone"></i></span>Customer service<br>
+          
+          <div class="hover-popup">
+            <p><strong>Customer Service</strong></p>
+            <p class="m-0"><i class="fa fa-clock-o"></i> Available weekdays 8am – 6pm</p><br>
+            <p class="m-0"><i class="fa fa-comments"></i> Live chat: 9am – 5pm</p><br>
+            <p class="m-0"><i class="fa fa-phone"></i> 0844 940 9410</p><br>
+            <p class="m-0"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</p>
+          </div>
+        </div>
+        <!-- <div class="text-center">
+          <span class="mx-1"><i class="fa fa-phone"></i> 0844 940 9410</span>
+          Customer service
+        </div>
         <div class="text-center">
           <span class="mx-1"><i class="fa fa-phone"></i> 0844 940 9410</span>
           |
           <span class="mx-1"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</span>
-        </div>
-        <form class="d-flex search-bar w-auto" onsubmit="return false;">
-          <input class="form-control me-2" type="search" name="q" id="item-group-search" placeholder="Search Categories"
-            aria-label="Search" autocomplete="off" />
+        </div> -->
+        <form class="d-flex search-bar" onsubmit="return false;" style="width: 700px !important;">
+          <input class="form-control me-2 w-100" type="search" name="q" id="item-group-search"
+            placeholder="What are you looking for?" aria-label="Search" autocomplete="off" />
           <div id="search-results" class="mt-3"></div>
 
         </form>
@@ -832,11 +1261,11 @@
           <a href="#" class="btn purple-btn mr-c"><i class="fab fa-x-twitter"></i></a>
           <!-- <a href="#" class="btn"><i class="fa fa-user"></i> Hi There! Your Account</a> -->
           <!-- <a href="#" class="btn"><i class="fa fa-bolt"></i> Quick Order</a> -->
-          <a href="/cart/" class="btn purple-btn mr-c"><i class="fa fa-shopping-bag"></i> Cart</a>
+          <a href="/cart/" class="btn purple-btn mr-c"><i class="fa fa-shopping-bag"></i></a>
           {% if user_test == 1 %}
-          <a href="/login" class="btn purple-btn"><i class="fa fa-user"></i> Login</a>
+          <a href="/login" class="btn purple-btn"><i class="fa fa-user"></i></a>
           {% else %}
-          <a href="/me" class="btn purple-btn"><i class="fa fa-user"></i> Account</a>
+          <a href="/me" class="btn purple-btn"><i class="fa fa-user"></i></a>
           {% endif %}
         </div>
       </div>
@@ -928,14 +1357,14 @@
     <div class="carousel-inner">
       <div class="d-block">
         <div class="hero-section-content">
-          <h3 class="text-purple text-center" style="font-weight: 600;">TOP PRODUCTS FOR YOU</h3>
+          <h3 class="text-purple head-home text-center" style="font-weight: 600;">TOP PRODUCTS FOR YOU</h3>
           <div class="swiper mySwiper mt-4" style="z-index: 0 !important;">
             <div class="swiper-wrapper" style="padding-bottom: 20px;">
               {% for product in feature %}
               <div class="swiper-slide" style="width: 190.667px !important; justify-items: center;">
                 <div class="card bg-transparent border-0" style="border-radius:50%; width: 70%; aspect-ratio: 1 / 1;">
-                  <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}" class="card-img-top top"
-                    alt="{{ product.web_item_name }}"
+                  <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}"
+                    class="card-img-top top" alt="{{ product.web_item_name }}"
                     style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: none;background: aqua;">
                   <div>
                     <a href="/{{ product.route }}" class="btn" style="width: 100%;
@@ -1049,7 +1478,7 @@
 
   <!-- nationwide provider -->
 
-  <div class="section-padding" >
+  <div class="section-padding">
     <div class="container-fluid">
       <!-- Section Title -->
       <h2 class="section-title text-purple text-center mb-4">
@@ -1135,7 +1564,7 @@
     </div>
 
   </div>
-  <div class="cta-banner-section section-padding text-center " style="background-color: #570987 !important;"  >
+  <div class="cta-banner-section section-padding text-center " style="background-color: #570987 !important;">
     <div class="container">
       <h3 class="text-white mb-3">Everything Your Workplace Needs — All in One Place</h3>
       <p class="section-desc text-white mb-4">
@@ -1197,7 +1626,7 @@
         <!-- Card 1: Anniversary -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
-            <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg" class="card-img-top"
+            <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg" class="card-img-top2"
               alt="Anniversary Sale" />
             <div class="card-body">
               <div class="d-flex justify-content-between text-muted small mb-2">
@@ -1217,7 +1646,7 @@
         <!-- Card 2: Product Launch -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
-            <img src="https://img.freepik.com/free-photo/smart-home-automation_23-2149376901.jpg" class="card-img-top"
+            <img src="https://img.freepik.com/free-photo/smart-home-automation_23-2149376901.jpg" class="card-img-top2"
               alt="Smart Gadgets" />
             <div class="card-body">
               <div class="d-flex justify-content-between text-muted small mb-2">
@@ -1238,7 +1667,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
             <img src="https://img.freepik.com/free-photo/happy-woman-receiving-package_23-2148745671.jpg"
-              class="card-img-top" alt="Customer success story" />
+              class="card-img-top2" alt="Customer success story" />
             <div class="card-body">
               <div class="d-flex justify-content-between text-muted small mb-2">
                 <span>4 min</span>
@@ -1256,7 +1685,7 @@
         <!-- Card 4: Seasonal Trends -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
-            <img src="https://img.freepik.com/free-photo/fall-fashion-flat-lay_23-2149415678.jpg" class="card-img-top"
+            <img src="https://img.freepik.com/free-photo/fall-fashion-flat-lay_23-2149415678.jpg" class="card-img-top2"
               alt="Fall trends" />
             <div class="card-body">
               <div class="d-flex justify-content-between text-muted small mb-2">
@@ -1464,7 +1893,7 @@
             const li = document.createElement("a");
             li.href = "/" + item.route;
             li.className = "list-group-item";
-            li.textContent = item.item_group_name;
+            li.textContent = item.web_item_name;
             list.appendChild(li);
           });
 
