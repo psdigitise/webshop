@@ -464,6 +464,7 @@ input[type="text"], select {
 
 <div class="order-page row mb-5">
   <div class="d-grid col-md-8 ml-4 col-12">
+     {% if "Corporate Buyer" not in roles %}
   <div class="payment-container rounded shadow mb-4">
   <!-- Left: Payment Methods -->
   <div class="payment-methods">
@@ -500,7 +501,10 @@ input[type="text"], select {
       <label><input type="radio" disabled> Cash on Delivery / Pay on Delivery (Unavailable)</label>
     </div>
   </div>
+  
 </div>
+{% endif %}
+
     <table class="items-table rounded shadow ">
         <thead class="rounded">
             <tr>
@@ -618,13 +622,13 @@ input[type="text"], select {
     </div>-->
 
     <!-- Pay Button -->
-    {# {% if enabled_checkout and (doc.doctype != "Sales Invoice" or doc.outstanding_amount > 0) %}
+    {% if enabled_checkout and (doc.doctype != "Sales Invoice" or doc.outstanding_amount > 0) and ("Corporate Buyer" not in roles)%}
       <a href="/api/method/erpnext.accounts.doctype.payment_request.payment_request.make_payment_request?dn={{ doc.name }}&dt={{ doc.doctype }}&submit_doc=1&order_type=Shopping Cart"
          class="btn w-100 fw-bold text-white"
          style="background: linear-gradient(90deg, #6f42c1, #9b59b6); border: none;">
          {{ _("Pay") }} {{ doc.get_formatted("grand_total") }}
       </a>
-    {% endif %} #}
+    {% endif %}
 
   </div>
 </div>

@@ -51,7 +51,7 @@ doctype_js = {
     "Item": "public/js/override/item.js",
     "Homepage": "public/js/override/homepage.js",
     "Quotation": "public/js/quotation_custom.js",
-    "Sales Order": "public/js/sales_order.js"
+    "Sales Order": "public/js/sales_order_list.js",
 }
 
 doc_events = {

@@ -94,7 +94,7 @@
 
 					<div class="row mt-2">
 						<div class="col-3">
-							{# {% if cart_settings.enable_checkout %}
+							{% if cart_settings.enable_checkout %}
 								<a class="btn btn-primary-light font-md" href="/orders" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
 									{{ _('Past Orders') }}
 								</a>
@@ -102,7 +102,7 @@
 								<a class="btn btn-primary-light font-md" href="/quotations" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
 									{{ _('Past Quotes') }}
 								</a>
-							{% endif %} #}
+							{% endif %}
 						</div>
 						<div class="col-9">
 							{% if doc.items %}
@@ -158,9 +158,9 @@
 							{% include "templates/includes/cart/cart_payment_summary.html" %}
 						</div>
 
-						{# <div class="place-order">
+						<div class="place-order">
 							{% include "templates/includes/cart/place_order.html" %}
-						</div> #}
+						</div>
 					</div>
 
 					{% include "templates/includes/cart/cart_address.html" %}

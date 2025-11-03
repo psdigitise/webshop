@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Sales",
  "links": [],
- "modified": "2025-10-30 15:40:42.433501",
+ "modified": "2025-11-03 12:36:00.025450",
  "modified_by": "Administrator",
  "module": "Webshop",
  "name": "Sales",
@@ -24,6 +24,12 @@
  "roles": [
   {
    "role": "Sales Manager"
+  },
+  {
+   "role": "Level 1 Admin"
+  },
+  {
+   "role": "Level 2 Admin"
   }
  ],
  "sequence_id": 28.0,
