@@ -12,7 +12,8 @@ def sales_order_permission_query(user):
         return "`tabSales Order`.`workflow_state` = 'Pending L1 Approval'"
 
     if "Level 2 Admin" in user_roles:
-        return "`tabSales Order`.`workflow_state` = 'Pending L2 Approval'"
+        return "`tabSales Order`.`workflow_state` IN ('Pending L2 Approval', 'Approved')"
+
 
     user_company = frappe.db.get_value("User", user, "company")
 

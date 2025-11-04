@@ -212,9 +212,11 @@
 
 {%- macro ratings_with_title(avg_rating, title, size, rating_header_class, for_summary=False) -%}
 <div class="{{ 'd-flex' if not for_summary else '' }}">
+	{% if title %}
 	<p class="mr-4 {{ rating_header_class }}">
 		<span>{{ _(title) }}</span>
 	</p>
+	{% endif %}
 	<div class="rating {{ 'ratings-pill' if for_summary else ''}}">
 		{% for i in range(1,6) %}
 		{% set fill_class = 'star-click' if i <= avg_rating*5 else '' %}
@@ -227,24 +229,24 @@
 {%- endmacro -%}
 
 {%- macro ratings_summary(reviews, reviews_per_rating, average_rating, average_whole_rating,doc, for_summary=False, total_reviews=None)-%}
-<div class="rating-summary-section mt-4 row">
+<div class="rating-summary-section row">
 	
-
-	<!-- Rating Progress Bars -->
+		{% if reviews %}
+			{% set rating_title = frappe.utils.cstr(average_rating) + " " + _("out of 5") if not for_summary else ''%}
+			{{ ratings_with_title(average_whole_rating/5, rating_title, "md", "rating-summary-title", for_summary) }}
+		{% endif %}
+	<!-- <h2 style="font-size: 2rem;">
+			{{ (average_rating or 0)|round }}
+		</h2> -->
 	<div class="rating-progress-bar-section col-12">
 		<div class="rating-summary-numbers " style="gap: 0.5rem;margin-bottom: 1rem;align-items: baseline;flex-direction: row;">
-		<h2 style="font-size: 2rem;">
-			{{ (average_rating or 0)|round }}
-		</h2>
+		
 		<div class="mb-2" style="margin-top: -.5rem;">
 			{{ frappe.utils.cstr(total_reviews or 0) + " " + _("reviews") }}
 		</div>
 
 		<!-- Ratings Summary -->
-		{% if reviews %}
-			{% set rating_title = frappe.utils.cstr(average_rating) + " " + _("out of 5") if not for_summary else ''%}
-			{{ ratings_with_title(average_whole_rating/5, rating_title, "md", "rating-summary-title", for_summary) }}
-		{% endif %}
+		
 
 		<div class="mt-2">{{ ((average_rating or 0)|round)|string + " " + _("out of 5") }}</div>
 	</div>

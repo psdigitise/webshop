@@ -62,8 +62,8 @@
         {{ field_filter_section(field_filters) }}
       </div>
       {% endif %}
-       <div class="text-lg font-semibold text-purple-700 pb-4" style="color: #570987;font-size:x-large;">Top Rated Products</div>
-      {% for item in top_rated %}
+       <div class="text-lg font-semibold text-purple-700 pb-4" style="color: #570987;font-size: large;inline-size: max-content;font-weight: 700;">Top Rated Products</div>
+      {% for item in frappe.call('webshop.api.get_top_rated_items') %}
        
 
         <div class="product-card mb-3 pb-3" style="border-bottom: 1px solid #eaeaea;">

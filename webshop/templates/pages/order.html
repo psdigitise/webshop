@@ -228,7 +228,88 @@
 
 {% block header %}
 <style>
-/* Banner */
+
+/* Overall modal container */
+.modal-content {
+    background-color: #57860; /* soft violet background */
+    border: 2px solid #8a2be2; /* vibrant violet border */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+    font-family: 'Segoe UI', sans-serif;
+    color: #4b0082; /* deep violet text */
+}
+
+/* Header styling */
+.modal-header {
+    background-color: #8a2be2;
+    color: #000;
+    border-bottom: 1px solid #6837a6 !important;
+    padding: 12px 20px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Close button */
+.modal-header .close {
+    color: #fff !important;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+}
+
+/* Body styling */
+.modal-body {
+    padding: 20px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Message print block */
+.modal-body .msgprint {
+    background-color: #e9ddff;
+    border-left: 4px solid #8a2be2;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+
+.modal-footer {
+    padding: 12px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f0e6ff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/.modal-footer .btn {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.modal-footer .btn-primary {
+    background-color: #8a2be2;
+    border-color: #8a2be2;
+    color: #fff;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #d6c2f0;
+    border-color: #cbb6ec;
+    color: #4b0082;
+}
+
+
 .product-banner {
     background: linear-gradient(90deg, #570987, #2d2c2c);
     color: #ffffff;
@@ -311,7 +392,7 @@
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
        /* margin-top: 2rem;*/
-        background: #000c3f;
+        background: #fff;
         color: white;
         border: 2px solid #ddd;
 
@@ -463,7 +544,7 @@ input[type="text"], select {
 </style>
 
 <div class="order-page row mb-5">
-  <div class="d-grid col-md-8 ml-4 col-12">
+  <div class="d-grid col-md-8 col-12 p-0">
      {% if "Corporate Buyer" not in roles %}
   <div class="payment-container rounded shadow mb-4">
   <!-- Left: Payment Methods -->
@@ -574,7 +655,7 @@ input[type="text"], select {
         {% endif %}
       </div>
     </div>#}
-   <div class="card shadow-lg border-0 rounded-4 col-md-3 col-12 mx-auto" 
+   <div class="card shadow-lg border-0 rounded-4 mt-4 col-md-3 col-12 mx-auto" 
      style="    height: fit-content;
             background: linear-gradient(145deg, #f8f9fa, #e9ecef); 
             color: #1a1a1a; 
@@ -725,7 +806,17 @@ input[type="text"], select {
 		}
      }
   )
-  
+  frappe.ready(() => {
+    const msg = localStorage.getItem("order_message");
+    if (msg) {
+        frappe.msgprint({
+            title: "Order Submitted",
+            message: msg,
+            indicator: "green"
+        });
+        localStorage.removeItem("order_message");
+    }
+});
 
 </script>
 {% endblock %} 

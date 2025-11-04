@@ -19,11 +19,6 @@ app_include_css = [
 
 web_include_js = "web.bundle.js"
 
-doc_events = {
-    "User": {
-        "after_insert": "webshop.webshop.api.assign_default_role"
-    }
-}
 
 after_install = "webshop.setup.install.after_install"
 on_logout = "webshop.webshop.shopping_cart.utils.clear_cart_count"
@@ -87,6 +82,9 @@ doc_events = {
             "webshop.webshop.crud_events.tax_rule.validate_use_for_cart.execute",
         ],
     },
+    "User": {
+        "after_insert": "webshop.webshop.api.assign_default_role"
+    }
 }
 
 has_website_permission = {

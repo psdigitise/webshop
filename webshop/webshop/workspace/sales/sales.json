@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"d3dQWZuTts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\"><b>Home</b></span><span class=\\\"h4\\\"></span>\",\"col\":12}},{\"id\":\"niSU8LmyKp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cart Request List\",\"col\":3}},{\"id\":\"LKq7-0g0l6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Placed Orders\",\"col\":3}}]",
+ "content": "[{\"id\":\"d3dQWZuTts\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\"><b>Home</b></span><span class=\\\"h4\\\"></span>\",\"col\":5}},{\"id\":\"jctVekgVuZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h2\\\" style=\\\"font-weight: normal;\\\"><b>Dashboard</b></span>\",\"col\":7}},{\"id\":\"LKq7-0g0l6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Placed Orders\",\"col\":5}},{\"id\":\"lOsOAriqh4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pending Requests\",\"col\":3}}]",
  "creation": "2025-10-30 13:17:48.101245",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Sales",
  "links": [],
- "modified": "2025-11-03 12:36:00.025450",
+ "modified": "2025-11-04 17:08:09.867669",
  "modified_by": "Administrator",
  "module": "Webshop",
  "name": "Sales",
@@ -35,12 +35,11 @@
  "sequence_id": 28.0,
  "shortcuts": [
   {
-   "color": "Orange",
+   "color": "Grey",
    "doc_view": "List",
-   "label": "Cart Request List",
-   "link_to": "Quotation",
-   "stats_filter": "[]",
-   "type": "DocType"
+   "label": "Pending Requests",
+   "link_to": "admin-dashboard",
+   "type": "Page"
   },
   {
    "color": "Orange",

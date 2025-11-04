@@ -181,12 +181,12 @@ def place_order():
 	sales_order.insert()
 
 	user_roles = frappe.get_roles(frappe.session.user)
-
+	user_show = False
 	if "Corporate Buyer" in user_roles:
 		try:
 			apply_workflow(sales_order, "Submit for Approval")
-			frappe.logger().info(f"Workflow auto-applied for Corporate Buyer: {sales_order.name}")
 			sales_order.submit()
+			user_show = True
 		except Exception as e:
 			frappe.log_error(f"Workflow apply failed for {sales_order.name}: {str(e)}")
 
@@ -196,7 +196,7 @@ def place_order():
 	if hasattr(frappe.local, "cookie_manager"):
 		frappe.local.cookie_manager.delete_cookie("cart_count")
 
-	return sales_order.name
+	return {"message":sales_order.name, "user_show":user_show}
 
 
 

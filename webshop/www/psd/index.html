@@ -1357,20 +1357,21 @@
     <div class="carousel-inner">
       <div class="d-block">
         <div class="hero-section-content">
-          <h3 class="text-purple head-home text-center" style="font-weight: 600;">TOP PRODUCTS FOR YOU</h3>
+          <h3 class="text-purple head-home text-center" style="font-weight: 600;">TOP CATEGORIES FOR YOU</h3>
           <div class="swiper mySwiper mt-4" style="z-index: 0 !important;">
             <div class="swiper-wrapper" style="padding-bottom: 20px;">
-              {% for product in feature %}
+              {% for product in categories %}
               <div class="swiper-slide" style="width: 190.667px !important; justify-items: center;">
                 <div class="card bg-transparent border-0" style="border-radius:50%; width: 70%; aspect-ratio: 1 / 1;">
-                  <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}"
-                    class="card-img-top top" alt="{{ product.web_item_name }}"
+                  <img src="{{ product.img or '/assets/frappe/images/no-image.png' }}"
+                    class="card-img-top top" alt="{{ product.title }}"
                     style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: none;background: aqua;">
                   <div>
-                    <a href="/{{ product.route }}" class="btn" style="width: 100%;
+                    <a href="/" class="btn" style="width: 100%;
     justify-items: center;">
                       <h5 class="card-title mt-3" style="font-weight: 700 !important;font-size: 0.8rem;color:#000000">{{
-                        product.web_item_name }}</h5>
+                        product.title }}</h5>
+                        <small> {{product.price_text}}</small>
                     </a>
                   </div>
                 </div>
@@ -1597,9 +1598,9 @@
           {% for product in feature %}
           <div class="swiper-slide" style="width: 190.667px">
             <div class="card bg-transparent border-0" style="border-radius:50%; width: 100%; aspect-ratio: 1 / 1;">
-              <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}" class="card-img-top p-2"
+              <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}" class="card-img-top"
                 alt="{{ product.web_item_name }}"
-                style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 1px solid #283a62;background: #283a62;">
+                style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 2px solid #570987;background: #570987;">
               <div class="">
                 <a href="/{{ product.route }}" class="btn">
                   <h5 class="card-title mt-3">{{ product.web_item_name }}</h5>

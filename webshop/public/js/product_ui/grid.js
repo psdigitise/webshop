@@ -187,7 +187,7 @@ webshop.ProductGrid = class {
 				</div>
 
 				<a href="/cart">
-					<div id="${ item.name }" class="btn
+					<div id="${ item.name }" class="btn btn-black
 						btn-sm btn-primary btn-add-to-cart-list
 						w-100 mt-2 go-to-cart-grid
 						${ item.in_cart ? '' : 'hidden' }"

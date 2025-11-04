@@ -192,7 +192,7 @@ webshop.ProductList = class {
 				</div>
 
 				<a href="/cart">
-					<div id="${ item.name }" class="btn
+					<div id="${ item.name }" class="btn btn-black
 						btn-sm btn-primary btn-add-to-cart-list
 						ml-4 go-to-cart mb-0 mt-0
 						${ item.in_cart ? '' : 'hidden' }"

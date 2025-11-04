@@ -160,7 +160,10 @@ $.extend(shopping_cart, {
 						.toggle(true);
 				} else {
 					$(btn).hide();
-					window.location.href = '/orders/' + encodeURIComponent(r.message);
+					window.location.href = '/orders/' + encodeURIComponent(r.message.message);
+					if (r.message.user_show === true){
+						localStorage.setItem("order_message", `Sales Order ${r.message.message} submitted for approval.`);
+					}
 				}
 			}
 		});

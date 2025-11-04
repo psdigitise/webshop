@@ -3,16 +3,16 @@
 <div class=" ratings-reviews-section col-12 hide-top-border-lg mt-4">
 		<!-- Title and Action -->
 		<div class="w-100 d-flex">
-			<div class="reviews-header col-6 text-purple" style="height:30px">
+			<div class="reviews-header col-8 text-purple" style="height:30px">
 				{{ _("Customer Reviews") }}
 			</div>
 
-			<div class="write-a-review-btn col-6">
+			<div class="write-a-review-btn col-4">
 				<!-- Write a Review for legitimate users -->
 				{% if frappe.session.user != "Guest" and user_is_customer %}
 					<button class="btn btn-write-review border"
 						data-web-item="{{ doc.name }}">
-						{{ _("Write a Review") }}
+						{{ _("+") }}
 					</button>
 				{% endif %}
 			</div>

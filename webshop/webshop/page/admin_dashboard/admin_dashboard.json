@@ -1,0 +1,26 @@
+{
+ "content": null,
+ "creation": "2025-11-04 13:22:59.675282",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2025-11-04 13:22:59.675282",
+ "modified_by": "Administrator",
+ "module": "Webshop",
+ "name": "admin-dashboard",
+ "owner": "Administrator",
+ "page_name": "admin-dashboard",
+ "roles": [
+  {
+   "role": "Level 1 Admin"
+  },
+  {
+   "role": "Level 2 Admin"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "Approval Dashboard"
+}

@@ -167,6 +167,57 @@ def get_context(context):
 		context.user_test = 0
 	else:
 		context.user_test = 1
+  
+	context.categories = [
+		{
+			"title": "Paper & Labels",
+			"price_text": "From £3.23",
+			"url": "https://www.viking-direct.co.uk/en/paper-labels-c-108",
+			"img": "https://static.viking.de/is/image/odeu13/108_Paper-&-Mailing_de?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Packing & Mailing",
+			"price_text": "From £2.19",
+			"url": "https://www.viking-direct.co.uk/en/packing-mailing-c-107",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/107_Packing-&-Mailing_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Health & Safety",
+			"price_text": "From £0.95",
+			"url": "https://www.viking-direct.co.uk/en/health-safety-c-114",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/114_Health-&-Safety_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Cleaning & Hygiene",
+			"price_text": "From £1.19",
+			"url": "https://www.viking-direct.co.uk/en/cleaning-hygiene-c-100",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/100_Cleaning-&-Hygiene_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Meeting & Presenting",
+			"price_text": "From £1.19",
+			"url": "https://www.viking-direct.co.uk/en/meeting-presenting-c-106",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/106_Meeting-&-Presenting_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Gifts & Celebration",
+			"price_text": "From £2.19",
+			"url": "https://www.viking-direct.co.uk/en/gifts-celebration-c-105",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/105_Gifts-&-Celebration_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Archive & Storage",
+			"price_text": "From £1.31",
+			"url": "https://www.viking-direct.co.uk/en/archive-storage-c-110",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/110_Archive-&-Storage_uk_ver2?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		},
+		{
+			"title": "Writing & Drawing",
+			"price_text": "From £1.89",
+			"url": "https://www.viking-direct.co.uk/en/writing-drawing-c-111",
+			"img": "https://static.viking-direct.co.uk/is/image/odeu13/111_Writing-&-Drawing_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
+		}
+	]
 
 	context.no_cache = 1
 	return context

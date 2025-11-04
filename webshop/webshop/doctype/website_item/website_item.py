@@ -81,6 +81,8 @@ class WebsiteItem(WebsiteGenerator):
 	def on_update(self):
 		invalidate_cache_for_web_item(self)
 		self.update_template_item()
+		if self.website_image and self.item_code:
+			attach_image_to_item(self.item_code, self.website_image)
 
 	def on_trash(self):
 		super(WebsiteItem, self).on_trash()
@@ -458,6 +460,38 @@ class WebsiteItem(WebsiteGenerator):
 
 		return items
 
+def attach_image_to_item(item_code, website_image_url):
+    """Attach Website Item image to its related Item"""
+    if not (item_code and website_image_url):
+        return
+
+    # Check if file already attached to Item
+    existing_file = frappe.db.exists(
+        "File",
+        {
+            "file_url": website_image_url,
+            "attached_to_doctype": "Item",
+            "attached_to_name": item_code,
+        },
+    )
+    if existing_file:
+        return  # Already attached
+
+    # Attach file to Item
+    try:
+        file_doc = frappe.get_doc(
+            {
+                "doctype": "File",
+                "file_url": website_image_url,
+                "attached_to_doctype": "Item",
+                "attached_to_name": item_code,
+                "is_private": 0,  # make sure it's public
+            }
+        )
+        file_doc.insert(ignore_permissions=True)
+        frappe.db.set_value("Item", item_code, "image", website_image_url)
+    except Exception as e:
+        frappe.log_error(f"Error attaching image to Item {item_code}: {e}", "Website Item Sync")
 
 def invalidate_item_variants_cache_for_website(doc):
 	"""

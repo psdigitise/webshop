@@ -117,6 +117,6 @@ def get_website_items(search=None, page=1, page_size=12):
 def assign_default_role(doc, method):
     if doc.user_type == "Website User":
         user = frappe.get_doc("User", doc.name)
-        user.add_roles("Customer")
+        user.add_roles("Customer","Retail Buyer")
 
 

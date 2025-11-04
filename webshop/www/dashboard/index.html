@@ -1,0 +1,82 @@
+{% extends "templates/web.html" %}
+{% block title %}{{ _("Dashboard") }}{% endblock %}
+
+{% block page_content %}
+<div class="dashboard-container my-5">
+    <h2 class="mb-3">{{ _("My Dashboard") }}</h2>
+    <div id="user-dashboard" class="p-3 border rounded bg-light">
+        <div class="text-muted">{{ _("Loading dashboard data...") }}</div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="/assets/frappe/js/frappe-web.bundle.js"></script>
+<script>
+frappe.call({
+    method: "webshop.dasboard.get_web_user_dashboard",
+    type: "GET",
+    callback: function(r) {
+        const container = document.getElementById("user-dashboard");
+        container.innerHTML = "";
+        if (!r.message || r.message.error) {
+            container.innerHTML = `<div class='text-danger'>${r.message.error || "Error loading data"}</div>`;
+            return;
+        }
+
+        const role = r.message.role;
+
+        // Retail Buyer
+        if (role === "Retail Buyer") {
+            const orders = r.message.orders || [];
+            container.innerHTML = `<h4>Your Orders</h4>` + 
+                (orders.length
+                    ? `<table class="table table-striped">
+                        <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+                        <tbody>${orders.map(o =>
+                            `<tr><td>${o.name}</td><td>${o.transaction_date}</td><td>${o.status}</td><td>${o.grand_total}</td></tr>`
+                        ).join("")}</tbody></table>`
+                    : "<div>No orders found.</div>");
+        }
+
+        // Corporate Buyer
+        else if (role === "Corporate Buyer") {
+            const orders = r.message.orders || [];
+            container.innerHTML = `<h4>Your Purchase Requests</h4>` +
+                (orders.length
+                    ? `<table class="table table-striped">
+                        <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+                        <tbody>${orders.map(o =>
+                            `<tr><td><a href="/orders/${o.name}">${o.name}</a></td><td>${o.transaction_date}</td><td>${o.workflow_state}</td><td>${o.grand_total}</td></tr>`
+                        ).join("")}</tbody></table>`
+                    : "<div>No requests found.</div>");
+        }
+
+        // Level 1 Admin
+        else if (role === "Level 1 Admin") {
+            const pending = r.message.pending_approvals || [];
+            container.innerHTML = `<h4>Pending Level 1 Approvals</h4>` +
+                (pending.length
+                    ? `<ul>${pending.map(o =>
+                        `<li><strong>${o.name}</strong> - ${o.customer_name} (${o.grand_total}) [${o.workflow_state}]</li>`
+                    ).join("")}</ul>`
+                    : "<div>No pending approvals.</div>");
+        }
+
+        // Level 2 Admin
+        else if (role === "Level 2 Admin") {
+            const pending = r.message.pending_approvals || [];
+            container.innerHTML = `<h4>Pending Level 2 Approvals</h4>` +
+                (pending.length
+                    ? `<ul>${pending.map(o =>
+                        `<li><strong>${o.name}</strong> - ${o.customer_name} (${o.grand_total}) [${o.workflow_state}]</li>`
+                    ).join("")}</ul>`
+                    : "<div>No pending approvals.</div>");
+        }
+
+        else {
+            container.innerHTML = "<div>You have no dashboard access.</div>";
+        }
+    }
+});
+</script>
+{% endblock %}

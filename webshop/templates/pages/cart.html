@@ -41,6 +41,18 @@
      border-width:0 !important ;
 	
 }
+.marign {
+  margin-left: 40px !important;
+}
+
+@media (max-width: 767px) {
+  .marign {
+    margin-left: 0px !important;
+  }
+}
+a.btn.btn-primary-light.font-md {
+    inline-size: max-content !important;
+}
 </style>
 <section class="product-banner">
 <div class="container-fluid">
@@ -61,7 +73,7 @@
 
 {% if doc.items %}
 <div class="row">
-	<div class="cart-container container bg-white p-4 col-md-8 col-12 rounded shadow" style="margin-left: 40px;margin-right: 20px;">
+	<div class="cart-container container bg-white p-4 col-md-8 col-12 rounded shadow marign" style="margin-right: 20px;">
 		<div class="row m-0">
 			<!-- Left section -->
 			<div class="col-md-12">
