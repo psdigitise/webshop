@@ -168,6 +168,7 @@ def get_context(context):
 	else:
 		context.user_test = 1
   
+	context.csrf_token = frappe.sessions.get_csrf_token()
 	context.categories = [
 		{
 			"title": "Paper & Labels",

@@ -33,7 +33,7 @@ frappe.call({
                     ? `<table class="table table-striped">
                         <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
                         <tbody>${orders.map(o =>
-                            `<tr><td>${o.name}</td><td>${o.transaction_date}</td><td>${o.status}</td><td>${o.grand_total}</td></tr>`
+                            `<tr><td><a href="/orders/${o.name}">${o.name}</a></td><td>${o.transaction_date}</td><td>${o.status}</td><td>${o.grand_total}</td></tr>`
                         ).join("")}</tbody></table>`
                     : "<div>No orders found.</div>");
         }

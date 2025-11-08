@@ -290,7 +290,7 @@
 						w-100 mt-2 go-to-cart-grid
 						${item.in_cart ? "" : "hidden"}"
 						data-item-code="${item.item_code}">
-						${settings.enable_checkout ? __("Go to Cart") : __("Go to Quote")}
+						${settings.enable_checkout ? __("View in Cart") : __("Go to Quote")}
 					</div>
 				</a>
 			`;
@@ -474,7 +474,7 @@
 						${item.in_cart ? "" : "hidden"}"
 						data-item-code="${item.item_code}"
 						style="padding: 0.25rem 1rem; min-width: 135px;">
-						${settings.enable_checkout ? __("Go to Cart") : __("Go to Quote")}
+						${settings.enable_checkout ? __("View in Cart") : __("Go to Quote")}
 					</div>
 				</a>
 			`;
@@ -1506,4 +1506,4 @@
     }
   });
 })();
-//# sourceMappingURL=web.bundle.FDL4JO2S.js.map
+//# sourceMappingURL=web.bundle.JPLAD3RC.js.map

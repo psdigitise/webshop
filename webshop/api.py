@@ -96,5 +96,15 @@ def get_top_rated_items(limit=5):
         limit=limit
     )
 
+@frappe.whitelist(allow_guest=True)
+def get_random_products(limit=6):
+    items = frappe.get_all(
+        "Website Item",
+        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','item_code'],
+        filters={"published": 1},
+        order_by="RAND()",
+        limit=limit
+    )
+    return items
 # dc45c90cb2cd813    
 # 761fa577fbe0b23

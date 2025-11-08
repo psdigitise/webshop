@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token }}">
   <title>PSD Solutions</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="http://103.214.132.20:8007/psd/assets/css/style.css" />
+  <link rel="stylesheet" href="http://192.168.1.23:8000/psd/assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -18,7 +19,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif !important;
-      background-color: #f1eaff !important;
+      background-color: #fff !important;
     }
 
     p,
@@ -37,10 +38,10 @@
     }
 
     :root {
-      --violet-primary: #570987;
-      --violet-secondary: #6a11cb;
-      --violet-light: #f0ebff;
-      --violet-gradient: linear-gradient(135deg, #570987, #2575fc);
+      --violet-primary: #e8e5e1;
+      --violet-secondary: #000;
+      --violet-light: #fff;
+      --violet-gradient: linear-gradient(135deg, #000000, #2575fc);
     }
 
     .animated-card {
@@ -51,16 +52,18 @@
       background: var(--violet-gradient);
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 0.6rem 1.5rem;
+      padding: 12px 30px;
+      font-size: 18px;
       font-weight: 600;
-      transition: all 0.3s ease;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s ease;
     }
 
     .btn.purple-btn:hover {
       background: var(--violet-gradient);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(87, 9, 135, 0.3);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
       color: white !important;
     }
 
@@ -99,41 +102,41 @@
       width: 700px !important;
       padding: 0.5rem 1rem;
       border: none;
-      color: var(--violet-primary);
+      color: #000;
       font-weight: 500;
       transition: background 0.2s;
     }
 
     #search-results .list-group-item:hover {
-     background: #570987;
-    text-decoration: none;
-    color: #fff;
+      background: #e8e5e1;
+      text-decoration: none;
+      color: #000;
     }
 
     @media (max-width: 767px) {
-  #search-results {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100% !important;
-    gap: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  }
+      #search-results {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100% !important;
+        gap: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
 
-  #search-results .list-group-item {
-    width: 100% !important;
-    font-size: 14px;
-    padding: 0.6rem 0.8rem;
-    border-bottom: 1px solid #eee;
-  }
+      #search-results .list-group-item {
+        width: 100% !important;
+        font-size: 14px;
+        padding: 0.6rem 0.8rem;
+        border-bottom: 1px solid #eee;
+      }
 
-  #search-results .list-group-item:last-child {
-    border-bottom: none;
-  }
-}
+      #search-results .list-group-item:last-child {
+        border-bottom: none;
+      }
+    }
 
     .btn.purple-btn.btn-sm:hover {
-      color: #570987;
+      color: #e8e5e1;
     }
 
     .text-gradient {
@@ -199,7 +202,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(87, 9, 135, 0.85);
+      background: #e8e5e1;
       color: white;
       padding: 1rem;
       transform: translateY(100%);
@@ -232,18 +235,18 @@
     }
 
     .footer {
-      background: #f0ebff !important;
+      background: #fff !important;
       color: #333;
     }
 
     .footer h5 {
-      color: var(--violet-primary);
+      color: #000;
       font-weight: 700;
       margin-bottom: 1rem;
     }
 
     .footer a {
-      color: #555;
+      color: #000;
       text-decoration: none;
       display: block;
       margin-bottom: 0.5rem;
@@ -252,19 +255,9 @@
     }
 
     .footer a:hover {
-      color: var(--violet-primary);
+      color: rgb(0, 183, 255);
     }
 
-    .social-icons i {
-      font-size: 1.5rem;
-      margin-right: 1rem;
-      color: var(--violet-primary);
-      transition: transform 0.3s;
-    }
-
-    .social-icons i:hover {
-      transform: translateY(-3px);
-    }
 
     .top-bar {
       background: var(--violet-primary);
@@ -285,14 +278,14 @@
     }
 
     .bottom-bar {
-      background: #570987;
+      background: #e8e5e1;
       padding: 1rem 0;
     }
 
     .bottom-bar .btn {
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white !important;
+      color: black !important;
       border-radius: 8px;
       padding: 0.5rem 1rem;
       font-weight: 600;
@@ -301,7 +294,7 @@
 
     .bottom-bar .btn:hover {
       background: white;
-      color: var(--violet-primary) !important;
+      color: #000 !important;
       border-color: white;
     }
 
@@ -362,7 +355,7 @@
     }
 
     .search-bar .form-control {
-      border: 2px solid #eae6ff;
+      border: 2px solid #000;
       border-radius: 8px;
       padding: 0.5rem 1rem;
       width: 250px;
@@ -370,8 +363,8 @@
     }
 
     .search-bar .form-control:focus {
-      border-color: var(--violet-primary);
-      box-shadow: 0 0 0 0.2rem rgba(87, 9, 135, 0.25);
+      border-color: #000;
+      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
     }
 
     .press-section .card {
@@ -390,7 +383,7 @@
     .press-section .card-title {
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--violet-primary);
+      color: #000;
     }
 
     .bg-light-purple {
@@ -399,7 +392,7 @@
       padding: 60px 0;
     }
 
-    .text-white {
+    .text-black {
       color: #fff;
     }
 
@@ -433,7 +426,7 @@
 
 
     .category-container {
-      background-color: #f1eaff;
+      background-color: #fff;
       border-bottom: 1px solid #e8e8e8;
       position: sticky;
       top: 75px;
@@ -543,7 +536,7 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #570987;
+      background-color: #e8e5e1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 1rem 2rem;
       width: 100%;
@@ -587,7 +580,7 @@
 
     .category-container {
       position: relative;
-      background: #f1eaff;
+      background: #fff;
       border-bottom: 1px solid #e8e8e8;
       z-index: 1;
     }
@@ -612,7 +605,7 @@
     }
 
     .category-item:hover>a {
-      color: #6a1b9a;
+      color: #000;
       /* purple hover */
     }
 
@@ -623,8 +616,8 @@
       top: 100%;
       left: 0;
       width: 1000px;
-      background-color: #570987;
-      border-top: 2px solid #6a1b9a;
+      background-color: #e8e5e1;
+      border-top: 2px solid #000;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 20px 30px;
       z-index: 10;
@@ -662,7 +655,7 @@
     }
 
     .dropdown-item:hover span {
-      color: #6a1b9a;
+      color: #000000;
     }
 
     .category-dropdown {
@@ -732,16 +725,16 @@
     }
 
     img.card-img-top.top:hover {
-      border: 4px Solid #6a1b9a !important;
+      border: 2px Solid #000 !important;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px !important;
     }
 
     .about-section {
-      background: #f1eaff;
+      background: #fff;
     }
 
     .about-title {
-      color: #6a1b9a;
+      color: #000;
       font-weight: 700;
       font-size: 1.8rem;
     }
@@ -788,7 +781,7 @@
     }
 
     .hover-shadow:hover {
-      box-shadow: 0 4px 20px rgba(87, 9, 135, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .category-card {
@@ -853,7 +846,7 @@
 
       border-radius: 8px;
 
-      box-shadow: #570987 0px 0px 0px 3px;
+      box-shadow: #e8e5e1 0px 0px 0px 3px;
 
       padding: 15px;
 
@@ -901,7 +894,7 @@
 
     .hover-popup i {
       margin-right: 6px;
-      color: #570987;
+      color: #000;
     }
 
     .hover-popup p {
@@ -928,7 +921,7 @@
         aspect-ratio: 1 / 1;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         border: none;
-        background: aqua;
+        background: #e6e4e0;
         width: 90%;
       }
 
@@ -954,7 +947,7 @@
         aspect-ratio: 1 / 1;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         border: none;
-        background: aqua;
+        background: #e6e4e0;
         width: 60%;
       }
     }
@@ -981,7 +974,7 @@
       aspect-ratio: 1 / 1;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       border: none;
-      background: aqua;
+      background: #e6e4e0;
       width: 100%;
     }
 
@@ -1129,90 +1122,163 @@
         height: 35px;
       }
     }
+
     .card-img-top2 {
       object-fit: cover;
       aspect-ratio: 1 / 1;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       border: none;
-      background: aqua;
+      background: #e6e4e0;
       width: 100%;
     }
+
     @media (min-width: 1440px) {
       #heroCarousel {
         height: 65vh;
       }
+
       .hero-section-content h3 {
         font-size: 2rem;
       }
+
       .swiper-slide .card {
         width: 60% !important;
       }
     }
+
     @media (max-width: 1439px) and (min-width: 1024px) {
       #heroCarousel {
         height: 60vh;
       }
+
       .hero-section-content h3 {
         font-size: 1.8rem;
       }
+
       .swiper-slide .card {
         width: 70% !important;
       }
     }
-    
+
     @media (max-width: 1023px) and (min-width: 768px) {
       #heroCarousel {
         top: 80px;
         height: 55vh;
       }
+
       .hero-section-content h3 {
         font-size: 1.5rem;
         margin-top: 26px !important;
       }
+
       .swiper-slide {
         width: 180px !important;
       }
+
       .swiper-slide .card {
         width: 75% !important;
       }
     }
-    
+
     @media (max-width: 767px) and (min-width: 480px) {
       #heroCarousel {
         top: 60px;
         height: 50vh;
       }
+
       .hero-section-content h3 {
         font-size: 1.2rem;
       }
+
       .swiper-slide {
         width: 150px !important;
       }
+
       .swiper-slide .card {
         width: 80% !important;
       }
+
       .card-title {
         font-size: 0.75rem !important;
       }
     }
-    
+
     @media (max-width: 479px) {
       #heroCarousel {
         top: 50px;
         height: auto;
         padding-bottom: 30px;
       }
+
       .hero-section-content h3 {
         font-size: 1rem;
       }
+
       .swiper-slide {
         width: 130px !important;
       }
+
       .swiper-slide .card {
         width: 85% !important;
       }
+
       .card-title {
         font-size: 0.7rem !important;
+      }
+    }
+
+    .zoom-container {
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ddd;
+      transition: border 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .zoom-container:hover .product-image {
+      transform: scale(1.2);
+    }
+    .cart-icon-btn {
+      background-color: aqua; /* Tekstag purple */
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .cart-icon-btn:hover {
+      background-color: cyan;
+      transform: scale(1.08);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .cart-icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 576px) {
+      .cart-icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
       }
     }
   </style>
@@ -1226,12 +1292,11 @@
     <div class="container-fluid">
       <div class="d-flex justify-content-lg-between justify-content-center align-items-center">
         <a class="navbar-brand fw-bold" href="#">
-          <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" style="filter: invert(1);"
-            alt="PSD Logo" height="40" />
+          <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" alt="PSD Logo" height="40" />
         </a>
         <div class="parent customer-service-container text-center">
           <span class="mx-1"><i class="fa fa-phone"></i></span>Customer service<br>
-          
+
           <div class="hover-popup">
             <p><strong>Customer Service</strong></p>
             <p class="m-0"><i class="fa fa-clock-o"></i> Available weekdays 8am – 6pm</p><br>
@@ -1363,15 +1428,15 @@
               {% for product in categories %}
               <div class="swiper-slide" style="width: 190.667px !important; justify-items: center;">
                 <div class="card bg-transparent border-0" style="border-radius:50%; width: 70%; aspect-ratio: 1 / 1;">
-                  <img src="{{ product.img or '/assets/frappe/images/no-image.png' }}"
-                    class="card-img-top top" alt="{{ product.title }}"
-                    style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: none;background: aqua;">
+                  <img src="{{ product.img or '/assets/frappe/images/no-image.png' }}" class="card-img-top top"
+                    alt="{{ product.title }}"
+                    style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: none;background: #e6e4e0;">
                   <div>
                     <a href="/" class="btn" style="width: 100%;
     justify-items: center;">
                       <h5 class="card-title mt-3" style="font-weight: 700 !important;font-size: 0.8rem;color:#000000">{{
                         product.title }}</h5>
-                        <small> {{product.price_text}}</small>
+                      <small> {{product.price_text}}</small>
                     </a>
                   </div>
                 </div>
@@ -1408,9 +1473,9 @@
       </div>
     </div>
   </div> -->
-  <div class="bottom-bar py-5" style="background: #570987;">
+  <!-- <div class="bottom-bar py-5" style="background: #e8e5e1;">
     <div class="container">
-      <h2 class="text-center text-white mb-4">Explore Our Categories</h2>
+      <h2 class="text-center text-black mb-4">Explore Our Categories</h2>
       <div class="row g-4 justify-content-center">
         {% for product in item_groups %}
         <div class="col-6 col-md-3">
@@ -1419,7 +1484,7 @@
               <img src="{{ product.image or '/assets/frappe/images/no-image.png' }}" alt="{{ product.item_group_name }}"
                 class="img-fluid" style="height:180px; width:100%; object-fit:cover;">
               <div class="overlay d-flex flex-column justify-content-center align-items-center">
-                <h5 class="text-white mb-2">{{ product.item_group_name }}</h5>
+                <h5 class="text-black mb-2">{{ product.item_group_name }}</h5>
                 <a href="/{{ product.route }}" class="btn btn-light btn-sm fw-semibold">Discover More</a>
               </div>
             </div>
@@ -1428,7 +1493,7 @@
         {% endfor %}
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Bottom bar -->
   <!-- {% for offer in offer%}
@@ -1479,24 +1544,20 @@
 
   <!-- nationwide provider -->
 
-  <div class="section-padding">
+  <!-- <div class="section-padding">
     <div class="container-fluid">
-      <!-- Section Title -->
       <h2 class="section-title text-purple text-center mb-4">
         Top Rated Products
       </h2>
-
-      <!-- Products Grid -->
       <div class="row g-2 justify-content-center">
         {% for item in frappe.call('webshop.api.get_top_rated_items') %}
         <div class="col-6 col-md-2">
           <div class="product-card shadow-sm rounded bg-white text-center p-3 h-100 border hover-shadow">
-            <!-- Product Image -->
+      
             <a href="/{{ item.route }}">
               <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="img-fluid rounded mb-3"
                 style="width: 100%; height: 160px; object-fit: cover;" />
             </a>
-            <!-- Product Details -->
             <h6 class="fw-semibold text-dark">{{ item.web_item_name }}</h6>
             <p class="text-muted mb-1">Rating: ⭐ {{ item.average_rating }}</p>
             {% if item.price %}
@@ -1507,15 +1568,13 @@
         {% endfor %}
       </div>
     </div>
-  </div>
-
-
+  </div> -->
 
   <!-- CTA Section -->
-  <div class="cta-banner-section section-padding text-center " style="background-color:#570987">
+  <div class="cta-banner-section section-padding text-center " style="background-color:#e8e5e1">
     <div class="container">
-      <h2 class="section-title text-white">Ready to Elevate Your Workplace?</h2>
-      <p class="section-desc text-white mb-4">
+      <h2 class="section-title text-black">Ready to Elevate Your Workplace?</h2>
+      <p class="section-desc text-black mb-4">
         Discover Tekstag’s full range of business essentials designed to streamline operations, boost productivity,
         and
         support your team every step of the way. Whether you're browsing, shopping, or placing an order — we make it
@@ -1531,6 +1590,104 @@
       </div>
     </div>
   </div>
+
+  <div class="section-padding">
+    <div class="container-fluid">
+      <!-- Section Title -->
+      <h2 class="section-title text-purple text-center mb-4">
+
+        Top Rated Products
+      </h2>
+
+      <!-- Products Grid -->
+      <div class="row g-2 justify-content-center">
+
+        {% for item in frappe.call('webshop.api.get_top_rated_items') %}
+        <div class="col-6 col-md-2">
+          <div class=" bg-white text-center p-3 h-100">
+            <!-- Product Image -->
+            <a href="/{{ item.route }}">
+              <div class="zoom-container">
+                <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="product-image">
+              </div>
+            </a>
+            <!-- Product Details -->
+            <h6 style="color: #000;font-size:0.8rem;">{{ item.web_item_name }}</h6>
+            <p class="text-muted mb-1">Rating: ⭐ {{ item.average_rating }}</p>
+
+            {% if item.price %}
+            <p class="text-purple fw-bold mb-0">AED {{ item.price }}</p>
+
+            {% endif %}
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-padding py-5" style="background-color: #e8e5e1;">
+  <div class="container">
+    <!-- Section Title -->
+    <h2 class="section-title text-purple text-center mb-4">
+      Discover More Products
+    </h2>
+
+    <!-- Products Grid -->
+    <div class="row g-3 justify-content-center">
+      {% for item in frappe.call('webshop.api.get_random_products') %}
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex">
+        <div class="bg-white text-center p-3 shadow-sm rounded flex-fill d-flex flex-column justify-content-between">
+          <!-- Product Image -->
+          <a href="/{{ item.route }}">
+            <div class="zoom-container">
+              <img 
+                src="{{ item.thumbnail or '/assets/frappe/images/no-image.png' }}" 
+                alt="{{ item.web_item_name }}"
+                class="product-image img-fluid rounded"
+                style="max-height: 140px; object-fit: contain;"
+              >
+            </div>
+          </a>
+
+          <!-- Product Name -->
+          <h6 class="mt-2 mb-1 text-dark fw-semibold" style="font-size: 0.85rem;">
+            {{ item.web_item_name }}
+          </h6>
+
+          <!-- Product Price -->
+          {% if item.price %}
+          <p class="text-purple fw-bold mb-2" style="font-size: 0.85rem;">AED {{ item.price }}</p>
+          {% endif %}
+
+          <!-- Quantity + Add to Cart -->
+          <div class="d-flex justify-content-center align-items-center gap-2 mt-auto">
+            <input 
+              type="number" 
+              min="1" 
+              value="1" 
+              class="form-control form-control-sm qty-input text-center"
+              data-item-code="{{ item.item_code }}" 
+              style="width: 65px; font-size: 0.85rem;"
+            >
+            <button 
+              class="btn btn-sm add-to-cart-btn cart-icon-btn fw-semibold px-2"
+              data-item-code="{{ item.item_code }}"
+              style="font-size: 0.8rem;"
+            >
+              🛒
+            </button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
 
 
 
@@ -1565,10 +1722,11 @@
     </div>
 
   </div>
-  <div class="cta-banner-section section-padding text-center " style="background-color: #570987 !important;">
+  <div class="cta-banner-section section-padding text-center " style="background-color: #e8e5e1 !important;">
     <div class="container">
-      <h3 class="text-white mb-3">Everything Your Workplace Needs — All in One Place</h3>
-      <p class="section-desc text-white mb-4">
+      <h3 class="text-black mb-3" style="    font-size: 2.4rem;font-weight: 600;">Everything Your Workplace Needs — All
+        in One Place</h3>
+      <p class="section-desc text-black mb-4">
         From crisp printing to clean spaces and coffee breaks, we’ve got your office covered. Explore our full range
         of
         essentials designed to keep your team productive, your environment fresh, and your operations running
@@ -1598,9 +1756,9 @@
           {% for product in feature %}
           <div class="swiper-slide" style="width: 190.667px">
             <div class="card bg-transparent border-0" style="border-radius:50%; width: 100%; aspect-ratio: 1 / 1;">
-              <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}" class="card-img-top"
-                alt="{{ product.web_item_name }}"
-                style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 2px solid #570987;background: #570987;">
+              <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}"
+                class="card-img-top product-image" alt="{{ product.web_item_name }}"
+                style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 2px solid #e8e5e1;background: #e8e5e1;">
               <div class="">
                 <a href="/{{ product.route }}" class="btn">
                   <h5 class="card-title mt-3">{{ product.web_item_name }}</h5>
@@ -1623,12 +1781,12 @@
     <div class="container-fluid">
       <h2 class="section-title text-center mb-5 text-purple">Hot off the press</h2>
 
-      <div class="row g-4">
+      <div class="row g-4" style="height: 600px;">
         <!-- Card 1: Anniversary -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
-            <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg" class="card-img-top2"
-              alt="Anniversary Sale" />
+            <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg"
+              class="card-img-top2" alt="Anniversary Sale" />
             <div class="card-body">
               <div class="d-flex justify-content-between text-muted small mb-2">
                 <span>3 min</span>
@@ -1709,7 +1867,7 @@
   <!-- press-section // -->
 
   <!-- Newsletter Section -->
-  <div class="newsletter-section section-padding " style="background-color:#570987;">
+  <div class="newsletter-section section-padding " style="background-color:#e8e5e1;">
     <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 20px;">
       Ready to Upgrade Your Workspace?
     </h2>
@@ -1717,11 +1875,10 @@
       Discover unbeatable deals on office supplies, print consumables, and refreshment essentials. Shop smarter, save
       bigger.
     </p>
-    <a href="/all-products" class="btn btn-light btn-lg" style="
+    <a href="/all-products" class="btn purple-btn btn-lg" style="
       padding: 12px 30px;
       font-size: 18px;
       font-weight: 600;
-      color: #6a11cb;
       border-radius: 50px;
       text-decoration: none;
       transition: background 0.3s ease;
@@ -1839,6 +1996,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/frappe/js/frappe-web.min.js"></script>
+
   <script>
     const swiper = new Swiper('.mySwiper', {
       slidesPerView: 1,
@@ -1862,11 +2021,72 @@
       }
     });
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Simple toast message function
+      function showToast(message, isError = false) {
+        const toast = document.createElement("div");
+        toast.textContent = message;
+        toast.style.position = "fixed";
+        toast.style.bottom = "20px";
+        toast.style.right = "20px";
+        toast.style.background = isError ? "#d9534f" : "#28a745";
+        toast.style.color = "#fff";
+        toast.style.padding = "10px 15px";
+        toast.style.borderRadius = "8px";
+        toast.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+        toast.style.zIndex = "9999";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      }
 
+      // Add event listener to all "Add to Cart" buttons
+      document.querySelectorAll(".add-to-cart-btn").forEach(function (button) {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
 
+          const item_code = this.dataset.itemCode;
+          const csrfToken = "{{ csrf_token }}"; // Jinja will replace this
+          const qtyInput = document.querySelector(`.qty-input[data-item-code="${item_code}"]`);
+          const qty = parseInt(qtyInput?.value || 1);
+
+          if (!csrfToken) {
+            showToast("⚠️ Security token missing. Please refresh the page.", true);
+            return;
+          }
+
+          if (isNaN(qty) || qty < 1) {
+            showToast("Please enter a valid quantity.", true);
+            return;
+          }
+
+          fetch("/api/method/webshop.webshop.shopping_cart.cart.update_cart", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Frappe-CSRF-Token": csrfToken,
+            },
+            body: JSON.stringify({ item_code, qty }),
+            credentials: "include",
+          })
+            .then((r) => r.json())
+            .then((data) => {
+              if (data.message || !data.exc) {
+                showToast(`✅ Added ${qty} × ${item_code} to cart`);
+              } else {
+                showToast("❌ Error adding item", true);
+              }
+            })
+            .catch((err) => {
+              console.error("Fetch error:", err);
+              showToast("Something went wrong. Please try again.", true);
+            });
+        });
+      });
+    });
+  </script>
 
   <script>
-
     document.getElementById("item-group-search").addEventListener("input", function () {
       const query = this.value.trim();
       if (query.length < 2) {

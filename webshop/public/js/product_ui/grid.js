@@ -192,7 +192,7 @@ webshop.ProductGrid = class {
 						w-100 mt-2 go-to-cart-grid
 						${ item.in_cart ? '' : 'hidden' }"
 						data-item-code="${ item.item_code }">
-						${ settings.enable_checkout ? __("Go to Cart") :  __("Go to Quote") }
+						${ settings.enable_checkout ? __("View in Cart") :  __("Go to Quote") }
 					</div>
 				</a>
 			`;
