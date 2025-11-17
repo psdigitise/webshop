@@ -168,6 +168,13 @@ def get_context(context):
 	else:
 		context.user_test = 1
   
+	reviews = frappe.get_all(
+			"Item Review",
+			fields=["customer", "review_title", "rating", "comment", "published_on"],
+			limit_page_length=10
+		)
+	context.reviews = reviews
+  
 	context.csrf_token = frappe.sessions.get_csrf_token()
 	context.categories = [
 		{
@@ -219,10 +226,34 @@ def get_context(context):
 			"img": "https://static.viking-direct.co.uk/is/image/odeu13/111_Writing-&-Drawing_uk?fmt=png-alpha&wid=320&hei=320&qlt=90,0"
 		}
 	]
-
+	context.cart_item_count = get_cart_item_count()
 	context.no_cache = 1
 	return context
 
+def get_cart_item_count():
+    cart_count = 0
+
+    user = frappe.session.user
+
+    if user == "Guest":
+        return 0
+    
+    quotation = frappe.db.get_value(
+        "Quotation",
+        {
+            "owner": user,
+            "order_type": "Shopping Cart",
+            "docstatus": 0
+        },
+        "name"
+    )
+
+    if not quotation:
+        return 0
+
+    cart_count = frappe.db.count("Quotation Item", {"parent": quotation})
+
+    return cart_count
 
 def get_slideshow(slideshow):
     values = {"show_indicators": 1, "show_controls": 1, "rounded": 1, "slider_name": "Categories"}

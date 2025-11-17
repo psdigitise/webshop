@@ -1,82 +1,310 @@
 {% extends "templates/web.html" %}
-{% block title %}{{ _("Dashboard") }}{% endblock %}
+{% block title %}{{ _("My Dashboard") }}{% endblock %}
 
 {% block page_content %}
-<div class="dashboard-container my-5">
-    <h2 class="mb-3">{{ _("My Dashboard") }}</h2>
-    <div id="user-dashboard" class="p-3 border rounded bg-light">
-        <div class="text-muted">{{ _("Loading dashboard data...") }}</div>
+<!-- ✅ Modern Roboto + Clean UI Styling -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f8f9fc;
+    color: #1e1e1e;
+  }
+
+  .dashboard-container {
+    max-width: 1164px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 25px;
+  }
+
+  /* === Filter Section === */
+  .filter-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .filter-group label {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .filter-group input,
+  .filter-group select {
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    background-color: #fff;
+  }
+
+  .filter-btn {
+    background-color: #3498e9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 28px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    background-color: #3498e9;
+  }
+
+  /* === Table Section === */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #1e1e1e;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead {
+    background-color: #f9fafb;
+  }
+
+  th, td {
+    padding: 14px 10px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  th {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #666;
+    font-size: 0.8rem;
+  }
+
+  tr:hover {
+    background-color: #f8f9fc;
+  }
+
+  a.order-link {
+    color: #3498e9;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a.order-link:hover {
+    text-decoration: underline;
+  }
+
+  .text-muted {
+    color: #6c757d;
+  }
+  @media (max-width: 420px) and (min-width: 320px) {
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 0;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  th, td {
+    font-size: 0.8rem;
+    padding: 10px 6px;
+  }
+
+  th {
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  a.order-link {
+    font-size: 0.85rem;
+  }
+
+  .card h4 {
+    font-size: 1rem;
+  }
+}
+</style>
+
+<div class="dashboard-container">
+  <h2>{{ _("My Dashboard") }}</h2>
+
+  <!-- Filters -->
+  <div class="filter-card mb-4">
+    <div class="filter-group">
+      <label>{{ _("Search Order ID") }}</label>
+      <input type="text" id="search-order" placeholder="Enter Order ID">
     </div>
+
+    <div class="filter-group">
+      <label>{{ _("Status") }}</label>
+      <select id="status-filter">
+        <option value="">All</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>{{ _("From Date") }}</label>
+      <input type="date" id="from-date">
+    </div>
+
+    <div class="filter-group">
+      <label>{{ _("To Date") }}</label>
+      <input type="date" id="to-date">
+    </div>
+
+    <button id="apply-filters" class="filter-btn">{{ _("Filter") }}</button>
+  </div>
+
+  <!-- Dashboard Data -->
+  <div id="user-dashboard" class="card">
+    <div class="text-muted">{{ _("Loading dashboard data...") }}</div>
+  </div>
 </div>
 {% endblock %}
+
 {% block script %}
-<script src="/assets/frappe/js/frappe-web.bundle.js"></script>
 <script>
-frappe.call({
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof frappe === "undefined") {
+    console.error("Frappe is not loaded. Ensure web_foot.html is included in templates/web.html.");
+    return;
+  }
+
+  frappe.call({
     method: "webshop.dasboard.get_web_user_dashboard",
     type: "GET",
     callback: function(r) {
-        const container = document.getElementById("user-dashboard");
-        container.innerHTML = "";
-        if (!r.message || r.message.error) {
-            container.innerHTML = `<div class='text-danger'>${r.message.error || "Error loading data"}</div>`;
-            return;
+      const container = document.getElementById("user-dashboard");
+      const statusDropdown = document.getElementById("status-filter");
+      const searchInput = document.getElementById("search-order");
+      const fromDateInput = document.getElementById("from-date");
+      const toDateInput = document.getElementById("to-date");
+      const filterBtn = document.getElementById("apply-filters");
+
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (!r.message || r.message.error) {
+        container.innerHTML = `<div class='text-danger'>${r.message?.error || "Error loading data"}</div>`;
+        return;
+      }
+
+      const role = r.message.role || "";
+      if (role !== "Retail Buyer" && role !== "Corporate Buyer") {
+        container.innerHTML = "<div>You have no dashboard access.</div>";
+        return;
+      }
+
+      const orders = r.message.orders || [];
+      let filtered = [...orders];
+
+      const retailStatuses = ["To Deliver and Bill", "Completed", "Cancelled"];
+      const corporateStatuses = ["Pending L1 Approval", "Pending L2 Approval", "Approved", "Rejected"];
+      const statuses = role === "Retail Buyer" ? retailStatuses : corporateStatuses;
+
+      statusDropdown.innerHTML = `<option value="">All</option>` + statuses.map(s => `<option>${s}</option>`).join("");
+
+      function renderOrders(list) {
+        if (!list.length) {
+          container.innerHTML = "<div>No orders found.</div>";
+          return;
         }
 
-        const role = r.message.role;
+        const tableRows = list.map(o => `
+          <tr>
+            <td><a href="/orders/${o.name || ''}" class="order-link">${o.name || ''}</a></td>
+            <td>${o.transaction_date || ''}</td>
+            <td>${role === "Retail Buyer" ? (o.status || '') : (o.workflow_state || '')}</td>
+            <td>${o.grand_total || 0}</td>
+          </tr>
+        `).join("");
 
-        // Retail Buyer
-        if (role === "Retail Buyer") {
-            const orders = r.message.orders || [];
-            container.innerHTML = `<h4>Your Orders</h4>` + 
-                (orders.length
-                    ? `<table class="table table-striped">
-                        <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
-                        <tbody>${orders.map(o =>
-                            `<tr><td><a href="/orders/${o.name}">${o.name}</a></td><td>${o.transaction_date}</td><td>${o.status}</td><td>${o.grand_total}</td></tr>`
-                        ).join("")}</tbody></table>`
-                    : "<div>No orders found.</div>");
-        }
+        const title = role === "Retail Buyer" ? "Your Orders" : "Your Purchase Requests";
+        const header = role === "Retail Buyer"
+          ? "<th>Order ID</th><th>Date</th><th>Status</th><th>Total</th>"
+          : "<th>Request ID</th><th>Date</th><th>Workflow Status</th><th>Total</th>";
 
-        // Corporate Buyer
-        else if (role === "Corporate Buyer") {
-            const orders = r.message.orders || [];
-            container.innerHTML = `<h4>Your Purchase Requests</h4>` +
-                (orders.length
-                    ? `<table class="table table-striped">
-                        <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
-                        <tbody>${orders.map(o =>
-                            `<tr><td><a href="/orders/${o.name}">${o.name}</a></td><td>${o.transaction_date}</td><td>${o.workflow_state}</td><td>${o.grand_total}</td></tr>`
-                        ).join("")}</tbody></table>`
-                    : "<div>No requests found.</div>");
-        }
+        container.innerHTML = `
+          <h4>${title}</h4>
+          <table>
+            <thead><tr>${header}</tr></thead>
+            <tbody>${tableRows}</tbody>
+          </table>`;
+      }
 
-        // Level 1 Admin
-        else if (role === "Level 1 Admin") {
-            const pending = r.message.pending_approvals || [];
-            container.innerHTML = `<h4>Pending Level 1 Approvals</h4>` +
-                (pending.length
-                    ? `<ul>${pending.map(o =>
-                        `<li><strong>${o.name}</strong> - ${o.customer_name} (${o.grand_total}) [${o.workflow_state}]</li>`
-                    ).join("")}</ul>`
-                    : "<div>No pending approvals.</div>");
-        }
+      function applyFilters() {
+        const search = searchInput.value.toLowerCase();
+        const fromDate = fromDateInput.value;
+        const toDate = toDateInput.value;
+        const status = statusDropdown.value;
 
-        // Level 2 Admin
-        else if (role === "Level 2 Admin") {
-            const pending = r.message.pending_approvals || [];
-            container.innerHTML = `<h4>Pending Level 2 Approvals</h4>` +
-                (pending.length
-                    ? `<ul>${pending.map(o =>
-                        `<li><strong>${o.name}</strong> - ${o.customer_name} (${o.grand_total}) [${o.workflow_state}]</li>`
-                    ).join("")}</ul>`
-                    : "<div>No pending approvals.</div>");
-        }
+        filtered = orders.filter(o => {
+          const matchSearch = search ? (o.name || "").toLowerCase().includes(search) : true;
+          const matchStatus =
+            role === "Retail Buyer"
+              ? (status ? o.status === status : true)
+              : (status ? o.workflow_state === status : true);
 
-        else {
-            container.innerHTML = "<div>You have no dashboard access.</div>";
-        }
+          const date = new Date(o.transaction_date);
+          const matchFrom = fromDate ? date >= new Date(fromDate) : true;
+          const matchTo = toDate ? date <= new Date(toDate) : true;
+
+          return matchSearch && matchStatus && matchFrom && matchTo;
+        });
+
+        renderOrders(filtered);
+      }
+
+      renderOrders(filtered);
+      searchInput.addEventListener("input", applyFilters);
+      statusDropdown.addEventListener("change", applyFilters);
+      filterBtn.addEventListener("click", applyFilters);
     }
+  });
 });
 </script>
 {% endblock %}

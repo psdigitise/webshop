@@ -38,7 +38,7 @@ def get_web_user_dashboard():
         data["pending_approvals"] = frappe.get_all(
             "Sales Order",
             filters={"workflow_state": "Pending L1 Approval"},
-            fields=["name", "customer_name", "grand_total", "workflow_state"]
+            fields=["name", "customer_name", "grand_total", "workflow_state","transaction_date"]
         )
 
     elif "Level 2 Admin" in roles:
@@ -46,7 +46,7 @@ def get_web_user_dashboard():
         data["pending_approvals"] = frappe.get_all(
             "Sales Order",
             filters={"workflow_state": "Pending L2 Approval"},
-            fields=["name", "customer_name", "grand_total", "workflow_state"]
+            fields=["name", "customer_name", "grand_total", "workflow_state","transaction_date"]
         )
 
     else:

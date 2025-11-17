@@ -11,7 +11,7 @@ def search_item_groups_with_route(txt):
             "web_item_name": ["like", f"%{txt}%"],
             "published": 1
         },
-        fields=["web_item_name", "route"],
+        fields=["web_item_name", "route","thumbnail"],
         limit_page_length=5
     )
 
@@ -88,7 +88,7 @@ def get_stripe_redirect_url(sales_order):
     return f"{base_url}?{urlencode(params)}"
 
 @frappe.whitelist(allow_guest=True)
-def get_top_rated_items(limit=5):
+def get_top_rated_items(limit=6):
     return frappe.get_all('Website Item',
         fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route'],
         filters={'published': 1},
@@ -97,7 +97,7 @@ def get_top_rated_items(limit=5):
     )
 
 @frappe.whitelist(allow_guest=True)
-def get_random_products(limit=6):
+def get_random_products(limit=4):
     items = frappe.get_all(
         "Website Item",
         fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','item_code'],

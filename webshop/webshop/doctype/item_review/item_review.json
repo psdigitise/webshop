@@ -30,8 +30,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "User",
-   "options": "User",
-   "read_only": 1
+   "options": "User"
   },
   {
    "fieldname": "column_break_3",
@@ -75,13 +74,12 @@
   {
    "fieldname": "published_on",
    "fieldtype": "Data",
-   "label": "Published on",
-   "read_only": 1
+   "label": "Published on"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-25 13:46:59.153274",
+ "modified": "2025-11-12 11:26:08.615653",
  "modified_by": "Administrator",
  "module": "Webshop",
  "name": "Item Review",

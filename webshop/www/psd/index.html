@@ -8,7 +8,9 @@
   <title>PSD Solutions</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="http://192.168.1.23:8000/psd/assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
@@ -18,8 +20,9 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', sans-serif !important;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif !important;
       background-color: #fff !important;
+      scroll-behavior: smooth;
     }
 
     p,
@@ -34,14 +37,24 @@
     div,
     li,
     button {
-      font-family: 'Roboto', sans-serif !important;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
     :root {
       --violet-primary: #e8e5e1;
       --violet-secondary: #000;
       --violet-light: #fff;
-      --violet-gradient: linear-gradient(135deg, #000000, #2575fc);
+      --violet-gradient: linear-gradient(135deg, #000000, #6fa4ff);
+      --bg: #f6f6f7;
+      --card-bg: #ffffff;
+      --muted: #6b6b6b;
+      --accent: #e60028;
+      /* red accent like sale badges */
+      --accent-dark: #c40020;
+      --price-black: #111;
+      --green: #0a8a5f;
+      --shadow: 0 6px 18px rgba(18, 18, 18, 0.06);
+      --radius: 10px;
     }
 
     .animated-card {
@@ -94,7 +107,6 @@
       gap: 16px;
       position: absolute;
       right: 0;
-      top: 100%;
       z-index: 10;
     }
 
@@ -285,7 +297,7 @@
     .bottom-bar .btn {
       background: transparent;
       border: 2px solid rgba(255, 255, 255, 0.3);
-      color: black !important;
+      color: #4290ee !important;
       border-radius: 8px;
       padding: 0.5rem 1rem;
       font-weight: 600;
@@ -456,15 +468,13 @@
       color: #4b0082;
       font-weight: 500;
       font-size: 0.95rem;
-      padding: 0.8rem 1.2rem;
       display: block;
       border-radius: 5px;
       transition: background 0.2s;
     }
 
     .category-item:hover a {
-      background: var(--violet-light);
-      color: var(--violet-primary);
+      color: #2575fc;
     }
 
     /* Mega dropdown */
@@ -536,7 +546,7 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #e8e5e1;
+      background-color: #f2f2f2;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 1rem 2rem;
       width: 100%;
@@ -592,20 +602,20 @@
     }
 
     .category-item {
-      position: static;
+      position: relative;
       margin: 0 20px;
     }
 
     .category-item>a {
       text-decoration: none;
       color: #333;
-      font-weight: 600;
+      font-weight: 400;
       padding: 15px 10px;
       display: inline-block;
     }
 
     .category-item:hover>a {
-      color: #000;
+      color: #000000;
       /* purple hover */
     }
 
@@ -616,11 +626,15 @@
       top: 100%;
       left: 0;
       width: 1000px;
-      background-color: #e8e5e1;
-      border-top: 2px solid #000;
+      background-color: #f2f2f2;
+      border-top: 1px solid #000;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 20px 30px;
       z-index: 10;
+    }
+
+    .category-dropdown img {
+      display: none;
     }
 
     /* Make dropdown visible on hover */
@@ -628,16 +642,18 @@
       display: block;
     }
 
-    /* Inner grid layout */
-    .dropdown-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+    @media(min-width:750px) and (max-width:1440px) {
+      .category-item:hover .category-dropdown {
+        columns: 1;
+      }
     }
+
+    /* Inner grid layout */
 
     /* Each item box */
     .dropdown-item {
       flex: 1 1 180px;
+      margin-bottom: 7px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -667,6 +683,7 @@
     }
 
     .category-item:hover .category-dropdown {
+      width: fit-content !important;
       display: block;
       opacity: 1;
       visibility: visible;
@@ -678,10 +695,9 @@
     }
 
     .product-card {
-      background-color: #f2f2f2 !important;
+      background-color: #ffffff !important;
       border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -693,7 +709,7 @@
     .product-card img {
       border-radius: 8px;
       height: 150px;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .product-name {
@@ -725,8 +741,8 @@
     }
 
     img.card-img-top.top:hover {
-      border: 2px Solid #000 !important;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px !important;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
     }
 
     .about-section {
@@ -1249,8 +1265,10 @@
     .zoom-container:hover .product-image {
       transform: scale(1.2);
     }
+
     .cart-icon-btn {
-      background-color: aqua; /* Tekstag purple */
+      background-color: aqua;
+      /* Tekstag purple */
       color: #fff;
       border-radius: 50%;
       width: 36px;
@@ -1281,61 +1299,1433 @@
         font-size: 1rem;
       }
     }
+
+    .tk-header-bar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      background: #ffffff;
+      padding: 10px 0;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    /* Search bar */
+    .tk-search-bar input {
+      height: 45px;
+      border-radius: 50px;
+      font-size: 15px;
+      padding-left: 20px;
+      border: 1px solid #dcdcdc;
+    }
+
+    .tk-search-bar input:focus {
+      box-shadow: none;
+      border-color: #b3b3ff;
+    }
+
+    /* Icons */
+    .tk-header-icon {
+      font-size: 22px;
+      color: #333;
+    }
+
+    .tk-header-icon:hover {
+      color: #6c63ff;
+    }
+
+    /* Cart count */
+    .tk-cart-count {
+      font-size: 11px;
+      padding: 0px 4px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .tk-search-bar {
+        max-width: 100% !important;
+        margin: 10px 0;
+      }
+
+      .tk-customer-block {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .tk-icons-block {
+        margin-top: 10px;
+      }
+    }
+
+    /* Circle style for each icon */
+    .tk-icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 100%;
+      border: 1px solid #d8d8ff;
+      /* light blue border */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      transition: 0.2s ease;
+      background: #ffffff;
+    }
+
+    /* Icon color */
+    .tk-header-icon {
+      font-size: 20px;
+      color: #6d79f4;
+      /* light blue */
+    }
+
+    /* Hover effect */
+    .tk-icon-circle:hover {
+      border-color: #b3b3ff;
+      background: #f5f5ff;
+    }
+
+    /* Cart badge */
+    .tk-cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: red;
+      color: white;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .customer-service-container {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    /* Popup box */
+    .hover-popup {
+      position: absolute;
+      top: 115%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-5px);
+      background: #fff;
+      border-radius: 8px;
+      padding: 18px;
+      width: 280px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+
+    /* Popup arrow (only one now) */
+    .hover-popup::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      border-left: 1px solid #e5e5e5;
+      border-top: 1px solid #e5e5e5;
+      box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Show on hover */
+    .customer-service-container:hover .hover-popup {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Title and subtitle */
+    .tk-popup-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .tk-popup-subtext {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    /* Each line item */
+    .tk-popup-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    .tk-popup-item:first-of-type {
+      border-top: none;
+    }
+
+    .tk-popup-item i {
+      font-size: 16px;
+      color: #6d79f4;
+      margin-top: 3px;
+    }
+
+    .tk-popup-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #222;
+    }
+
+    .tk-popup-item small {
+      font-size: 12px;
+      color: #777;
+    }
+
+    #search-results {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none;
+      overflow: hidden;
+    }
+
+    .search-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .search-item {
+      display: flex;
+      /* This is key: it puts items next to each other */
+      align-items: center;
+      gap: 10px;
+      /* Provides space between image and text */
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #222;
+      font-size: 15px;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s ease;
+    }
+
+    .search-item:hover {
+      background: #f7f7f7;
+    }
+
+    .search-item img {
+      width: 40px;
+      /* Sizes the image/icon */
+      height: 40px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .no-result {
+      padding: 12px 16px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 767px) {
+      #search-results {
+        width: 100%;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .search-item {
+        padding: 10px 14px;
+      }
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #000;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    .section-divider::before {
+      margin-right: 15px;
+    }
+
+    .section-divider::after {
+      margin-left: 15px;
+    }
+
+    .section-padding {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    /* --- Banner Box Styling --- */
+    .banner-box {
+      /* Ensures both boxes fill their column height, for visual alignment */
+      height: 250px;
+      /* Flexbox centers the content (title, description, button) vertically */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* Centers items horizontally within the banner */
+      /* Adds the key visual effects from the image */
+      border-radius: 0.5rem;
+      /* Matches Bootstrap's rounded-3 for rounded corners */
+      /* Subtle shadow for depth */
+      transition: transform 0.2s;
+      /* Optional hover effect */
+    }
+
+    /* Optional: Subtle hover effect for interactivity */
+    .banner-box:hover {
+      transform: translateY(-3px);
+    }
+
+    /* --- Purple Button Styling (for the Explore banner) --- */
+    .purple-btn {
+      background-color: #5d4a8e;
+      /* The deep purple color */
+      color: #ffffff;
+      border: 1px solid #5d4a8e;
+      font-weight: bold;
+      /* Custom button sizing or padding can go here if needed */
+    }
+
+    .purple-btn:hover {
+      background-color: #433566;
+      color: #ffffff;
+      border-color: #433566;
+    }
+
+
+    /* --- Light Button Styling (for the Shop banner) --- */
+    /* The btn-light class from Bootstrap should handle the white/light gray background. 
+   We just ensure the text is black for readability on the light gray banner. */
+    .btn-light {
+      color: #333333;
+      /* Ensuring dark text on the light button */
+      border: 1px solid #ced4da;
+      /* Subtle border for definition */
+      font-weight: bold;
+    }
+
+    .reviews-section {
+      background-color: #faf9f6;
+      border-radius: 10px;
+      padding: 30px 20px;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .reviews-wrapper {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 16px;
+      padding: 10px 0;
+    }
+
+    .review-card {
+      flex: 0 0 280px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rating-stars {
+      color: #00b67a;
+      font-size: 1rem;
+    }
+
+    .invited-badge {
+      background: #f2f3f5;
+      color: #555;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .review-title {
+      font-weight: 600;
+      margin: 10px 0 6px;
+      color: #222;
+    }
+
+    .review-comment {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .review-footer {
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    .review-footer strong {
+      color: #000;
+    }
+
+    .arrow-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: 0.2s;
+    }
+
+    .arrow-btn:hover {
+      background: #f4f4f4;
+    }
+
+    .arrow-left {
+      left: -12px;
+    }
+
+    .arrow-right {
+      right: -12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .reviews-section {
+        padding: 20px 10px;
+      }
+
+      .review-card {
+        flex: 0 0 85%;
+      }
+
+      .arrow-btn {
+        display: none;
+      }
+    }
+
+    .container2 {
+      max-width: 1150px;
+      margin: 32px auto;
+      padding: 18px;
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .promo {
+      background: linear-gradient(0deg, rgba(237, 237, 237, 1) 0%, rgba(241, 241, 241, 1) 100%);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      min-height: 92px;
+    }
+
+    .promo img {
+      width: auto;
+      height: 150px;
+      object-fit: scale-down;
+      border-radius: 6px;
+      flex: 0 0 96px;
+      background: #eee;
+    }
+
+    .promo .p-text {
+      flex: 1;
+    }
+
+    .promo .title {
+      font-weight: 700;
+      color: #111;
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .promo .sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .badge-small {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      display: inline-block;
+    }
+
+    /* hero section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    .left-hero {
+      background: linear-gradient(180deg, #000 0, #0a0a0a 100%);
+      color: #fff;
+      border-radius: 10px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .left-hero .copy {
+      max-width: 55%;
+    }
+
+    .left-hero h2 {
+      margin: 0 0 8px 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 30px;
+      letter-spacing: -0.5px;
+    }
+
+    .left-hero p {
+      margin: 0;
+      color: #ddd;
+      font-size: 14px;
+    }
+
+    /* stylized price block */
+    .price-block {
+      position: absolute;
+      right: 14px;
+      bottom: 18px;
+      text-align: right;
+      background: transparent;
+    }
+
+    .price-block .was {
+      color: #bbb;
+      text-decoration: line-through;
+      font-size: 14px;
+      display: block;
+    }
+
+    .price-block .from {
+      font-size: 12px;
+      color: #fff;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .price-block .big {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      color: #ff2b2b;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .paper-art {
+      width: 250px;
+      height: 200px;
+      object-fit: contain;
+      margin-left: auto;
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+    }
+
+    /* right hero */
+    .right-hero {
+      background: linear-gradient(90deg, #fff, #fbfbfb);
+      border-radius: 10px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .gift-badge {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      background: var(--accent);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      font-weight: 700;
+    }
+
+    .right-hero .product {
+      flex: 0 0 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .right-hero img.product-img {
+      width: 250px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #eee;
+    }
+
+    .right-hero .details {
+      flex: 1;
+    }
+
+    .right-hero .kicker {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 6px 0;
+    }
+
+    .right-hero .sub {
+      color: var(--muted);
+      margin: 0 0 12px 0;
+      font-size: 14px;
+    }
+
+    .right-hero .price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .right-hero .price .from-tag {
+      background: #ffedf0;
+      color: var(--accent-dark);
+      font-weight: 700;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .right-hero .price .big-price {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      color: var(--price-black);
+      margin-left: 6px;
+    }
+
+    .right-hero .price .unit {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: 6px;
+    }
+
+    /* small icon row */
+    .mini-row {
+      display: flex;
+      gap: 18px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mini-row .mini {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: #e9e9eb;
+      display: inline-block;
+    }
+
+    /* responsive */
+    @media (max-width:980px) {
+      .top-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .left-hero {
+        padding: 18px;
+      }
+
+      .price-block {
+        position: static;
+        margin-top: 8px;
+        text-align: left;
+      }
+
+      .left-hero .copy {
+        max-width: 100%;
+      }
+    }
+
+    /* small utilities */
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* responsive - mobile version like Viking mobile view */
+    @media (max-width:980px) {
+
+      body {
+        background: #f6f6f7;
+      }
+
+      .container2 {
+        max-width: 430px;
+        margin: 0 auto;
+        padding: 12px;
+      }
+
+      /* Stack all elements vertically */
+      .top-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      /* Left hero (black promo) becomes a full-width card */
+      .left-hero {
+        flex-direction: column;
+        text-align: left;
+        padding: 18px;
+        gap: 10px;
+        border-radius: 12px;
+      }
+
+      .left-hero .copy {
+        max-width: 100%;
+      }
+
+      .left-hero h2 {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+
+      .left-hero p {
+        font-size: 13px;
+        color: #ddd;
+      }
+
+      .paper-art {
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+        margin: 10px auto;
+        transform: rotate(0);
+      }
+
+      .price-block {
+        position: static;
+        margin-top: 8px;
+        text-align: left;
+      }
+
+      .price-block .big {
+        font-size: 22px;
+      }
+
+      /* Right hero (product + price) becomes a stacked card */
+      .right-hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        padding: 18px;
+        border-radius: 12px;
+      }
+
+      .right-hero .details {
+        width: 100%;
+      }
+
+      .right-hero .kicker {
+        font-size: 17px;
+      }
+
+      .right-hero .sub {
+        font-size: 13px;
+      }
+
+      .right-hero .product {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .right-hero img.product-img {
+        width: 180px;
+        height: auto;
+      }
+
+      .right-hero .price {
+        gap: 6px;
+      }
+
+      .right-hero .price .big-price {
+        font-size: 26px;
+      }
+
+      .gift-badge {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+        right: 10px;
+        top: 10px;
+      }
+
+      /* Promo tiles (small product cards) */
+      .promo {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        min-height: auto;
+      }
+
+      .promo img {
+        width: 90px;
+        height: 70px;
+        flex-shrink: 0;
+      }
+
+      .promo .title {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .promo .sub {
+        font-size: 13px;
+      }
+
+      /* Mini info row (delivery, returns) */
+      .mini-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 12px;
+        margin-top: 18px;
+      }
+
+      .mini-row .mini {
+        justify-content: flex-start;
+        gap: 6px;
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .promo-card-container {
+      display: flex;
+      gap: 20px;
+      margin: 40px auto;
+      justify-content: center;
+    }
+
+    /* Individual Card */
+    .promo-card {
+      width: -webkit-fill-available;
+      background: #f2f2f2;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .promo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Image */
+    .promo-img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      padding: 10px;
+    }
+
+    /* Text Area */
+    .promo-content {
+      padding: 15px 10px 20px;
+    }
+
+    .promo-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .promo-text {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0;
+    }
+
+    /* Background Variants */
+    .promo-purple {
+      background-color: #e5dbfa;
+    }
+
+    .promo-yellow {
+      background-color: #fbe76d;
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 1024px) {
+      .promo-card-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .promo-card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .promo-card-container {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .top-products-section {
+      padding-bottom: 50px;
+      background-color: #fff;
+    }
+
+    .top-products-title {
+      width: 100%;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .top-products-title::before,
+    .top-products-title::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    .top-products-title::before {
+      margin-right: 15px;
+    }
+
+    .top-products-title::after {
+      margin-left: 15px;
+    }
+
+    .top-products-title span {
+      position: relative;
+      z-index: 2;
+      background-color: #fff;
+      padding: 0 10px;
+    }
+
+
+    /* Product Card */
+    .top-product-card {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .top-product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Image Circle */
+    .top-product-image-wrapper {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 10px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 3px solid #f3f3f3;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .top-product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .top-product-card:hover .top-product-image {
+      transform: scale(1.1);
+    }
+
+    /* Product Name */
+    .top-product-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 10px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .top-product-image-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .top-product-name {
+        font-size: 0.9rem;
+      }
+    }
+
+    .promo-gray {
+      background-color: #f2f2f2;
+    }
+
+    .featured-products-section {
+      padding: 60px 0;
+      background-color: #fff;
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .featured-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .featured-desc {
+      max-width: 750px;
+      margin: 0 auto 40px;
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Swiper */
+    .featured-swiper {
+      padding-top: 10px;
+      width: 100%;
+      padding-bottom: 30px;
+    }
+
+    .featured-slide {
+      width: 190px !important;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Product Card */
+    .featured-card {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Image Circle */
+    .featured-image-wrapper {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #e8e5e1;
+      background: #f7f6f4;
+      box-shadow: rgba(149, 157, 165, 0.15) 0px 4px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .featured-card:hover .featured-image {
+      transform: scale(1.1);
+    }
+
+    /* Product Name */
+    .featured-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #000;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .featured-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .featured-link:hover .featured-name {
+      color: #5b2cff;
+    }
+
+    /* Swiper Pagination */
+    .swiper-pagination-bullet {
+      background: #b5b2b2;
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #5b2cff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .featured-image-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .featured-name {
+        font-size: 0.85rem;
+      }
+    }
+
+    .reviews-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  margin: auto;
+  font-family: "Inter", sans-serif;
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.rating-value {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #f59e0b;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 1.4rem;
+}
+
+.reviews-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.review-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 280px;
+  max-width: 300px;
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.review-header .rating-stars {
+  color: #f59e0b;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.review-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #111;
+}
+
+.review-comment {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.review-footer {
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviews-footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.trust-logo img {
+  height: 18px;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+.product-card {
+  background: #fff;
+  border-radius: 6px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.product-image-wrapper {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.3;
+}
+
+.product-price {
+  color: #000;
+  font-size: 1rem;
+}
+
+.price-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 4px;
+}
+
+.product-subtext {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: -4px;
+}
+
+.qty-input {
+  width: 55px;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
   </style>
 </head>
 
 <body>
-  <!-- Top bar -->
-  <div class="bottom-bar d-flex align-items-center p-0" style="    width: 100%;
-    position: fixed;
-    z-index: 2;">
+
+  <!-- HEADER -->
+  <div class="tk-header-bar shadow-sm">
     <div class="container-fluid">
-      <div class="d-flex justify-content-lg-between justify-content-center align-items-center">
-        <a class="navbar-brand fw-bold" href="#">
-          <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" alt="PSD Logo" height="40" />
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+          <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" alt="Logo" height="45">
         </a>
-        <div class="parent customer-service-container text-center">
-          <span class="mx-1"><i class="fa fa-phone"></i></span>Customer service<br>
+
+        <!-- Customer Service -->
+        <div class="tk-customer-block ms-lg-3 customer-service-container">
+          <span class="fw-bold" style="font-size: 18px;">
+            <i class="fa fa-phone"></i> 0844 940 9410
+          </span><br>
+          <span style="font-size: 13px; color: #666;">Customer service</span>
 
           <div class="hover-popup">
-            <p><strong>Customer Service</strong></p>
-            <p class="m-0"><i class="fa fa-clock-o"></i> Available weekdays 8am – 6pm</p><br>
-            <p class="m-0"><i class="fa fa-comments"></i> Live chat: 9am – 5pm</p><br>
-            <p class="m-0"><i class="fa fa-phone"></i> 0844 940 9410</p><br>
-            <p class="m-0"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</p>
+            <p class="tk-popup-title mb-1"><strong>Customer service</strong></p>
+            <p class="tk-popup-subtext mb-3">Our customer support is available every working day between 8am and 6pm.
+            </p>
+
+            <div class="tk-popup-item">
+              <i class="fa-regular fa-comments"></i>
+              <div>
+                <span>Live chat</span><br>
+                <small>Weekdays 9am to 5pm</small>
+              </div>
+            </div>
+
+            <div class="tk-popup-item">
+              <i class="fa fa-phone"></i>
+              <div>
+                <span>0844 940 9410</span><br>
+                <small>Weekdays 8am to 6pm</small>
+              </div>
+            </div>
+
+            <div class="tk-popup-item">
+              <i class="fa-regular fa-envelope"></i>
+              <div>
+                <span>Send us a mail</span><br>
+                <small>info@PSDsolutions.co.uk</small>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- <div class="text-center">
-          <span class="mx-1"><i class="fa fa-phone"></i> 0844 940 9410</span>
-          Customer service
-        </div>
-        <div class="text-center">
-          <span class="mx-1"><i class="fa fa-phone"></i> 0844 940 9410</span>
-          |
-          <span class="mx-1"><i class="fa fa-envelope"></i> info@PSDsolutions.co.uk</span>
-        </div> -->
-        <form class="d-flex search-bar" onsubmit="return false;" style="width: 700px !important;">
-          <input class="form-control me-2 w-100" type="search" name="q" id="item-group-search"
-            placeholder="What are you looking for?" aria-label="Search" autocomplete="off" />
-          <div id="search-results" class="mt-3"></div>
 
+        <!-- Search Bar -->
+        <form class="tk-search-bar mx-lg-4 flex-grow-1" style="max-width: 650px;">
+          <input class="form-control" type="search" placeholder="What are you looking for?" autocomplete="off" name="q"
+            id="item-group-search">
+          <div id="search-results" class="mt-3"></div>
         </form>
-        <div class="custom-display-lg">
-          <a href="#" class="btn purple-btn mr-c"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="btn purple-btn mr-c"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="btn purple-btn mr-c"><i class="fab fa-x-twitter"></i></a>
-          <!-- <a href="#" class="btn"><i class="fa fa-user"></i> Hi There! Your Account</a> -->
-          <!-- <a href="#" class="btn"><i class="fa fa-bolt"></i> Quick Order</a> -->
-          <a href="/cart/" class="btn purple-btn mr-c"><i class="fa fa-shopping-bag"></i></a>
-          {% if user_test == 1 %}
-          <a href="/login" class="btn purple-btn"><i class="fa fa-user"></i></a>
-          {% else %}
-          <a href="/me" class="btn purple-btn"><i class="fa fa-user"></i></a>
-          {% endif %}
+
+        <!-- Icons -->
+        <div class="tk-icons-block d-flex align-items-center gap-3">
+
+          <!-- Wishlist -->
+          <a href="/wishlist" class="tk-icon-circle position-relative">
+            <i class="fa-regular fa-heart tk-header-icon"></i>
+          </a>
+
+          <!-- Cart -->
+          <a href="/cart" class="tk-icon-circle position-relative">
+            <i class="fa fa-shopping-cart tk-header-icon"></i>
+            <span class="tk-cart-count">{{cart_item_count}}</span>
+          </a>
+
+          <!-- Account -->
+          <a href="/me" class="tk-icon-circle position-relative">
+            <i class="fa-regular fa-user tk-header-icon"></i>
+          </a>
+
         </div>
+
+
       </div>
     </div>
   </div>
+
   <div class="category-container">
     <div class="category-row container-fluid d-flex justify-content-center">
       <ul class="category-list d-flex flex-wrap">
@@ -1412,19 +2802,23 @@
   </div>
 
   <!-- Hero Section -->
-
   <div id="heroCarousel" class="hero-section" style="
+border-top: 40px solid #e4002c;
     position: relative;
     top: 100px;
     height:55vh;
     ">
 
     <div class="carousel-inner">
-      <div class="d-block">
+      <div class="d-block container2">
         <div class="hero-section-content">
-          <h3 class="text-purple head-home text-center" style="font-weight: 600;">TOP CATEGORIES FOR YOU</h3>
+          <h3 class="text-purple head-home text-center" style="font-weight: 600;margin-top: 20px;">
+            <div class="section-divider">
+              <span>TOP CATEGORIES FOR YOU</span>
+            </div>
+          </h3>
           <div class="swiper mySwiper mt-4" style="z-index: 0 !important;">
-            <div class="swiper-wrapper" style="padding-bottom: 20px;">
+            <div class="swiper-wrapper" style="padding-bottom: 20px;padding-top: 20px;">
               {% for product in categories %}
               <div class="swiper-slide" style="width: 190.667px !important; justify-items: center;">
                 <div class="card bg-transparent border-0" style="border-radius:50%; width: 70%; aspect-ratio: 1 / 1;">
@@ -1434,8 +2828,17 @@
                   <div>
                     <a href="/" class="btn" style="width: 100%;
     justify-items: center;">
-                      <h5 class="card-title mt-3" style="font-weight: 700 !important;font-size: 0.8rem;color:#000000">{{
-                        product.title }}</h5>
+                      <h5 class="card-title mt-3 mb-0" style="
+      font-weight: 700 !important;
+      font-size: 0.8rem;
+      color: #000000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    ">
+                        {{ product.title }}
+                      </h5>
                       <small> {{product.price_text}}</small>
                     </a>
                   </div>
@@ -1450,233 +2853,285 @@
     </div>
   </div>
 
-  <!-- Bottom bar -->
-  <!-- <div class="bottom-bar">
-    <div class="container">
-      <div class="row justify-content-center gy-3 align-items-center">
-        <div class="col-lg-3 col-md-6 col-12 text-center">
-          <a href="/office-supplies" class="btn" style="color: #ffffff;"> <i class="fa fa-pencil-ruler"></i> Office
-            Supplies</a>
+  <div class="container2" style="
+      margin-bottom: 0px !important;padding-top: 90px;">
+
+    <!-- TOP PROMO TILES -->
+    <div class="top-row" role="list">
+      <div class="promo" role="listitem" aria-label="Free gifts with ink and toner">
+        <img src="../psd/assets/img/image (2).jpeg" alt="Ink & toner sample" />
+        <div class="p-text">
+          <div class="title">Free gifts with ink &amp; toner</div>
+          <div class="sub">New Low Prices</div>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 text-center">
-          <a href="/print-consumables" class="btn" style="color: #ffffff;"><i class="fa fa-print"></i> Print
-            Consumables</a>
+      </div>
+
+      <div class="promo" role="listitem" aria-label="Festive office collection">
+        <img src="../psd/assets/img/printer.jpg" alt="Festive gifts" />
+        <div class="p-text">
+          <div class="title">Bring some festive magic to your office</div>
+          <div class="sub">Discover our cheerful Christmas collection</div>
         </div>
-        <div class="col-lg-3 col-md-6 col-12 text-center">
-          <a href="/refreshment-supplies" class="btn" style="color: #ffffff;"><i class="fa fa-mug-hot"></i>
-            Refreshment
-            Supplies</a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12 text-center">
-          <a href="/cleaning-items" class="btn" style="color: #ffffff;"><i class="fa fa-broom"></i> Cleaning Items</a>
+      </div>
+
+      <div class="promo" role="listitem" aria-label="Fairy dishwasher pack">
+        <img src="../psd/assets/img/image (6).png" alt="Dishwasher tablets" />
+        <div class="p-text">
+          <div class="title">Fairy dishwasher tablets pack of 116 x2</div>
+          <div class="sub">Double the tablets at no extra cost!</div>
         </div>
       </div>
     </div>
-  </div> -->
-  <!-- <div class="bottom-bar py-5" style="background: #e8e5e1;">
-    <div class="container">
-      <h2 class="text-center text-black mb-4">Explore Our Categories</h2>
-      <div class="row g-4 justify-content-center">
-        {% for product in item_groups %}
-        <div class="col-6 col-md-3">
-          <div class="category-card bg-white rounded-4 shadow-sm overflow-hidden text-center h-100">
-            <div class="image-card category-image position-relative">
-              <img src="{{ product.image or '/assets/frappe/images/no-image.png' }}" alt="{{ product.item_group_name }}"
-                class="img-fluid" style="height:180px; width:100%; object-fit:cover;">
-              <div class="overlay d-flex flex-column justify-content-center align-items-center">
-                <h5 class="text-black mb-2">{{ product.item_group_name }}</h5>
-                <a href="/{{ product.route }}" class="btn btn-light btn-sm fw-semibold">Discover More</a>
-              </div>
-            </div>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Main promotions">
+
+      <!-- LEFT: black paper promo -->
+      <article class="left-hero" aria-labelledby="left-title">
+        <div class="copy">
+          <h2 id="left-title">Crazy prices on printer paper</h2>
+          <p>Until stocks last</p>
+        </div>
+
+        <!-- sample product art on right of the black box -->
+        <img class="paper-art"
+          src="../psd/assets/img/6+ Thousand Coca Cola Black Background Royalty-Free Images, Stock Photos & Pictures _ Shutterstock.jpeg"
+          alt="Printer paper boxes" />
+
+        <!-- price block -->
+        <div class="price-block" aria-hidden="true">
+          <span class="was">£4.99</span>
+          <span class="from">From</span>
+          <span class="big">£2.59 <small style="font-size:12px;color:#fff;font-weight:500;">/ Ream</small></span>
+        </div>
+      </article>
+
+      <!-- RIGHT: product promo -->
+      <article class="right-hero" aria-labelledby="right-title">
+        <div class="details">
+          <h3 id="right-title" class="kicker">Free KitKat chocolate</h3>
+          <p class="sub">When you buy Nescafé Gold</p>
+
+          <div class="price" aria-hidden="true">
+            <div class="from-tag">From</div>
+            <div class="big-price">£29.99</div>
+            <div class="unit muted">/ Each</div>
           </div>
         </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div> -->
 
-  <!-- Bottom bar -->
-  <!-- {% for offer in offer%}
-   <a href="/{{offer.route}}" class="btn" style="margin: auto;
-      width: 100%;
-      text-align: center;">
-    <div class="offer-card animated-card" style="
-      
-      border: none;
-      border-radius: 12px;
-      padding: 24px;
-      max-width: 500px;
-      margin: 20px auto;
-      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-decoration: none; /* Remove underline from the link */
-      display: block; /* Make the entire div clickable */
-    ">
-      <h4 style="
-        color: #6a11cb;
-        margin-bottom: 10px;
-        font-size: 24px;
-        font-weight: bold;
-        text-shadow: 0 1px 2px rgba(106, 17, 203, 0.2);
-      ">
-        🎉 {{offer.offer_title}}
-      </h4>
-      <h6 style="
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 18px;
-        font-weight: 600;
-      ">
-        {{offer.offer_subtitle}}
-      </h6>
-      <div class="offer-details" style="
-        font-size: 16px;
-        color: #444;
-        line-height: 1.6;
-      ">
-        <p>{{offer.offer_details}}</p>
-      </div>
-    </div>
-  </a>
-   {% endfor %}  -->
-
-
-  <!-- nationwide provider -->
-
-  <!-- <div class="section-padding">
-    <div class="container-fluid">
-      <h2 class="section-title text-purple text-center mb-4">
-        Top Rated Products
-      </h2>
-      <div class="row g-2 justify-content-center">
-        {% for item in frappe.call('webshop.api.get_top_rated_items') %}
-        <div class="col-6 col-md-2">
-          <div class="product-card shadow-sm rounded bg-white text-center p-3 h-100 border hover-shadow">
-      
-            <a href="/{{ item.route }}">
-              <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="img-fluid rounded mb-3"
-                style="width: 100%; height: 160px; object-fit: cover;" />
-            </a>
-            <h6 class="fw-semibold text-dark">{{ item.web_item_name }}</h6>
-            <p class="text-muted mb-1">Rating: ⭐ {{ item.average_rating }}</p>
-            {% if item.price %}
-            <p class="text-purple fw-bold mb-0">AED {{ item.price }}</p>
-            {% endif %}
-          </div>
+        <div class="product" aria-hidden="true">
+          <img class="product-img"
+            src="../psd/assets/img/Nescafe Gold Blend Instant Coffee Powder - Glass Jar (Limited Edition Pack,Arabica and Robusta beans) Jar, 100g With Free Glass Mug.png"
+            alt="Nescafe Gold sample" />
         </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div> -->
 
-  <!-- CTA Section -->
-  <div class="cta-banner-section section-padding text-center " style="background-color:#e8e5e1">
-    <div class="container">
-      <h2 class="section-title text-black">Ready to Elevate Your Workplace?</h2>
-      <p class="section-desc text-black mb-4">
-        Discover Tekstag’s full range of business essentials designed to streamline operations, boost productivity,
-        and
-        support your team every step of the way. Whether you're browsing, shopping, or placing an order — we make it
-        simple, fast, and reliable.
-      </p>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-3 mb-3">
-          <a href="/all-products" class="btn purple-btn w-100">🛍️ SHOP</a>
+        <div class="gift-badge" aria-hidden="true" title="Free gift">
+          🎁
         </div>
-        <div class="col-12 col-md-3 mb-3">
-          <a href="/shop-by-category" class="btn purple-btn w-100">🔍 EXPLORE</a>
-        </div>
-      </div>
-    </div>
+      </article>
+
+    </section>
   </div>
 
-  <div class="section-padding">
-    <div class="container-fluid">
+  <div class="top-products-section">
+    <div class="container text-center">
       <!-- Section Title -->
-      <h2 class="section-title text-purple text-center mb-4">
-
-        Top Rated Products
+      <h2 class="top-products-title text-center mb-1">
+        <div class="section-divider">
+          <span>Top Rated Products</span>
+        </div>
       </h2>
 
       <!-- Products Grid -->
-      <div class="row g-2 justify-content-center">
+      <div class="row justify-content-center g-4">
 
         {% for item in frappe.call('webshop.api.get_top_rated_items') %}
-        <div class="col-6 col-md-2">
-          <div class=" bg-white text-center p-3 h-100">
-            <!-- Product Image -->
-            <a href="/{{ item.route }}">
-              <div class="zoom-container">
-                <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="product-image">
-              </div>
-            </a>
-            <!-- Product Details -->
-            <h6 style="color: #000;font-size:0.8rem;">{{ item.web_item_name }}</h6>
-            <p class="text-muted mb-1">Rating: ⭐ {{ item.average_rating }}</p>
+        <div class="col-6 col-md-2 col-lg-2 text-center">
+          <a href="/{{ item.route }}" class="top-product-card">
+            <div class="top-product-image-wrapper">
+              <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="top-product-image">
+            </div>
 
-            {% if item.price %}
-            <p class="text-purple fw-bold mb-0">AED {{ item.price }}</p>
-
-            {% endif %}
-          </div>
+          </a>
+          <h6 class="top-product-name">{{
+            item.web_item_name }}</h6>
         </div>
 
         {% endfor %}
       </div>
     </div>
   </div>
+  <div class="promo-card-container container">
 
-  <div class="section-padding py-5" style="background-color: #e8e5e1;">
+    <div class="promo-card promo-purple">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hppc1-MonthlyPromotions-P05-2024-eu7_v10?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="Free Gift Shop" class="promo-img">
+      <div class="promo-content">
+        <h3 class="promo-title">Free Gift Shop</h3>
+        <p class="promo-text">Claim your free gift</p>
+      </div>
+    </div>
+
+    <div class="promo-card promo-yellow">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hppc0-Monthly-Sale-Promocard-November-EU7-P07-EN?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="November Sale" class="promo-img">
+      <div class="promo-content">
+        <h3 class="promo-title">Check it out now</h3>
+        <p class="promo-text">All our offers for this month</p>
+      </div>
+    </div>
+
+    <div class="promo-card">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hpshb-Autumn-P10-2025-UK-IE?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="Autumn is here" class="promo-img">
+      <div class="promo-content promo-gray">
+        <h3 class="promo-title">CHERRY premium Keyboard & Mouse set</h3>
+        <p class="promo-text">Premium quality at half the price</p>
+      </div>
+    </div>
+
+    <div class="promo-card">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hppc4-MonthlyPromotions-Post-it-Playmobil-P09-2025-UK-IE-v2?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="Free Playmobil characters" class="promo-img">
+      <div class="promo-content promo-gray">
+        <h3 class="promo-title">CHERRY premium Keyboard & Mouse set</h3>
+        <p class="promo-text">Premium quality at half the price</p>
+      </div>
+    </div>
+
+    <div class="promo-card">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hppc5-MonthlyPromotions-Tech-11-2025-UKIE?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="CHERRY premium Keyboard & Mouse set" class="promo-img">
+      <div class="promo-content promo-gray">
+        <h3 class="promo-title">CHERRY premium Keyboard & Mouse set</h3>
+        <p class="promo-text">Premium quality at half the price</p>
+      </div>
+    </div>
+
+    <div class="promo-card">
+      <img
+        src="https://static.viking-direct.co.uk/is/image/odeu13/hppc6-Diaries-and-Planners-P05-2025-country-UK-IE-1?hei=300&fmt=webp-alpha&qlt=73&resMode=sharp2&op_usm=1.2,0.4,10,0"
+        alt="Diaries and Planners 2026" class="promo-img">
+      <div class="promo-content promo-gray">
+        <h3 class="promo-title">Diaries and Planners 2026</h3>
+        <p class="promo-text">While stocks last. Order today</p>
+      </div>
+    </div>
+
+  </div>
+
+   <div class="featured-products-section">
+    <div class="container">
+      <!-- Title -->
+      <h2 class="featured-title">Featured Products</h2>
+
+      <!-- Description -->
+      <p class="featured-desc">
+        Discover our top solutions—from office essentials to managed print services and design. Our <strong>Business
+          Health Check</strong> helps you streamline operations, reduce costs, and boost productivity.
+      </p>
+
+      <!-- Swiper Slider -->
+      <div class="swiper featured-swiper">
+        <div class="swiper-wrapper" style="padding-bottom: 20px;">
+          {% for product in feature %}
+          <div class="swiper-slide featured-slide">
+            <div class="featured-card">
+              <div class="featured-image-wrapper">
+                   <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}"
+                class="featured-image" alt="Featured Image">
+              </div>
+             
+              <div class="featured-info">
+                <a href="/{{ product.route }}" class="featured-link">
+                  <h5 class="featured-name">{{ product.web_item_name }}</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination mt-4"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="reviews-section container">
+  <h3>Reviews from Customers</h3>
+  <div class="rating-summary">
+    <span class="rating-value">4.8</span>
+    <span class="stars">★★★★★</span>
+    <span class="review-count">({{ reviews|length }})</span>
+  </div>
+
+  <div class="reviews-carousel" id="reviews-container">
+    {% for r in reviews %}
+    <div class="review-card">
+      <div class="review-header">
+        <div class="rating-stars">
+          {% for i in range(r.rating|int) %}★{% endfor %}
+          {% for i in range(5 - (r.rating|int)) %}☆{% endfor %}
+        </div>
+      </div>
+
+      <div class="review-body">
+        <h4 class="review-title">{{ r.review_title or _("No title") }}</h4>
+        <p class="review-comment">{{ r.comment or "" }}</p>
+      </div>
+
+      <div class="review-footer">
+        <strong>{{ r.customer or _("Anonymous") }}</strong>
+        <span class="review-date">
+          {{ r.published_on if r.published_on else _("Recently") }}
+        </span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="reviews-footer">
+    Rated <strong>4.5 / 5</strong> based on {{ reviews|length }} reviews.  
+    Showing our <strong>4 & 5 star</strong> reviews.
+
+  </div>
+</div>
+
+
+<div class="section-padding py-5" style="background-color: #ffffff;">
   <div class="container">
-    <!-- Section Title -->
-    <h2 class="section-title text-purple text-center mb-4">
-      Discover More Products
+    <h2 class="section-title text-purple text-start mb-4" style="font-weight: 600;">
+      People with similar interests bought...
     </h2>
 
-    <!-- Products Grid -->
-    <div class="row g-3 justify-content-center">
+    <div class="row g-4">
       {% for item in frappe.call('webshop.api.get_random_products') %}
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex">
-        <div class="bg-white text-center p-3 shadow-sm rounded flex-fill d-flex flex-column justify-content-between">
-          <!-- Product Image -->
-          <a href="/{{ item.route }}">
-            <div class="zoom-container">
-              <img 
-                src="{{ item.thumbnail or '/assets/frappe/images/no-image.png' }}" 
-                alt="{{ item.web_item_name }}"
-                class="product-image img-fluid rounded"
-                style="max-height: 140px; object-fit: contain;"
-              >
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card h-100 d-flex flex-column justify-content-between">
+          
+          <a href="/{{ item.route }}" class="text-decoration-none">
+            <div class="product-image-wrapper">
+              <img src="{{ item.thumbnail or '/assets/frappe/images/no-image.png' }}"
+                   alt="{{ item.web_item_name }}"
+                   class="img-fluid product-image">
             </div>
           </a>
 
-          <!-- Product Name -->
-          <h6 class="mt-2 mb-1 text-dark fw-semibold" style="font-size: 0.85rem;">
-            {{ item.web_item_name }}
-          </h6>
+          <div class="product-info text-start mt-3 flex-fill">
+            <p class="product-name mb-1">{{ item.web_item_name }}</p>
+          </div>
 
-          <!-- Product Price -->
-          {% if item.price %}
-          <p class="text-purple fw-bold mb-2" style="font-size: 0.85rem;">AED {{ item.price }}</p>
-          {% endif %}
-
-          <!-- Quantity + Add to Cart -->
-          <div class="d-flex justify-content-center align-items-center gap-2 mt-auto">
-            <input 
-              type="number" 
-              min="1" 
-              value="1" 
-              class="form-control form-control-sm qty-input text-center"
-              data-item-code="{{ item.item_code }}" 
-              style="width: 65px; font-size: 0.85rem;"
-            >
-            <button 
-              class="btn btn-sm add-to-cart-btn cart-icon-btn fw-semibold px-2"
-              data-item-code="{{ item.item_code }}"
-              style="font-size: 0.8rem;"
-            >
-              🛒
+          <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
+            <input type="number" min="1" value="1"
+                   class="form-control form-control-sm qty-input text-center"
+                   data-item-code="{{ item.item_code }}">
+            <button class="btn fw-semibold px-3 py-2 add-to-cart-btn"
+                    data-item-code="{{ item.item_code }}">
+              <i class="fa fa-shopping-cart me-1"></i> Add to basket
             </button>
           </div>
         </div>
@@ -1693,14 +3148,12 @@
 
   <!-- nationwide provider // -->
 
-  <!-- workplace solutions -->
-  <div class="section-padding bg-white text-center"><!--bg-grey-->
+  <!-- 
+  <div class="section-padding bg-white text-center">
     <div class="container p-0">
-      <!-- Title -->
       <h2 class="section-title text-purple">
         We do more than just supply stationery – we deliver complete workplace
         solutions. </h2>
-      <!-- Description -->
       <p class="section-desc">
         From everyday office essentials to document management, managed
         print services, design, and print, our focus is on helping your business work smarter. With our <strong>
@@ -1720,11 +3173,11 @@
         {% endfor %}
       </div>
     </div>
-
   </div>
   <div class="cta-banner-section section-padding text-center " style="background-color: #e8e5e1 !important;">
     <div class="container">
-      <h3 class="text-black mb-3" style="    font-size: 2.4rem;font-weight: 600;">Everything Your Workplace Needs — All
+      <h3 class="text-black mb-3" style="    font-size: 2.4rem;font-weight: 600;">Everything Your Workplace Needs —
+        All
         in One Place</h3>
       <p class="section-desc text-black mb-4">
         From crisp printing to clean spaces and coffee breaks, we’ve got your office covered. Explore our full range
@@ -1739,50 +3192,48 @@
       </div>
     </div>
   </div>
-  <div class="section-padding bg-white text-center">
-    <div class="container">
-      <!-- Title -->
-      <h2 class="section-title text-purple">Featured Products</h2>
 
-      <!-- Description -->
-      <p class="section-desc">
-        Discover our top solutions—from office essentials to managed print services and design. Our <strong>Business
-          Health Check</strong> helps you streamline operations, reduce costs, and boost productivity.
-      </p>
+  <div class="reviews-section">
 
-      <!-- Swiper Slider -->
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper" style="padding-bottom: 20px;">
-          {% for product in feature %}
-          <div class="swiper-slide" style="width: 190.667px">
-            <div class="card bg-transparent border-0" style="border-radius:50%; width: 100%; aspect-ratio: 1 / 1;">
-              <img src="{{ product.website_image or '/assets/frappe/images/no-image.png' }}"
-                class="card-img-top product-image" alt="{{ product.web_item_name }}"
-                style="border-radius:50%; object-fit: cover; aspect-ratio: 1 / 1;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border: 2px solid #e8e5e1;background: #e8e5e1;">
-              <div class="">
-                <a href="/{{ product.route }}" class="btn">
-                  <h5 class="card-title mt-3">{{ product.web_item_name }}</h5>
-                </a>
-              </div>
-            </div>
+    <div class="reviews-wrapper" id="reviews-container">
+      {% for r in reviews %}
+      <div class="review-card">
+        <div class="review-header">
+          <div class="rating-stars">
+            {% for i in range(r.rating|int) %}
+            ★
+            {% endfor %}
+            {% for i in range(5 - (r.rating|int)) %}
+            ☆
+            {% endfor %}
           </div>
-          {% endfor %}
+          <div class="invited-badge">Invited</div>
         </div>
-        <div class="swiper-pagination mt-5"></div>
+        <div class="review-title">{{ r.review_title or _("No title") }}</div>
+        <div class="review-comment">{{ r.comment or "" }}</div>
+        <div class="review-footer">
+          <strong>{{ r.customer or _("Anonymous") }}</strong>,
+          {{ r.published_on if r.published_on else _("Recently") }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-3" style="font-size: 0.9rem;">
+      Rated <strong>4.5 / 5</strong> based on {{ reviews|length }} reviews.
+      Showing our <strong>4 & 5 star</strong> reviews.
+      <div style="margin-top: 5px;">
+        <img src="/assets/yourapp/images/trustpilot-logo.svg" alt="Trustpilot" style="height: 18px;">
       </div>
     </div>
   </div>
 
 
-  <!-- workplace solutions // -->
-
-  <!-- press-section  -->
   <section class="press-section section-padding p-2">
     <div class="container-fluid">
       <h2 class="section-title text-center mb-5 text-purple">Hot off the press</h2>
 
       <div class="row g-4" style="height: 600px;">
-        <!-- Card 1: Anniversary -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
             <img src="https://img.freepik.com/free-photo/shopping-cart-with-bags_23-2147989874.jpg"
@@ -1802,7 +3253,6 @@
           </div>
         </div>
 
-        <!-- Card 2: Product Launch -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
             <img src="https://img.freepik.com/free-photo/smart-home-automation_23-2149376901.jpg" class="card-img-top2"
@@ -1822,7 +3272,6 @@
           </div>
         </div>
 
-        <!-- Card 3: Customer Story -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
             <img src="https://img.freepik.com/free-photo/happy-woman-receiving-package_23-2148745671.jpg"
@@ -1841,7 +3290,6 @@
           </div>
         </div>
 
-        <!-- Card 4: Seasonal Trends -->
         <div class="col-md-6 col-lg-3">
           <div class="card h-100 border-0">
             <img src="https://img.freepik.com/free-photo/fall-fashion-flat-lay_23-2149415678.jpg" class="card-img-top2"
@@ -1864,9 +3312,6 @@
   </section>
 
 
-  <!-- press-section // -->
-
-  <!-- Newsletter Section -->
   <div class="newsletter-section section-padding " style="background-color:#e8e5e1;">
     <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 20px;">
       Ready to Upgrade Your Workspace?
@@ -1886,18 +3331,15 @@
       🛒 Shop Now
     </a>
   </div>
-  <!-- About Section -->
   <section class="about-section py-5">
     <div class="container">
       <div class="row align-items-center">
 
-        <!-- Left Image -->
         <div class="col-md-5 mb-4 mb-md-0">
           <img src="https://cdn2.hubspot.net/hubfs/53/ecommerce%20marketing.jpg" alt="About Tekstag"
             class="img-fluid rounded shadow-sm about-img">
         </div>
 
-        <!-- Right Content -->
         <div class="col-md-7">
           <h2 class="about-title mb-3">Your Partner in Workplace Efficiency</h2>
           <p class="about-text">
@@ -1920,12 +3362,12 @@
 
       </div>
     </div>
-  </section>
+  </section>-->
 
   <!-- Newsletter Section // -->
 
   <!-- Footer -->
-  <div class="footer section-padding " style="background-color:#e1e1e1;">
+  <div class="footer section-padding " style="background-color:#f2f2f2 !important;">
     <div class="container">
       <div class="row justify-content-between">
         <!-- Contact Us -->
@@ -1997,30 +3439,29 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/frappe/js/frappe-web.min.js"></script>
-
-  <script>
-    const swiper = new Swiper('.mySwiper', {
-      slidesPerView: 1,
+<script>
+    const swiper = new Swiper(".featured-swiper", {
+      slidesPerView: 6,
       spaceBetween: 20,
       loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
       pagination: {
-        el: '.swiper-pagination',
+        el: ".swiper-pagination",
         clickable: true,
       },
-      navigation: false,
       breakpoints: {
-        768: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 8,
-        },
-        1024: {
-          slidesPerView: 8,
-        }
-      }
+        1200: { slidesPerView: 6 },
+        992: { slidesPerView: 4 },
+        768: { slidesPerView: 3 },
+        576: { slidesPerView: 2 },
+        0: { slidesPerView: 1 },
+      },
     });
   </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Simple toast message function
@@ -2089,39 +3530,60 @@
   <script>
     document.getElementById("item-group-search").addEventListener("input", function () {
       const query = this.value.trim();
+      const container = document.getElementById("search-results");
+
       if (query.length < 2) {
-        document.getElementById("search-results").innerHTML = "";
+        container.innerHTML = "";
+        container.style.display = "none";
         return;
       }
 
       fetch(`/api/method/webshop.api.search_item_groups_with_route?txt=${query}`)
         .then(response => response.json())
         .then(data => {
-          console.log("result", data)
           const results = data.message || [];
-          const container = document.getElementById("search-results");
           container.innerHTML = "";
 
           if (results.length === 0) {
-            container.innerHTML = '<ul class="list-group"><li class="list-group-item">No matching Category found.</li></ul>';
+            container.innerHTML = `
+<ul class="search-list">
+<li class="no-result">No matching category found.</li>
+</ul>`;
+            container.style.display = "block";
             return;
           }
 
           const list = document.createElement("ul");
-          list.className = "list-group";
+          list.className = "search-list";
 
           results.forEach(item => {
             const li = document.createElement("a");
             li.href = "/" + item.route;
-            li.className = "list-group-item";
-            li.textContent = item.web_item_name;
+            li.className = "search-item";
+            li.innerHTML = `
+              <img src="${item.thumbnail || '/files/default-image.png'}" alt="${item.web_item_name}" />
+              <span>${item.web_item_name}</span>
+        `;
             list.appendChild(li);
           });
 
           container.appendChild(list);
+          container.style.display = "block";
+        })
+        .catch(() => {
+          container.innerHTML = "<p class='no-result'>Error fetching results</p>";
+          container.style.display = "block";
         });
     });
-
+  </script>
+  <script>
+    const container = document.getElementById("reviews-container");
+    document.getElementById("scroll-left").addEventListener("click", () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById("scroll-right").addEventListener("click", () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
   </script>
 
 </body>
