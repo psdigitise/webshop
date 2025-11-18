@@ -100,11 +100,29 @@ def get_top_rated_items(limit=6):
 def get_random_products(limit=10):
     items = frappe.get_all(
         "Website Item",
-        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','item_code','website_image'],
+        fields=[
+            "name",
+            "web_item_name",
+            "thumbnail",
+            "average_rating",
+            "route",
+            "item_code",
+            "website_image"
+        ],
         filters={"published": 1},
         order_by="RAND()",
         limit=limit
     )
+
+    for item in items:
+        price = frappe.db.get_value(
+            "Item Price",
+            {"item_code": item.item_code, "selling": 1},
+            "price_list_rate"
+        )
+
+        item["price"] = price or 0
+
     return items
 # dc45c90cb2cd813    
 # 761fa577fbe0b23
