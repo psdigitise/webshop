@@ -2649,9 +2649,10 @@
 
 /* Sidebar container */
 .feedback-container {
-  position: fixed;
+  position: fixed !important;
   right: 0;
   top: 40%;
+  transform: translateY(-50%);
   z-index: 9999;
 }
 
@@ -3195,7 +3196,198 @@
         margin-top: 15px;
     }
 
-  
+/* =============== PRODUCT CARD =============== */
+.product-card {
+    background: #f2f2f2 !important ;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #eee;
+    transition: .25s ease;
+}
+
+.product-card:hover {
+    border-color: #d5d5d5;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* =============== IMAGE =============== */
+.product-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =============== NAME =============== */
+.product-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    height: 38px;
+    overflow: hidden;
+    line-height: 19px;
+}
+
+/* =============== PRICE =============== */
+.product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* =============== ADD TO CART =============== */
+.qty-input {
+    width: 60px;
+}
+
+.add-to-cart-btn {
+    background: black;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.add-to-cart-btn:hover {
+    background: black;
+    color: white;
+}
+
+/* =============== RESPONSIVE =============== */
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+    .product-card {
+        padding: 12px;
+    }
+
+    .product-name {
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 15px;
+    }
+
+    .qty-input {
+        width: 55px;
+    }
+
+    .add-to-cart-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+
+    .paper-art {
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+        margin: 10px auto;
+        transform: rotate(0);
+}
+
+.right-hero img.product-img {
+    width: 430px !important;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee;
+}
+
+
+/* Mobiles (576px) */
+@media (max-width: 576px) {
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-name {
+        font-size: 13px;
+        height: 34px;
+    }
+
+    .product-price {
+        font-size: 14px;
+    }
+
+    .product-image-wrapper {
+        aspect-ratio: 4 / 3;
+    }
+
+    .qty-input {
+        width: 50px;
+    }
+
+    .add-to-cart-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+        .paper-art {
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+        margin: 10px auto;
+        transform: rotate(0);
+    }
+.right-hero img.product-img {
+    width: 260px !important;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee;
+}
+
+}
+
+/* Very small phones (<400px) */
+@media (max-width: 400px) {
+    .d-flex.gap-2 {
+        gap: 6px;
+    }
+
+    .qty-input {
+        width: 45px;
+    }
+
+    .add-to-cart-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+        .paper-art {
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+        margin: 10px auto;
+        transform: rotate(0);
+    }
+
+    .right-hero img.product-img {
+    width: 260px !important;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee;
+}
+}
+
+.section-heading {
+  color: #000 !important;   /* Makes the heading black */
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
 
   </style>
 </head>
@@ -3367,7 +3559,7 @@ border-top: 40px solid #e4002c;
     ">
 
     <div class="carousel-inner">
-      <div class="d-block container2">
+      <div class="d-block container">
         <div class="hero-section-content">
           <h3 class="text-purple head-home text-center" style="font-weight: 600;margin-top: 20px;">
             <div class="section-divider">
@@ -3410,7 +3602,7 @@ border-top: 40px solid #e4002c;
     </div>
   </div>
 
-  <div class="container2" style="
+  <div class="container" style="
       margin-bottom: 0px !important;padding-top: 90px;">
 
     <!-- TOP PROMO TILES -->
@@ -3525,35 +3717,6 @@ border-top: 40px solid #e4002c;
   </div>
 </div>
 
-<!-- EmailJS Script -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-
-  function toggleFeedback() {
-    document.getElementById("feedback-panel").classList.toggle("open");
-  }
-
-  function openContactForm() {
-    document.getElementById("contactPopup").style.display = "flex";
-  }
-
-  function closeContactForm() {
-    document.getElementById("contactPopup").style.display = "none";
-  }
-
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
-      .then(() => {
-        alert("Message sent successfully!");
-        closeContactForm();
-        this.reset();
-      }, (error) => {
-        alert("Failed to send message: " + error.text);
-      });
-  });
-</script>
 
   <div class="top-products-section">
     <div class="container text-center">
@@ -3764,44 +3927,50 @@ function scrollReviews(direction) {
 
 
 
-<div class="section-padding py-5" style="background-color: #ffffff;">
-  <div class="container">
-    <h2 class="section-title text-purple text-start mb-4" style="font-weight: 600;">
-      People with similar interests bought...
-    </h2>
+<div class="container my-5">
+  <h2 class="section-heading">People with similar interests bought...</h2>
 
-    <div class="row g-4">
-      {% for item in frappe.call('webshop.api.get_random_products') %}
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="product-card h-100 d-flex flex-column justify-content-between">
-          
-          <a href="/{{ item.route }}" class="text-decoration-none">
-            <div class="product-image-wrapper">
-              <img src="{{ item.website_image or '/assets/frappe/images/no-image.png' }}"
-                   alt="{{ item.web_item_name }}"
-                   class="img-fluid product-image">
-            </div>
-          </a>
 
-          <div class="product-info text-start mt-3 flex-fill">
-            <p class="product-name mb-1">{{ item.web_item_name }}</p>
+  <div class="row g-4">
+    {% for item in frappe.call('webshop.api.get_random_products') %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="product-card h-100 d-flex flex-column justify-content-between">
+
+        <!-- Product Image -->
+        <a href="/{{ item.route }}" class="text-decoration-none">
+          <div class="product-image-wrapper">
+            <img src="{{ item.website_image or '/assets/frappe/images/no-image.png' }}"
+                 alt="{{ item.web_item_name }}"
+                 class="img-fluid product-image">
           </div>
+        </a>
 
-          <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
-            <input type="number" min="1" value="1"
-                   class="form-control form-control-sm qty-input text-center"
-                   data-item-code="{{ item.item_code }}">
-            <button class="btn fw-semibold px-3 py-2 add-to-cart-btn"
-                    data-item-code="{{ item.item_code }}">
-              <i class="fa fa-shopping-cart me-1"></i> Add to basket
-            </button>
-          </div>
+        <!-- Product Name + Price -->
+        <div class="product-info text-start mt-3 flex-fill">
+          <p class="product-name mb-1">{{ item.web_item_name }}</p>
+          <p class="product-price fw-bold text-dark mb-1">
+            £{{ item.price }}
+          </p>
         </div>
+
+        <!-- Add to Cart -->
+        <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
+          <input type="number" min="1" value="1"
+                 class="form-control form-control-sm qty-input text-center"
+                 data-item-code="{{ item.item_code }}">
+          <button class="btn fw-semibold px-3 py-2 add-to-cart-btn"
+                  data-item-code="{{ item.item_code }}">
+            <i class="fa fa-shopping-cart me-1"></i> Add to basket
+          </button>
+        </div>
+
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
+
 </div>
+
 
 
 
@@ -4177,6 +4346,7 @@ function scrollReviews(direction) {
                 showToast(`✅ Added ${qty} × ${item_code} to cart`);
               } else {
                 showToast("❌ Error adding item", true);
+                  window.location.href = "/login";
               }
             })
             .catch((err) => {
@@ -4247,6 +4417,22 @@ function scrollReviews(direction) {
   });
 }
 </script> 
+
+
+
+<script>
+function toggleFeedback() {
+  document.getElementById("feedback-panel").classList.toggle("open");
+}
+
+function openContactForm() {
+  document.getElementById("contactPopup").style.display = "flex";
+}
+
+function closeContactForm() {
+  document.getElementById("contactPopup").style.display = "none";
+}
+</script>
 
 
 </body>
