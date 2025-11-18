@@ -2383,7 +2383,7 @@
     }
 
     .featured-products-section {
-      padding: 60px 0;
+      padding: 0px 0;
       background-color: #fff;
       text-align: center;
       font-family: "Poppins", sans-serif;
@@ -3384,7 +3384,7 @@
     object-fit: cover;
     border-radius: 6px;
     background: #eee;
-}
+
 }
 
 .section-heading {
@@ -3393,6 +3393,537 @@
   font-size: 1.6rem;
   margin-bottom: 20px;
 }
+}}
+
+
+
+
+.info-container {
+  background: #fbf8f3;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 40px 0;
+  background: gainsboro !important;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.info-logo {
+  width: 110px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.info-title {
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #333;
+  margin-top: 5px;
+}
+
+.info-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  color: #4a4a4a;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.info-box p a {
+  color: #0058a3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.info-box p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive same as Viking */
+@media (max-width: 992px) {
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .info-left {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-left {
+    text-align: center;
+  }
+
+  .info-logo {
+    margin: 0 auto 10px;
+  }
+
+  .info-title {
+    font-size: 24px;
+  }
+}
+
+/* Outer wrapper – full width but centered block inside */
+.info-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* padding: 40px 0; */
+}
+
+/* Main container — centered & styled like Viking */
+.info-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr; /* Viking-style proportions */
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+/* Left column (Logo + Heading) */
+.info-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-logo {
+    width: 90px;
+    margin-bottom: 20px;
+}
+
+.info-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Three info boxes */
+.info-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.info-box p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.info-box a {
+    text-decoration: underline;
+    color: #0066cc;
+}
+
+
+.section-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.section-title-wrapper:before,
+.section-title-wrapper:after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.featured-title {
+    padding: 0 20px;
+    font-size: 20px;    /* Updated font size */
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Mobile (max-width: 600px) — match Viking mobile layout */
+@media (max-width: 600px) {
+
+    .info-wrapper {
+        padding: 20px 0;
+    }
+
+    .info-container {
+        grid-template-columns: 1fr !important; /* FORCE single column */
+        padding: 20px;
+        gap: 25px;
+        text-align: left; /* Same as Viking */
+    }
+
+    .info-left {
+        text-align: left;
+    }
+
+    .info-logo {
+        width: 130px;
+        margin: 0 0 15px 0;
+    }
+
+    .info-title {
+        font-size: 24px;
+        line-height: 1.35;
+    }
+
+    .info-box h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        text-align: left;
+    }
+
+    .info-box p {
+        font-size: 15px;
+        line-height: 1.55;
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-grid,
+    .category-row,
+    .your-wrapper-class {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .info-box,
+    .info-left,
+    .category-item {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+
+.section-heading {
+    font-size: 27px;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 15px;              /* space between text & line */
+    width: 100%;
+    white-space: nowrap;    /* prevents text wrapping */
+}
+
+.section-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #c9c7c6; /* same grey line as screenshot */
+    display: block;
+}
+@media (max-width: 600px) {
+    .section-heading {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+
+/* Section Wrapper */
+.brands-section {
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* Heading With Lines Left & Right */
+.brands-heading {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #222;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.brands-heading::before,
+.brands-heading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 390px;
+    height: 1px;
+    background: #ccc;
+}
+
+.brands-heading::before {
+    left: -390px;
+}
+
+.brands-heading::after {
+    right: -390px;
+}
+
+/* Row of Brand Logos */
+.brands-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+}
+
+/* Logo Images */
+.brands-row img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.brands-row img:hover {
+    transform: scale(1.07);
+}
+
+/* "More Brands" Link */
+.brands-more {
+    font-size: 15px;
+    color: #0066cc;
+    font-weight: 600;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+.brands-more:hover {
+    text-decoration: underline;
+}
+
+
+/* ------------------------------- */
+/* 📱 Responsive for Mobile Phones */
+/* ------------------------------- */
+
+@media (max-width: 768px) {
+    
+    .brands-heading {
+        font-size: 16px;
+    }
+
+    .brands-heading::before,
+    .brands-heading::after {
+        width: 80px;
+        left: auto;
+        right: auto;
+    }
+
+    .brands-row {
+        gap: 20px;
+    }
+
+    .brands-row img {
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .brands-row {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .brands-row img {
+        height: 35px;
+    }
+}
+
+.brands-divider {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin: 30px auto 0;
+}
+/* Wrapper with dotted lines */
+.footer-offer-wrapper {
+    width: 100%;
+    padding: 25px 0;
+    border-top: 2px dotted rgb(196, 196, 224) !important;     /* BLACK DOTS */
+    border-bottom: 2px dotted rgb(196, 196, 224)  !important ;  /* BLACK DOTS */
+    margin: 40px 0;
+}
+
+/* Main offer box */
+.footer-offer-box {
+    width: 90%;
+    margin: 0 auto;
+    background: #EDE3F8;
+    padding: 25px 35px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Left title */
+.footer-offer-left h2 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #111;
+    margin: 0;
+}
+
+/* Image row */
+.footer-offer-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    flex-wrap: wrap;
+}
+
+/* Images */
+.footer-offer-items img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.footer-offer-items img:hover {
+    transform: scale(1.07);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .footer-offer-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    .footer-offer-left h2 {
+        font-size: 26px;
+    }
+
+    .footer-offer-items img {
+        height: 90px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .footer-offer-items {
+        gap: 22px;
+    }
+
+    .footer-offer-items img {
+        height: 70px;
+    }
+
+    .footer-offer-left h2 {
+        font-size: 22px;
+    }
+}
+
+.footer-offer-wrapper {
+    width: 100%;
+    padding: 25px 0;
+    border-top: 2px dotted #000; 
+    border-bottom: 2px dotted #000;
+    margin: 40px 0;
+}
+
+.footer-offer-box {
+    width: 90%;
+    margin: 0 auto;
+    background: #EDE3F8;
+    padding: 25px 35px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-offer-left h2 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #111;
+    margin: 0;
+}
+
+.footer-offer-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    flex-wrap: wrap;
+}
+
+.footer-offer-items img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.footer-offer-items img:hover {
+    transform: scale(1.07);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .footer-offer-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    .footer-offer-left h2 {
+        font-size: 26px;
+    }
+
+    .footer-offer-items img {
+        height: 90px;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-offer-items {
+        gap: 22px;
+    }
+
+    .footer-offer-items img {
+        height: 70px;
+    }
+
+    .footer-offer-left h2 {
+        font-size: 22px;
+    }
+}
+
 
   </style>
 </head>
@@ -3818,7 +4349,10 @@ border-top: 40px solid #e4002c;
    <div class="featured-products-section">
     <div class="container">
       <!-- Title -->
-      <h2 class="featured-title">Featured Products</h2>
+  <div class="section-title-wrapper">
+  <h2 class="featured-title">Featured Products</h2>
+</div>
+
 
       <!-- Description -->
       <p class="featured-desc">
@@ -3929,9 +4463,6 @@ function scrollReviews(direction) {
 
 
 
-
-
-
 <div class="container my-5">
   <h2 class="section-heading">People with similar interests bought...</h2>
 
@@ -3974,8 +4505,103 @@ function scrollReviews(direction) {
     {% endfor %}
   </div>
 
+<div class="brands-section">
+  <h2 class="brands-heading">MOST POPULAR BRANDS AT TEKSTAG</h2>
+
+  <div class="brands-row">
+      <img src="https://static.viking-direct.co.uk/is/image/odeu13/img_logo_postit?fmt=webp-alpha"alt="Post-it">
+             <img src="	https://static.viking-direct.co.uk/is/image/odeu13/img_logo_hp?fmt=webp-alpha" alt="Edding">
+      <img src="https://static.viking-direct.co.uk/is/image/odeu13/img_logo_postit?fmt=webp-alpha"alt="Post-it">
+       <img src="	https://static.viking-direct.co.uk/is/image/odeu13/img_logo_hp?fmt=webp-alpha" alt="Edding">
+     <img src="https://static.viking-direct.co.uk/is/image/odeu13/img_logo_postit?fmt=webp-alpha"alt="Post-it">
+         <img src="	https://static.viking-direct.co.uk/is/image/odeu13/img_logo_hp?fmt=webp-alpha" alt="Edding">
+    <img src="/psd/assets/img/brand/postit.png" alt="Post-it">
+            <img src="	https://static.viking-direct.co.uk/is/image/odeu13/img_logo_hp?fmt=webp-alpha" alt="Edding">
+    <img src="/psd/assets/img/brand/postit.png" alt="Post-it">
+
+   <div class="brands-divider"></div>
+  </div>
 </div>
 
+
+
+
+
+
+<div class="info-wrapper">
+  <div class="info-container">
+
+    <!-- Left section (Logo + Title) -->
+    <div class="info-left">
+      <img src="https://tekstag.com/wp-content/uploads/2025/02/logo-tekstag.png" class="info-logo" alt="Tekstag Logo">
+
+      <h2 class="info-title">
+       
+        Office Supplies,<br>
+        Stationery, Furniture & More
+      </h2>
+    </div>
+
+    <!-- Box 1 -->
+    <div class="info-box">
+      <h3>Trusted by Businesses for 10+ Years</h3>
+      <p>
+        Tekstag has been the trusted <strong>office supplies</strong> partner 
+        for businesses of every size — delivering reliable quality and fair 
+        pricing for over a decade.
+      </p>
+    </div>
+
+    <!-- Box 2 -->
+    <div class="info-box">
+      <h3>Quality Products at the Right Price</h3>
+      <p>
+        Equip your workspace with everything from 
+        <a href="#">stationery</a> and <a href="#">paper</a> to 
+        <a href="#">ink & toner</a>, furniture and cleaning essentials — 
+        all at business-friendly prices.
+      </p>
+    </div>
+
+    <!-- Box 3 -->
+    <div class="info-box">
+      <h3>Service That Keeps You Moving</h3>
+      <p>
+        Enjoy <strong>fast delivery</strong>, <strong>bulk pricing</strong>, 
+        and <strong>responsive support</strong> — ensuring your teams stay 
+        productive while we handle your supplies.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer-offer-wrapper">
+
+    <div class="footer-offer-box">
+
+        <!-- Left Title -->
+        <div class="footer-offer-left">
+            <h2>FREE gifts<br>for you</h2>
+        </div>
+
+        <!-- Right Images -->
+        <div class="footer-offer-items">
+            <img src="/files/VerbatimDVD.png" alt="Gift 1">
+            <img src="/files/finelinerpen.png" alt="Gift 2">
+            <img src="/files/paperwater.png" alt="Gift 3">
+            <img src="/files/nescafe.png" alt="Gift 4">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+</div>
 
 
 
@@ -4269,7 +4895,7 @@ function scrollReviews(direction) {
                 <i class="fas fa-comment-alt"></i>
             </button>
         </div> -->
-  </div>
+  </div> 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/frappe/js/frappe-web.min.js"></script>
