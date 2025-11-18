@@ -28,7 +28,7 @@
   <td style="width: 60%">
     <div class="d-flex">
       <div class="cart-item-image mr-4" style="width: auto;">
-        {% if d.thumbnail %} {{ product_image4(d.thumbnail,
+        {% if d.website_image%} {{ product_image4(d.website_image,
         alt="d.web_item_name", no_border=True) }} {% else %}
         <div class="no-image-cart-item">
           {{ frappe.utils.get_abbr(d.web_item_name) or "NA" }}

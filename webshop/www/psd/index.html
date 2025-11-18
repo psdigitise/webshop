@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="http://192.168.1.23:8000/psd/assets/css/style.css" />
+  <link rel="stylesheet" href="http://103.214.132.20:8007/psd/assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
@@ -456,6 +457,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
+
     }
 
     .category-item {
@@ -2516,7 +2518,7 @@
 }
 
 .stars {
-  color: #f59e0b;
+  color: green;
   font-size: 1.4rem;
 }
 
@@ -2638,7 +2640,562 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+/* Hide on mobile */
+@media (max-width: 991px) {
+  .feedback-container {
+    display: none;
+  }
+}
 
+/* Sidebar container */
+.feedback-container {
+  position: fixed;
+  right: 0;
+  top: 40%;
+  z-index: 9999;
+}
+
+/* Slide panel */
+.feedback-panel {
+  width: 260px;
+  background: white;
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  position: relative;
+}
+
+.feedback-panel.open {
+  transform: translateX(0);
+}
+
+/* Vertical tab */
+.feedback-tab {
+  position: absolute;
+  left: -48px;
+
+  background: #f7b733;
+  color: white;
+  font-weight: 600;
+  padding: 10px 8px;
+  width: 48px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-radius: 6px 0 0 6px;
+  border-bottom-left-radius: 9px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  height: 100%;
+}
+
+.feedback-tab::before {
+  content: '';
+}
+
+/* Panel content */
+.panel-content {
+  padding: 14px;
+}
+
+.section {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.section-title .icon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.section-desc {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.section-phone {
+  margin-top: 6px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.feedback-btn,
+.contact-btn {
+  margin-top: 8px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  width: 120px;
+  text-align: center;
+}
+
+/* Popup Form Styling - Frosted Glass Theme */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* Form box */
+.popup-form {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 10px;
+  width: 360px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Form title */
+.popup-form h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Inputs and textarea */
+.popup-form input,
+.popup-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.popup-form input:focus,
+.popup-form textarea:focus {
+  border-color: #1a73e8;
+  outline: none;
+}
+
+/* Send button */
+.popup-form button[type="submit"] {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: background 0.3s ease;
+}
+
+.popup-form button[type="submit"]:hover {
+  background: #1558c0;
+}
+
+/* Close button */
+.popup-form button[type="button"] {
+  background: transparent;
+  color: #555;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Support line */
+.popup-form .support-line {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+.reviews-section {
+  background-color: #f2f2f2;
+  padding: 50px 20px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.reviews-section h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.rating-summary {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #555;
+}
+
+.rating-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00b67a;
+  margin-right: 6px;
+}
+
+.stars {
+  color: #00b67a;
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.review-count {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Scroll wrapper with buttons */
+.reviews-scroll-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+/* Horizontal scroll container */
+.reviews-carousel {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  flex: 1;
+}
+
+/* Review card */
+.review-card {
+  min-width: 280px;
+  max-width: 280px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+}
+
+.review-header .rating-stars {
+  font-size: 16px;
+  color: #00b67a;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-body .review-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.review-body .review-comment {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.review-footer {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #777;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-footer strong {
+  color: #333;
+}
+
+.reviews-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.reviews-footer strong {
+  color: #00b67a;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-btn:hover {
+  background-color: #1558c0;
+}
+
+.scroll-btn.left {
+  margin-left: 6px;
+}
+
+.scroll-btn.right {
+  margin-right: 6px;
+}
+
+
+.scroll-btn:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 600px) {
+  .reviews-section {
+    padding: 30px 15px;
+  }
+
+  .reviews-section h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .rating-value {
+    font-size: 28px;
+  }
+
+  .stars {
+    font-size: 18px;
+  }
+
+  .review-count {
+    font-size: 13px;
+  }
+
+  .reviews-scroll-wrapper {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .reviews-carousel {
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .review-card {
+    min-width: 240px;
+    max-width: 240px;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .review-body .review-title {
+    font-size: 15px;
+  }
+
+  .review-body .review-comment {
+    font-size: 13px;
+  }
+
+  .review-footer {
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .scroll-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .reviews-footer {
+    font-size: 13px;
+    margin-top: 30px;
+  }
+}
+
+/* Modern circular scroll buttons */
+.scroll-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+/* Hover effect similar to screenshot */
+.scroll-btn:hover {
+  background: #222;
+  transform: scale(1.1);
+}
+
+
+
+/* Hide text selection inside button */
+.scroll-btn:focus {
+  outline: none;
+}
+
+
+@media (max-width: 600px) {
+  .reviews-section {
+    padding: 30px 15px;
+  }
+
+  .reviews-section h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .rating-value {
+    font-size: 28px;
+  }
+
+  .stars {
+    font-size: 18px;
+  }
+
+  .review-count {
+    font-size: 13px;
+  }
+
+  .reviews-scroll-wrapper {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .reviews-carousel {
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .review-card {
+    min-width: 240px;
+    max-width: 240px;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .review-body .review-title {
+    font-size: 15px;
+  }
+
+  .review-body .review-comment {
+    font-size: 13px;
+  }
+
+  .review-footer {
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .scroll-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    padding: 8px;
+    display: none;
+  }
+
+  .reviews-footer {
+    font-size: 13px;
+    margin-top: 30px;
+  }
+.category-list{
+  padding-top: 133px;
+}
+.swiper .mySwiper {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+  .right-hero img.product-img {
+    width: 260px !important;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eee;
+}
+
+
+        .promo {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        padding: 12px;
+        min-height: auto;
+        margin-top: 15px;
+    }
+
+  
 
   </style>
 </head>
@@ -2818,7 +3375,7 @@ border-top: 40px solid #e4002c;
             </div>
           </h3>
           <div class="swiper mySwiper mt-4" style="z-index: 0 !important;">
-            <div class="swiper-wrapper" style="padding-bottom: 20px;padding-top: 20px;">
+            <div class="swiper-wrapper overflow-x-auto" style="padding-bottom: 20px;padding-top: 20px;">
               {% for product in categories %}
               <div class="swiper-slide" style="width: 190.667px !important; justify-items: center;">
                 <div class="card bg-transparent border-0" style="border-radius:50%; width: 70%; aspect-ratio: 1 / 1;">
@@ -2932,6 +3489,71 @@ border-top: 40px solid #e4002c;
 
     </section>
   </div>
+  
+<!-- Feedback Sidebar -->
+<div class="feedback-container">
+  <div id="feedback-panel" class="feedback-panel">
+    <div class="feedback-tab" onclick="toggleFeedback()">✖ Customer service & Feedback</div>
+
+    <div class="panel-content">
+      <div class="section">
+        <p class="section-title"><span class="icon">ℹ️</span> Customer service ›</p>
+        <p class="section-desc">Click here for help with a wide range of topics such as your account, ordering and delivery.</p>
+        <p class="section-phone">Call: 0844 940 9410</p>
+      </div>
+
+      <div class="section">
+        <p class="section-title"><span class="icon">💬</span> Contact Us ›</p>
+        <button class="contact-btn" onclick="openContactForm()">Contact Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Form Popup -->
+<div id="contactPopup" class="popup-overlay">
+  <div class="popup-form">
+    <h3>Get in touch</h3>
+    <form id="contactForm">
+      <input type="text" name="user_name" placeholder="Your Name" required />
+      <input type="email" name="user_email" placeholder="Your Email" required />
+      <input type="tel" name="user_phone" placeholder="Phone Number" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+      <button type="button" onclick="closeContactForm()">Close</button>
+    </form>
+  </div>
+</div>
+
+<!-- EmailJS Script -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+  function toggleFeedback() {
+    document.getElementById("feedback-panel").classList.toggle("open");
+  }
+
+  function openContactForm() {
+    document.getElementById("contactPopup").style.display = "flex";
+  }
+
+  function closeContactForm() {
+    document.getElementById("contactPopup").style.display = "none";
+  }
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+      .then(() => {
+        alert("Message sent successfully!");
+        closeContactForm();
+        this.reset();
+      }, (error) => {
+        alert("Failed to send message: " + error.text);
+      });
+  });
+</script>
 
   <div class="top-products-section">
     <div class="container text-center">
@@ -2949,7 +3571,7 @@ border-top: 40px solid #e4002c;
         <div class="col-6 col-md-2 col-lg-2 text-center">
           <a href="/{{ item.route }}" class="top-product-card">
             <div class="top-product-image-wrapper">
-              <img src="{{ item.thumbnail }}" alt="{{ item.web_item_name }}" class="top-product-image">
+              <img src="{{ item.website_image }}" alt="{{ item.web_item_name }}" class="top-product-image">
             </div>
 
           </a>
@@ -3061,45 +3683,85 @@ border-top: 40px solid #e4002c;
     </div>
   </div>
 
+
+
+
+
 <div class="reviews-section container">
   <h3>Reviews from Customers</h3>
+
   <div class="rating-summary">
     <span class="rating-value">4.8</span>
     <span class="stars">★★★★★</span>
     <span class="review-count">({{ reviews|length }})</span>
   </div>
 
-  <div class="reviews-carousel" id="reviews-container">
-    {% for r in reviews %}
-    <div class="review-card">
-      <div class="review-header">
-        <div class="rating-stars">
-          {% for i in range(r.rating|int) %}★{% endfor %}
-          {% for i in range(5 - (r.rating|int)) %}☆{% endfor %}
+  <div class="reviews-scroll-wrapper">
+    
+    <!-- <button class="scroll-btn left" onclick="scrollReviews('left')">←</button> -->
+     <button class="scroll-btn left" onclick="scrollReviews('left')">
+  <i class="fa-solid fa-chevron-left"></i>
+</button>
+
+    <div class="reviews-carousel" id="reviews-container">
+      {% for r in reviews %}
+      <div class="review-card">
+        <div class="review-header">
+          <div class="rating-stars">
+            {% set scaled_rating = (r.rating * 5)|round(0, 'floor') %}
+            {% set empty_stars = 5 - scaled_rating %}
+            {{ "%.1f"|format(r.rating * 5) }}
+            {% for i in range(scaled_rating|int) %}★{% endfor %}
+            {% for i in range(empty_stars|int) %}☆{% endfor %}
+          </div>
+        </div>
+
+        <div class="review-body">
+          <h4 class="review-title">{{ r.review_title or _("No title") }}</h4>
+          <p class="review-comment">{{ r.comment or "" }}</p>
+        </div>
+
+        <div class="review-footer">
+          <strong>{{ r.customer or _("Anonymous") }}</strong>
+          <span class="review-date">
+            {{ r.published_on if r.published_on else _("Recently") }}
+          </span>
         </div>
       </div>
-
-      <div class="review-body">
-        <h4 class="review-title">{{ r.review_title or _("No title") }}</h4>
-        <p class="review-comment">{{ r.comment or "" }}</p>
-      </div>
-
-      <div class="review-footer">
-        <strong>{{ r.customer or _("Anonymous") }}</strong>
-        <span class="review-date">
-          {{ r.published_on if r.published_on else _("Recently") }}
-        </span>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+
+    <!-- <button class="scroll-btn right" onclick="scrollReviews('right')">→</button> -->
+     <button class="scroll-btn right" onclick="scrollReviews('right')">
+  <i class="fa-solid fa-chevron-right"></i>
+</button>
   </div>
 
   <div class="reviews-footer">
     Rated <strong>4.5 / 5</strong> based on {{ reviews|length }} reviews.  
     Showing our <strong>4 & 5 star</strong> reviews.
-
   </div>
 </div>
+
+<script>
+function scrollReviews(direction) {
+  const container = document.getElementById("reviews-container");
+  const scrollAmount = container.offsetWidth * 0.8;
+  container.scrollBy({
+    left: direction === 'left' ? -scrollAmount : scrollAmount,
+    behavior: 'smooth'
+  });
+}
+</script>
+
+
+
+
+
+
+
+
+
 
 
 <div class="section-padding py-5" style="background-color: #ffffff;">
@@ -3115,7 +3777,7 @@ border-top: 40px solid #e4002c;
           
           <a href="/{{ item.route }}" class="text-decoration-none">
             <div class="product-image-wrapper">
-              <img src="{{ item.thumbnail or '/assets/frappe/images/no-image.png' }}"
+              <img src="{{ item.website_image or '/assets/frappe/images/no-image.png' }}"
                    alt="{{ item.web_item_name }}"
                    class="img-fluid product-image">
             </div>
@@ -3140,8 +3802,6 @@ border-top: 40px solid #e4002c;
     </div>
   </div>
 </div>
-
-
 
 
 
@@ -3512,6 +4172,7 @@ border-top: 40px solid #e4002c;
           })
             .then((r) => r.json())
             .then((data) => {
+              console.log("Fetch error:",data);
               if (data.message || !data.exc) {
                 showToast(`✅ Added ${qty} × ${item_code} to cart`);
               } else {
@@ -3576,15 +4237,17 @@ border-top: 40px solid #e4002c;
         });
     });
   </script>
-  <script>
-    const container = document.getElementById("reviews-container");
-    document.getElementById("scroll-left").addEventListener("click", () => {
-      container.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById("scroll-right").addEventListener("click", () => {
-      container.scrollBy({ left: 300, behavior: 'smooth' });
-    });
-  </script>
+<script>
+function scrollReviews(direction) {
+  const container = document.getElementById("reviews-container");
+  const scrollAmount = container.offsetWidth * 0.8;
+  container.scrollBy({
+    left: direction === 'left' ? -scrollAmount : scrollAmount,
+    behavior: 'smooth'
+  });
+}
+</script> 
+
 
 </body>
 

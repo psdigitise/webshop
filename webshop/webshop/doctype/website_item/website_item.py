@@ -432,7 +432,7 @@ class WebsiteItem(WebsiteGenerator):
 		query = (
 			frappe.qb.from_(wi)
 			.select(
-				wi.item_code, wi.route, wi.web_item_name, wi.thumbnail
+				wi.item_code, wi.route, wi.web_item_name, wi.website_image
 			)
 			.where(wi.published == 1)
 			.orderby(wi.idx)

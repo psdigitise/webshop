@@ -550,8 +550,8 @@
 {%- macro all_item_row(item) -%}
 <div class="recommended-item card-style">
     <div class="r-item-image">
-        {% if item.thumbnail %}
-            {{ product_image_new(item.thumbnail, css_class="r-product-image", alt="item.web_item_name", no_border=True) }}
+        {% if item.website_image %}
+            {{ product_image_new(item.website_image, css_class="r-product-image", alt="item.web_item_name", no_border=True) }}
         {% else %}
             <div class="no-image-r-item">
                 {{ frappe.utils.get_abbr(item.web_item_name) or "NA" }}
@@ -599,8 +599,8 @@
 {%- macro top_item_row(item) -%}
 <div class="recommended-item card-style">
     <div class="r-item-image">
-        {% if item.thumbnail %}
-            {{ product_image_new(item.thumbnail, css_class="r-product-image", alt="item.web_item_name", no_border=True) }}
+        {% if item.website_image %}
+            {{ product_image_new(item.website_image, css_class="r-product-image", alt="item.web_item_name", no_border=True) }}
         {% else %}
             <div class="no-image-r-item">
                 {{ frappe.utils.get_abbr(item.web_item_name) or "NA" }}

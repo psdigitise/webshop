@@ -90,17 +90,17 @@ def get_stripe_redirect_url(sales_order):
 @frappe.whitelist(allow_guest=True)
 def get_top_rated_items(limit=6):
     return frappe.get_all('Website Item',
-        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route'],
+        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','website_image'],
         filters={'published': 1},
         order_by='average_rating desc',
         limit=limit
     )
 
 @frappe.whitelist(allow_guest=True)
-def get_random_products(limit=4):
+def get_random_products(limit=10):
     items = frappe.get_all(
         "Website Item",
-        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','item_code'],
+        fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','item_code','website_image'],
         filters={"published": 1},
         order_by="RAND()",
         limit=limit
