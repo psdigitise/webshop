@@ -93,7 +93,6 @@ border-top: 40px solid #e4002c;
     position: relative;
     ">
 
-    <h1 class="product-banner-title">{{ _(doc.web_item_name) }}</h1>
   </div>
 </section>
 <!-- <div class="mb-6 " style="color: #570987;">{{ _("All Products") }}</div> -->
@@ -697,44 +696,51 @@ border-top: 40px solid #e4002c;
 
 
 <style>
-  .section-header {
-  text-align: center;
-  margin-bottom: 24px;
+.product-description-container {
+  border-radius: 8px;
+  margin-bottom: 40px;
+  padding: 20px 5px;
+  background-color: #fff;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
 }
 
 .section-title {
-  font-size: 1.5rem;
-    font-weight: 300;
-  margin-bottom: 8px;
+  font-size: 27px !important;
+  font-weight: 300 !important;
+  color: #222;
+  white-space: nowrap;
+  margin: 0 !important;
 }
 
-.section-underline {
-  width: 60px;
-  height: 2px;
-  background-color: #ccc; /* soft gray line */
-  margin: 0 auto;
+.section-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #d0d0d0;
+  margin-top: 2px;
+}
+
+.product-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
 }
 
 </style>
-<section class="product-description-section mt-5" id="description">
-  <div class="container" 
- style="
-  border: 1px solid #ccc;           /* softer gray for a timeless feel */
-  border-radius: 8px;               /* slightly more rounded corners */
-  margin-bottom: 40px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* gentle shadow for depth */
-  padding: 24px;                    /* inner spacing for breathing room */
-  background-color: #fdfdfd;        /* off-white for warmth */
-"
- >
-<div class="section-header">
-  <h4 class="section-title">Description</h4>
-  <div class="section-underline"></div>
-</div>
+<section class="product-description-section mt-4" id="description">
+  <div class="container product-description-container">
+    
+    <div class="section-header">
+      <h4 class="section-title">Description</h4>
+      <div class="section-line"></div>
+    </div>
 
- 
-
-    <div class="product-description" itemprop="description" >
+    <div class="product-description" itemprop="description">
       {% if frappe.utils.strip_html(doc.web_long_description or '') %}
         {{ _(doc.web_long_description) | safe }}
       {% elif frappe.utils.strip_html(doc.short_description or '') %}
@@ -746,6 +752,7 @@ border-top: 40px solid #e4002c;
 
   </div>
 </section>
+
 
 
 
