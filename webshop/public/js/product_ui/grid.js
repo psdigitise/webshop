@@ -22,7 +22,7 @@ webshop.ProductGrid = class {
 
 		this.items.forEach(item => {
 			let title = item.web_item_name || item.item_name || item.item_code || "";
-			title =  title.length > 90 ? title.substr(0, 90) + "..." : title;
+			title = title.length > 90 ? title.substr(0, 90) + "..." : title;
 
 			html += `<div class="col-sm-4 item-card"><div class="card text-left">`;
 			html += me.get_image_html(item, title);
@@ -41,7 +41,7 @@ webshop.ProductGrid = class {
 			return `
 				<div class="card-img-container">
 					
-						<img itemprop="image" class="card-img" src="${ image }" alt="${ title }" onclick="openModal('${image}', '${title}')">
+						<img itemprop="image" class="card-img" src="${image}" alt="${title}" onclick="openModal('${image}', '${title}')">
 					
 				</div>
 			`;
@@ -49,9 +49,9 @@ webshop.ProductGrid = class {
 		} else {
 			return `
 				<div class="card-img-container">
-					<a href="/${ item.route || '#' }" style="text-decoration: none;text-decoration: none;width: 100%;height: 100%;">
+					<a href="/${item.route || '#'}" style="text-decoration: none;text-decoration: none;width: 100%;height: 100%;">
 						<div class="card-img-top no-image">
-							${ frappe.get_abbr(title) }
+							${frappe.get_abbr(title)}
 						</div>
 					</a>
 				</div>
@@ -78,7 +78,7 @@ webshop.ProductGrid = class {
 		}
 
 		body_html += `</div>`;
-		body_html += `<div class="product-category" itemprop="name">${ item.item_group || '' }</div>`;
+		body_html += `<div class="product-category" itemprop="name">${item.item_group || ''}</div>`;
 
 		if (item.formatted_price) {
 			body_html += this.get_price_html(item);
@@ -93,9 +93,9 @@ webshop.ProductGrid = class {
 
 	get_title(item, title) {
 		let title_html = `
-			<a href="/${ item.route || '#' }">
+			<a href="/${item.route || '#'}">
 				<div class="product-title" style="font-size:1.2rem" itemprop="name">
-					${ title || '' }
+					${title || ''}
 				</div>
 			</a>
 		`;
@@ -105,10 +105,10 @@ webshop.ProductGrid = class {
 	get_wishlist_icon(item) {
 		let icon_class = item.wished ? "wished" : "not-wished";
 		return `
-			<div class="like-action ${ item.wished ? "like-action-wished" : ''}"
-				data-item-code="${ item.item_code }">
+			<div class="like-action ${item.wished ? "like-action-wished" : ''}"
+				data-item-code="${item.item_code}">
 				<svg class="icon sm">
-					<use class="${ icon_class } wish-icon" href="#icon-heart"></use>
+					<use class="${icon_class} wish-icon" href="#icon-heart"></use>
 				</svg>
 			</div>
 		`;
@@ -116,22 +116,20 @@ webshop.ProductGrid = class {
 
 	get_cart_indicator(item) {
 		return `
-			<div class="cart-indicator ${item.in_cart ? '' : 'hidden'}" data-item-code="${ item.item_code }">
-				1
-			</div>
+	
 		`;
 	}
 
 	get_price_html(item) {
 		let price_html = `
 			<div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer" style="font-weight:700;">
-				${ item.formatted_price || '' }
+				${item.formatted_price || ''}
 		`;
 
 		if (item.formatted_mrp) {
 			price_html += `
 				<small class="striked-price" style="font-weight:700;">
-					<s>${ item.formatted_mrp ? item.formatted_mrp.replace(/ +/g, "") : "" }</s>
+					<s>${item.formatted_mrp ? item.formatted_mrp.replace(/ +/g, "") : ""}</s>
 				</small>
 				
 			`;
@@ -148,13 +146,13 @@ webshop.ProductGrid = class {
 			if (item.on_backorder) {
 				return `
 					<span class="out-of-stock mb-2 mt-1" style="color: var(--primary-color)">
-						${ __("Available on backorder") }
+						${__("Available on backorder")}
 					</span>
 				`;
 			} else if (!item.in_stock) {
 				return `
 					<span class="out-of-stock mb-2 mt-1">
-						${ __("Out of stock") }
+						${__("Out of stock")}
 					</span>
 				`;
 			}
@@ -166,35 +164,35 @@ webshop.ProductGrid = class {
 	get_primary_button(item, settings) {
 		if (item.has_variants) {
 			return `
-				<a href="/${ item.route || '#' }">
+				<a href="/${item.route || '#'}">
 					<div class="btn btn-sm btn-explore-variants w-100 mt-4">
-						${ __("Explore") }
+						${__("Explore")}
 					</div>
 				</a>
 			`;
 		} else if (settings.enabled && (settings.allow_items_not_in_stock || item.in_stock)) {
 			return `
-				<div id="${ item.name }" class="btn
-					btn-sm btn-primary btn-add-to-cart-list
-					w-100 mt-2 ${ item.in_cart ? 'hidden' : '' }"
-					data-item-code="${ item.item_code }">
-					<span class="mr-2">
-						<svg class="icon icon-md">
-							<use href="#icon-assets"></use>
-						</svg>
-					</span>
-					${ settings.enable_checkout ? __("Add to Cart") :  __("Add to Quote") }
-				</div>
+				<div id="${item.name}" 
+     class="btn btn-sm btn-add-to-cart-list w-100 mt-2 ${item.in_cart ? 'hidden' : ''}"
+     data-item-code="${item.item_code}"
+     style="background-color:#2563eb !important;">
+  <span class="mr-2">
+    <svg class="icon icon-md">
+      <use href="#icon-assets"></use>
+    </svg>
+  </span>
+  ${settings.enable_checkout ? __("Add to Cart") : __("Add to Quote")}
+</div>
 
-				<a href="/cart">
-					<div id="${ item.name }" class="btn btn-black
-						btn-sm btn-primary btn-add-to-cart-list
-						w-100 mt-2 go-to-cart-grid
-						${ item.in_cart ? '' : 'hidden' }"
-						data-item-code="${ item.item_code }">
-						${ settings.enable_checkout ? __("View in Cart") :  __("Go to Quote") }
-					</div>
-				</a>
+<a href="/cart">
+  <div id="${item.name}" 
+       class="btn btn-black btn-sm btn-primary btn-add-to-cart-list w-100 mt-2 go-to-cart-grid ${item.in_cart ? '' : 'hidden'}"
+       data-item-code="${item.item_code}"
+       style="background-color:#22c55e !important; border-color:#22c55e !important;">
+    ${settings.enable_checkout ? __("View in Cart") : __("Go to Quote")}
+  </div>
+</a>
+
 			`;
 		} else {
 			return ``;

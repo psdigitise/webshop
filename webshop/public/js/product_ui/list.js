@@ -342,7 +342,7 @@ webshop.ProductList = class {
      class="btn btn-sm go-to-cart btn-add-to-cart-list ${item.in_cart ? '' : 'hidden'}"
      data-item-code="${item.item_code}"
      style="
-        background-color: green !important;
+        background-color: #22c55e !important;
         color: #ffffff !important;
         border: 1px solid white !important;
         border-radius: 6px;

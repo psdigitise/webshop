@@ -166,46 +166,49 @@
 		{% endif %}
 
 		<!-- Add to Cart / View in Cart, Contact Us -->
-		<div class="mt-6 mb-5">
-			<div class="mb-4 d-flex flex-lg-row flex-column gy-4">
-				<!-- Add to Cart -->
-				<div class="flex w-100">
-				{% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.get("in_stock")) %}
-					<a href="/cart" class="btn btn-light btn-view-in-cart hidden mr-2 font-md mb-lg-0 mb-3"
-						role="button">
-						{{  _("View in Cart") if cart_settings.enable_checkout else _("View in Quote") }}
-					</a>
-					<button
-						data-item-code="{{item_code}}"
-						class="btn btn-primary btn-add-to-cart mr-2 mb-lg-0 mb-3"
-						style="font-size:larger; "
-					>
-						<!-- <span class="mr-2">
-							<svg class="icon icon-md">
-								<use href="#icon-assets"></use>
-							</svg>
-						</span> -->
-						{{ _("Add to Cart") if cart_settings.enable_checkout else  _("Add to Quote") }}
-					</button>
-				{% endif %}
+	<div class="mt-6 mb-5">
+  <div class="mb-4 d-flex flex-lg-row flex-column gy-4">
+    <!-- Add to Cart -->
+    <div class="flex w-100">
+      {% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.get("in_stock")) %}
+        <!-- View in Cart -->
+        <a href="/cart" 
+           class="btn btn-light btn-view-in-cart hidden mr-2 font-md mb-lg-0 mb-3"
+           role="button"
+           style="background-color: #22c55e !important; border-color:#22c55e !important; color:#fff !important;">
+          {{ _("View in Cart") if cart_settings.enable_checkout else _("View in Quote") }}
+        </a>
 
-				<!-- Contact Us -->
-				{% if cart_settings.show_contact_us_button %}
-					{% if shopping_cart and shopping_cart.cart_settings.enabled %}
-					{% set cart_settings = shopping_cart.cart_settings %}
-						{% if cart_settings.show_contact_us_button | int %}
-							<button class="btn btn-inquiry font-md purple-bg" style="height: fit-content !important;" data-item-code="{{ doc.name }}">
-								{{ _('Contact Us') }}
-							</button>
-						{% endif %}
-					<script>
-					{% include "templates/generators/item/item_inquiry.js" %}
-					</script>
-					{% endif %}
-				{% endif %}
-				</div>
-			</div>
-		</div>
+        <!-- Add to Cart -->
+        <button
+          data-item-code="{{item_code}}"
+          class="btn btn-primary btn-add-to-cart mr-2 mb-lg-0 mb-3"
+          style="font-size:larger; background-color:#2563eb !important; border-color:#22c55e !important; color:#fff !important;">
+          {{ _("Add to Cart") if cart_settings.enable_checkout else _("Add to Quote") }}
+        </button>
+      {% endif %}
+
+      <!-- Contact Us -->
+      {% if cart_settings.show_contact_us_button %}
+        {% if shopping_cart and shopping_cart.cart_settings.enabled %}
+          {% set cart_settings = shopping_cart.cart_settings %}
+          {% if cart_settings.show_contact_us_button | int %}
+            <button 
+              class="btn btn-inquiry font-md purple-bg" 
+              data-item-code="{{ doc.name }}"
+              style="height: fit-content !important; background-color:#2563eb !important; border-color:#2563eb !important; color:#fff !important;">
+              {{ _('Contact Us') }}
+            </button>
+          {% endif %}
+          <script>
+            {% include "templates/generators/item/item_inquiry.js" %}
+          </script>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 	</div>
 </div>
 
