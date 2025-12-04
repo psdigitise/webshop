@@ -1,5 +1,38 @@
+<style>
+	.payment-title {
+		color: #000;
+		letter-spacing: 0.4px;
+	}
+
+	.payment-card {
+		border: 1px solid #e2e2e2 !important;
+		border-radius: 14px !important;
+		background: #ffffff;
+		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08) !important;
+	}
+
+	.payment-row {
+		padding: 10px 0;
+		border-bottom: 1px solid #eee;
+		font-size: 0.95rem;
+	}
+
+	.payment-row:last-of-type {
+		border-bottom: none;
+	}
+
+	.payment-total {
+		border-top: 2px solid #000;
+	}
+
+	.payment-total span:first-child {
+		color: #000;
+	}
+</style>
+
+
 <!-- Payment -->
-{# 
+{#
 {% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
 <h6 class="text-purple mb-3" style="border:none;">
 	{{ _("Payment Summary") }}
@@ -8,7 +41,7 @@
 #}
 <!-- <div class="card h-100">
 	<div class="card-body p-6">-->
-		<!--{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
+<!--{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
 			<table class=" w-100">
 				<tr>
 					{% set total_items = frappe.utils.cstr(frappe.utils.flt(doc.total_qty, 0)) %}
@@ -50,42 +83,47 @@
 				</tr>
 			</table>
 		{% endif %} -->
-		{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
-			<div class="payment-summary my-4">
-			<h5 class="fw-bold text-purple mb-3">
-				<i class="bi bi-credit-card me-2"></i> {{ _("Payment Summary") }}
-			</h5>
+{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
+<div class="payment-summary my-4">
 
-			<div class="card border-0 shadow-sm rounded-3">
-				<div class="card-body p-4">
+	<h5 class="fw-bold mb-3 payment-title">
+		<i class="bi bi-credit-card me-2"></i> {{ _("Payment Summary") }}
+	</h5>
 
-				<!-- Net Total -->
-				{% set total_items = frappe.utils.cstr(frappe.utils.flt(doc.total_qty, 0)) %}
-				<div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
-					<span class="fw-semibold text-dark">{{ _("Net Total (") + total_items + _(" Items)") }}</span>
-					<span class="fw-bold">{{ doc.get_formatted("net_total") }}</span>
-				</div>
+	<div class="card payment-card">
+		<div class="card-body p-4">
 
-				<!-- Taxes -->
-				{% for d in doc.taxes %}
-					{% if d.tax_amount %}
-					<div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
-					<span class="text-muted">{{ d.description }}</span>
-					<span class="fw-semibold">{{ d.get_formatted("tax_amount") }}</span>
-					</div>
-					{% endif %}
-				{% endfor %}
-
-				<!-- Grand Total -->
-				<div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
-					<span class="fw-bold fs-5 text-dark">{{ _("Grand Total") }}</span>
-					<span class="fw-bold fs-5 text-success">{{ doc.get_formatted("grand_total") }}</span>
-				</div>
-				</div>
+			<!-- Net Total -->
+			{% set total_items = frappe.utils.cstr(frappe.utils.flt(doc.total_qty, 0)) %}
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<span class="fw-semibold text-dark">{{ _("Net Total (") + total_items + _(" Items)") }}</span>
+				<span class="fw-bold">{{ doc.get_formatted("net_total") }}</span>
 			</div>
+
+			<!-- Stylish Divider Line -->
+			<hr class="summary-divider my-3">
+			{% for d in doc.taxes %}
+			{% if d.tax_amount %}
+			<div class="d-flex justify-content-between align-items-center payment-row">
+				<span class="text-muted">{{ d.description }}</span>
+				<span class="fw-semibold">{{ d.get_formatted("tax_amount") }}</span>
 			</div>
-		{% endif %}
-	<!--</div>
+			{% endif %}
+			{% endfor %}
+
+
+			<!-- Grand Total -->
+			<div class="d-flex justify-content-between align-items-center mt-2">
+				<span class="fw-bold fs-5 text-dark">{{ _("Grand Total") }}</span>
+				<span class="fw-bold fs-5 text-success">{{ doc.get_formatted("grand_total") }}</span>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+{% endif %}
+<!--</div>
 </div>-->
 
 <!-- TODO: Apply Coupon Dialog-->

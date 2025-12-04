@@ -5,40 +5,225 @@
  {% block title %}
 {{ _("All Products") }}
  {%endblock %} {% block header %}
-  <style>
+<style>
   .product-banner {
     border-top: #cacaca 1px solid;
-    background: #e7e5e1;
+    /* background: #a6a6a6; */
     color: #000;
     padding: 4rem 0;
-}
-.breadcrumb_a a {
+  }
+
+  .breadcrumb_a a {
     font-size: 1rem;
     color: #000;
     font-weight: 700;
     text-decoration: none;
-     /*opacity: 0.8; */
+    /*opacity: 0.8; */
     transition: opacity 0.3s ease;
-}
- 
-.breadcrumb_a span {
+  }
+
+  .breadcrumb_a span {
     margin: 0 9px;
     color: #000;
-}
- 
-.product-banner-title {
+  }
+
+  .product-banner-title {
     font-size: 3rem;
     font-weight: 700;
     margin: 0;
-    border-top: 1px solid #cacaca;
-    padding-top: 2rem;
+    /* border-top: 1px solid #cacaca; */
+    /* padding-top: 2rem; */
+        padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  /* Banner Wrapper */
+  .product-banner {
+    padding: 40px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb_a {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .breadcrumb_a a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+  }
+
+  .breadcrumb_a a:hover {
+    color: #111827;
+    text-decoration: underline;
+  }
+
+  .breadcrumb_a span {
+    margin: 0 6px;
+    color: #9ca3af;
+  }
+
+  /* Page Title */
+  .product-banner-title {
+    font-size: 40px !important;
+    font-weight: 500 !important;
+    color: #111827;
+    margin-top: 5px;
+    letter-spacing: -0.5px;
+  }
+
+
+  .filters-sidebar {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
+
+/* Filters header */
+.filters-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.filters-clear-link {
+  font-size: 0.875rem;
+  color: #888;
+  text-decoration: none;
+}
+
+.filters-clear-link:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* Top Rated Products title */
+.top-rated-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #e4002c;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Product card */
+.product-card {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.product-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.product-card p {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0;
+}
+
+.product-card img {
+  border-radius: 4px;
+  object-fit: cover;
+}
+/* Sidebar container */
+.filters-sidebar {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.filters-sidebar:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Filters header */
+.filters-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.filters-clear-link {
+  font-size: 0.875rem;
+  color: #888;
+  text-decoration: none;
+}
+
+.filters-clear-link:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* Section title */
+.top-rated-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  border-left: 4px solid #e4002c;
+  padding-left: 10px;
+}
+
+/* Product card */
+.product-card {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.product-card:hover {
+  background-color: #f9f9f9;
+}
+
+.product-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #111;
+}
+
+.product-card p {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0;
+}
+
+.product-card img {
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
 </style>
+
+
 <section class="product-banner mb-5">
-<div class="container-fluid">
+<div class="">
   <nav class="breadcrumb_a">
 <a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a>
 </nav>
+  <div class="p-0" style="
+border-top: 40px solid #e4002c;
+    position: relative;
+    ">
 <h1 class="product-banner-title">All Products</h1>
 </div>
 </section>
@@ -50,45 +235,71 @@
  <div class="row px-3">
   
   <!-- Filters Section (left) -->
-  <div class="col-lg-2 col-md-3 col-12">
-    <div class=" "> <!-- bg-white shadow rounded-2xl p-5 border border-purple-200-->
-      <div class="flex justify-between items-center mb-4">
-        <div class="text-lg font-semibold text-purple-700" style="color: #000;font-size:x-large;">{{ _('Filters') }}</div>
-        <a class="text-sm no-underline"  href="/all-products">
-          {{ _('Clear All') }}
-        </a>
+ 
+ <!-- Filters Section (left) -->
+<div class="col-lg-2 col-md-3 col-12">
+  <div class="filters-sidebar" style="
+      background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    width: 210px;
+    margin-top: 15px;
+  ">
+    <!-- Filters Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="filters-title" style="font-size: 1.25rem; font-weight: 600; color: #333;">
+        {{ _('Filters') }}
       </div>
-      {% if field_filters %}
-      <div>
-        {{ field_filter_section(field_filters) }}
-      </div>
-      {% endif %}
-       <div class="text-lg font-semibold text-purple-700 pb-4" style="color: #000;font-size: large;inline-size: max-content;font-weight: 700;">Top Rated Products</div>
-      {% for item in frappe.call('webshop.api.get_top_rated_items') %}
-       
-
-        <div class="product-card mb-3 pb-3" style="border-bottom: 1px solid #eaeaea;">
-          <div class="row">
-            <div class="col-lg-4 col-4 p-0">
-          <img src="{{ item.website_image }}"  style="width:100%;height:80px;object-fit:cover"/>
-            </div>
-              <div class="col-lg-8 col-8">
-                <a href="{{ item.route }}" style="color: black;"><h5>{{ item.web_item_name }}</h5></a>
-          <!-- <p>AED {{ item.price }}</p> -->
-          <p >Rating: {{ item.average_rating }}</p>
-            </div>
-          </div>
-
-        </div>
-      {% endfor %}
-
-      {% if attribute_filters %}
-      <div>
-        {{ attribute_filter_section(attribute_filters) }}
-      </div>
-      {% endif %}
+      <a class="filters-clear-link" href="/all-products" style="font-size: 0.875rem; color: #888; text-decoration: none;">
+        {{ _('Clear All') }}
+      </a>
     </div>
+
+    {% if field_filters %}
+    <div>
+      {{ field_filter_section(field_filters) }}
+    </div>
+    {% endif %}
+
+    <!-- Top Rated Products Title -->
+    <div class="top-rated-title" style="
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #e4002c;
+      display: inline-block;
+      padding-bottom: 4px;
+    ">
+      Top Rated Products
+    </div>
+
+    {% for item in frappe.call('webshop.api.get_top_rated_items') %}
+    <div class="product-card mb-3 pb-3" style="border-bottom: 1px solid #eaeaea;">
+      <div class="row">
+        <div class="col-lg-4 col-4 p-0">
+          <img src="{{ item.website_image }}" style="width:100%; height:80px; object-fit:cover; border-radius: 4px;" />
+        </div>
+        <div class="col-lg-8 col-8">
+          <a href="{{ item.route }}" style="color: black; text-decoration: none;">
+            <h5 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px;">{{ item.web_item_name }}</h5>
+          </a>
+          <p style="font-size: 0.875rem; color: #555; margin: 0;">Rating: {{ item.average_rating }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% if attribute_filters %}
+    <div>
+      {{ attribute_filter_section(attribute_filters) }}
+    </div>
+    {% endif %}
   </div>
+</div>
+
 
   <!-- Items Section (right) -->
   <div id="product-listing" class="col-lg-10 col-md-9 col-12 space-y-6 p-3">

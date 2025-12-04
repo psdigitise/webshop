@@ -11,9 +11,9 @@ def search_item_groups_with_route(txt):
             "web_item_name": ["like", f"%{txt}%"],
             "published": 1
         },
-        fields=["web_item_name", "route","thumbnail"],
+        fields=["web_item_name", "route","thumbnail","website_image"],
         limit_page_length=5
-    )
+    ) or []
 
 
 @frappe.whitelist()

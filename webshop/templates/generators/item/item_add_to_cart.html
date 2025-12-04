@@ -1,10 +1,84 @@
+<style>
+
+	/* Base Button Styling */
+.btn {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* View in Cart / Quote */
+.btn-view-in-cart {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn-view-in-cart:hover {
+  background-color: #e0e0e0;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Add to Cart / Quote */
+.btn-add-to-cart {
+  background: linear-gradient(to right, #6a1b9a, #8e24aa);
+  color: #fff;
+  border: none;
+}
+
+.btn-add-to-cart:hover {
+  background: linear-gradient(to right, #580c83, #7b1fa2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Contact Us */
+.btn-inquiry {
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.btn-inquiry:hover {
+  background-color: #333;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Icon inside button */
+.btn svg.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  margin-right: 6px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .btn {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+
+  .btn svg.icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+</style>
+
 {% if shopping_cart and shopping_cart.cart_settings.enabled %}
 
 {% set cart_settings = shopping_cart.cart_settings %}
 {% set product_info = shopping_cart.product_info %}
 
 <div class="item-cart row mt-2" data-variant-item-code="{{ item_code }}">
-	<div class="col-md-12">
+	<div class="col-md-12" style="margin-bottom: -35px;">
 		<!-- Price and Availability -->
 		{% if cart_settings.show_price and product_info.price %}
 			{% set price_info = product_info.price %}
@@ -106,11 +180,11 @@
 						class="btn btn-primary btn-add-to-cart mr-2 mb-lg-0 mb-3"
 						style="font-size:larger; "
 					>
-						<span class="mr-2">
+						<!-- <span class="mr-2">
 							<svg class="icon icon-md">
 								<use href="#icon-assets"></use>
 							</svg>
-						</span>
+						</span> -->
 						{{ _("Add to Cart") if cart_settings.enable_checkout else  _("Add to Quote") }}
 					</button>
 				{% endif %}
@@ -120,7 +194,7 @@
 					{% if shopping_cart and shopping_cart.cart_settings.enabled %}
 					{% set cart_settings = shopping_cart.cart_settings %}
 						{% if cart_settings.show_contact_us_button | int %}
-							<button class="btn btn-inquiry font-md purple-bg" style="font-size:larger !important;height: fit-content !important;" data-item-code="{{ doc.name }}">
+							<button class="btn btn-inquiry font-md purple-bg" style="height: fit-content !important;" data-item-code="{{ doc.name }}">
 								{{ _('Contact Us') }}
 							</button>
 						{% endif %}

@@ -3,65 +3,146 @@
 {% block title %} {{ _("Shopping Cart") }} {% endblock %}
 
 {% block header %}
- <style>
-   .product-banner {
-    border-top: #cacaca 1px solid;
-    background: #a6a6a6;
-    color: #000;
-    padding: 4rem 0;
-}
-.breadcrumb_a a {
-    font-size: 1rem;
-    color: #000;
-    font-weight: 700;
-    text-decoration: none;
-     /*opacity: 0.8; */
-    transition: opacity 0.3s ease;
-}
- 
-.breadcrumb_a span {
-    margin: 0 9px;
-    color: #000;
-}
- 
-.product-banner-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-    border-top: 1px solid #cacaca;
-    padding-top: 2rem;
-}
-.cart-container .cart-table tr{
-	padding:10px  !important;
-	display: flex;
-}
+<style>
+	.product-banner {
+		border-top: #cacaca 1px solid;
+		/* background: #a6a6a6; */
+		color: #000;
+		padding: 4rem 0;
+	}
 
-.cart-container .cart-table td
- {
-    /* border-color: var(--border-color); */
-     border-width:0 !important ;
-	
-}
-.marign {
-  margin-left: 40px !important;
-}
+	.breadcrumb_a a {
+		font-size: 1rem;
+		color: #000;
+		font-weight: 700;
+		text-decoration: none;
+		/*opacity: 0.8; */
+		transition: opacity 0.3s ease;
+	}
 
-@media (max-width: 767px) {
-  .marign {
-    margin-left: 0px !important;
-  }
-}
-a.btn.btn-primary-light.font-md {
-    inline-size: max-content !important;
-}
+	.breadcrumb_a span {
+		margin: 0 9px;
+		color: #000;
+	}
+
+	.product-banner-title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin: 0;
+		/* border-top: 1px solid #cacaca; */
+		/* padding-top: 2rem; */
+	}
+
+	.cart-container .cart-table tr {
+		padding: 10px !important;
+		display: flex;
+	}
+
+	.cart-container .cart-table td {
+		/* border-color: var(--border-color); */
+		border-width: 0 !important;
+
+	}
+
+	.marign {
+		margin-left: 40px !important;
+	}
+
+	@media (max-width: 767px) {
+		.marign {
+			margin-left: 0px !important;
+		}
+	}
+
+	a.btn.btn-primary-light.font-md {
+		inline-size: max-content !important;
+	}
+
+	.product-banner {
+		border-top: #cacaca 1px solid;
+		/* background: #a6a6a6; */
+		color: #000;
+		padding: 4rem 0;
+	}
+
+	.breadcrumb_a a {
+		font-size: 1rem;
+		color: #000;
+		font-weight: 700;
+		text-decoration: none;
+		/*opacity: 0.8; */
+		transition: opacity 0.3s ease;
+	}
+
+	.breadcrumb_a span {
+		margin: 0 9px;
+		color: #000;
+	}
+
+	.product-banner-title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin: 0;
+		/* border-top: 1px solid #cacaca; */
+		/* padding-top: 2rem; */
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+
+	/* Banner Wrapper */
+	.product-banner {
+		padding: 40px 0;
+		border-bottom: 1px solid #e5e7eb;
+	}
+
+	/* Breadcrumb */
+	.breadcrumb_a {
+		font-size: 14px;
+		color: #6b7280;
+		margin-bottom: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.breadcrumb_a a {
+		color: #4b5563;
+		text-decoration: none;
+		transition: 0.2s ease-in-out;
+	}
+
+	.breadcrumb_a a:hover {
+		color: #111827;
+		text-decoration: underline;
+	}
+
+	.breadcrumb_a span {
+		margin: 0 6px;
+		color: #9ca3af;
+	}
+
+	/* Page Title */
+	.product-banner-title {
+		font-size: 40px !important;
+		font-weight: 500 !important;
+		color: #111827;
+		/* margin-top: 5px; */
+		letter-spacing: -0.5px;
+	}
 </style>
 <section class="product-banner">
-<div class="container-fluid">
-  <nav class="breadcrumb_a">
-<a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a><span>/</span> <a href="/cart">Shopping Cart</a>
-</nav>
-<h1 class="product-banner-title">{{ _("Shopping Cart") }}</h1>
-</div>
+	<div>
+		<nav class="breadcrumb_a">
+			<a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a><span>/</span> <a
+				href="/cart">Shopping Cart</a>
+		</nav>
+		<div class="p-0" style="
+border-top: 40px solid #e4002c;
+    position: relative;
+    ">
+			<h1 class="product-banner-title">{{ _("Shopping Cart") }}</h1>
+		</div>
+	</div>
 </section>
 {% endblock %}
 
@@ -74,7 +155,8 @@ a.btn.btn-primary-light.font-md {
 
 {% if doc.items %}
 <div class="row">
-	<div class="cart-container container bg-white p-4 col-md-8 col-12 rounded shadow marign" style="margin-right: 20px;">
+	<div class="cart-container container bg-white p-4 col-md-8 col-12 rounded shadow marign"
+		style="margin-right: 20px;">
 		<div class="row m-0">
 			<!-- Left section -->
 			<div class="col-md-12">
@@ -89,7 +171,8 @@ a.btn.btn-primary-light.font-md {
 								<th class="item-column" style="text-align:center;">{{ _('Item') }}</th>
 								<th width="20%" style="text-align:center;">{{ _('Quantity') }}</th>
 								{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
-									<th width="20" class=" column-sm-view" style="text-align:center;">{{ _('Subtotal') }}</th>
+								<th width="20" class=" column-sm-view" style="text-align:center;">{{ _('Subtotal') }}
+								</th>
 								{% endif %}
 								<!--<th width="10%" class="column-sm-view" style="text-align:center;"></th>-->
 							</tr>
@@ -99,31 +182,66 @@ a.btn.btn-primary-light.font-md {
 						</tbody>
 
 						{% if cart_settings.enable_checkout or cart_settings.show_price_in_quotation %}
-							<tfoot class="cart-tax-items">
-								{% include "templates/includes/cart/cart_items_total.html" %}
-							</tfoot>
+						<tfoot class="cart-tax-items">
+							{% include "templates/includes/cart/cart_items_total.html" %}
+						</tfoot>
 						{% endif %}
 					</table>
 
 					<div class="row mt-2">
 						<div class="col-3">
 							{% if cart_settings.enable_checkout %}
-								<a class="btn btn-primary-light font-md" href="/orders" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
-									{{ _('Past Orders') }}
-								</a>
+							<a href="/orders" class="btn btn-sm past-orders-btn">
+								{{ _('Past Orders') }}
+							</a>
+
+							<style>
+								.past-orders-btn {
+									background: #007acc !important;
+									color: #fff !important;
+									border-radius: 6px;
+									padding: 4px 12px;
+									border: none !important;
+									text-decoration: none;
+								}
+
+								.past-orders-btn:hover {
+									background: #222 !important;
+									color: #fff !important;
+								}
+							</style>
+
 							{% else %}
-								<a class="btn btn-primary-light font-md" href="/quotations" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
-									{{ _('Past Quotes') }}
-								</a>
+							<a class="btn btn-primary-light font-md" href="/quotations"
+								style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
+								{{ _('Past Quotes') }}
+							</a>
 							{% endif %}
 						</div>
 						<div class="col-9">
 							{% if doc.items %}
 							<div class="place-order-container">
-								<a class="btn btn-primary-light mr-2 font-md" href="/all-products" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987;">
+								<a href="/all-products" class="btn btn-sm continue-btn mr-2 font-md">
 									{{ _('Continue Shopping') }}
 								</a>
 							</div>
+
+							<style>
+								.continue-btn {
+									background: #007acc !important;
+									color: #fff !important;
+									border-radius: 6px;
+									padding: 4px 12px;
+									border: none !important;
+									text-decoration: none;
+								}
+
+								.continue-btn:hover {
+									background: #222 !important;
+									color: #fff !important;
+								}
+							</style>
+
 							{% endif %}
 						</div>
 					</div>
@@ -131,105 +249,109 @@ a.btn.btn-primary-light.font-md {
 
 				<!-- Terms and Conditions -->
 				{% if doc.items %}
-					{% if doc.terms %}
-						<div class="t-and-c-container mt-4 frappe-card">
-							<h5>{{ _("Terms and Conditions") }}</h5>
-							<div class="t-and-c-terms mt-2">
-								{{ doc.terms }}
-							</div>
-						</div>
-					{% endif %}
+				{% if doc.terms %}
+				<div class="t-and-c-container mt-4 frappe-card">
+					<h5>{{ _("Terms and Conditions") }}</h5>
+					<div class="t-and-c-terms mt-2">
+						{{ doc.terms }}
+					</div>
+				</div>
+				{% endif %}
 			</div>
 
 			<!-- Right section -->
-			
+
 			{% endif %}
 		</div>
 	</div>
 	<div class="col-md-3 col-12">
-				<div class="cart-payment-addresses">
-					<!-- Apply Coupon Code  -->
-					{% set show_coupon_code = cart_settings.show_apply_coupon_code_in_website and cart_settings.enable_checkout %}
-					{% set coupon_code = doc.coupon_code if doc.coupon_code else "" %}
+		<div class="cart-payment-addresses">
+			<!-- Apply Coupon Code  -->
+			{% set show_coupon_code = cart_settings.show_apply_coupon_code_in_website and cart_settings.enable_checkout
+			%}
+			{% set coupon_code = doc.coupon_code if doc.coupon_code else "" %}
 
-					{% if show_coupon_code == 1%}
-						{% if coupon_code %}
-							{% include "templates/includes/cart/coupon_code.html" %}
-						{% else %}
-						<div class="mb-3">
-							<div class="d-flex w-100">
-								<input type="text" class="txtcoupon form-control mr-3 flex-grow-1 font-md" placeholder="{{ _("Enter coupon code") }}" name="txtcouponcode"  ></input>
-								<button class="btn btn-secondary btn-sm bt-coupon font-md flex-shrink-0">{{ _("Apply") }}</button>
-								<input type="hidden" class="txtreferral_sales_partner font-md" placeholder="Enter Sales Partner" name="txtreferral_sales_partner" type="text"></input>
-								</div>
-						</div>
-						{% endif %}
-					{% endif %}
-
-					<div class="mb-3 frappe-card rounded shadow p-4">
-						<div class="payment-summary">
-							{% include "templates/includes/cart/cart_payment_summary.html" %}
-						</div>
-
-						<div class="place-order">
-							{% include "templates/includes/cart/place_order.html" %}
-						</div>
-					</div>
-
-					{% include "templates/includes/cart/cart_address.html" %}
+			{% if show_coupon_code == 1%}
+			{% if coupon_code %}
+			{% include "templates/includes/cart/coupon_code.html" %}
+			{% else %}
+			<div class="mb-3">
+				<div class="d-flex w-100">
+					<input type="text" class="txtcoupon form-control mr-3 flex-grow-1 font-md" placeholder="{{ _(" Enter
+						coupon code") }}" name="txtcouponcode"></input>
+					<button class="btn btn-secondary btn-sm bt-coupon font-md flex-shrink-0">{{ _("Apply") }}</button>
+					<input type="hidden" class="txtreferral_sales_partner font-md" placeholder="Enter Sales Partner"
+						name="txtreferral_sales_partner" type="text"></input>
 				</div>
 			</div>
-{% else %}
-<div class="cart-empty frappe-card">
-	<div class="cart-empty-state">
-		<img src="/assets/webshop/images/cart-empty-state.png" alt="Empty State">
+			{% endif %}
+			{% endif %}
+
+			<div class="mb-3 frappe-card rounded shadow p-4">
+				<div class="payment-summary">
+					{% include "templates/includes/cart/cart_payment_summary.html" %}
+				</div>
+
+				<div class="place-order">
+					{% include "templates/includes/cart/place_order.html" %}
+				</div>
+			</div>
+
+			{% include "templates/includes/cart/cart_address.html" %}
+		</div>
 	</div>
-	<div class="cart-empty-message mt-4">{{ _('Your cart is Empty') }}</p>
-	{% if cart_settings.enable_checkout %}
-		<a class="btn btn-outline-primary" href="/orders" style="background-color: #f8f9fa; border-color: #ced4da; color: #570987; font-size: 16px; margin-left: 12px;">
-			{{ _('See past orders') }}
-		</a>
-		{% else %}
-		<a class="btn btn-outline-primary" href="/quotations" style="font-size: 16px;">
-			{{ _('See past quotations') }}
-		</a>
-	{% endif %}
-</div>
-{% endif %}
+	{% else %}
+	<div class="cart-empty frappe-card">
+		<div class="cart-empty-state">
+			<img src="/assets/webshop/images/cart-empty-state.png" alt="Empty State">
+		</div>
+		<div class="cart-empty-message mt-4">{{ _('Your cart is Empty') }}</p>
+			{% if cart_settings.enable_checkout %}
+			<a class="btn btn-outline-primary" href="/orders"
+				style="background-color: #f8f9fa; border-color: #ced4da; color: #570987; font-size: 16px; margin-left: 12px;">
+				{{ _('See past orders') }}
+			</a>
+			{% else %}
+			<a class="btn btn-outline-primary" href="/quotations" style="font-size: 16px;">
+				{{ _('See past quotations') }}
+			</a>
+			{% endif %}
+		</div>
+		{% endif %}
 
-{% endblock %}
+		{% endblock %}
 
-{% block base_scripts %}
-<!-- js should be loaded in body! -->
-{{ include_script("frappe-web.bundle.js") }}
-{{ include_script("controls.bundle.js") }}
-{{ include_script("dialog.bundle.js") }}
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-     const element = document.querySelector('.container.my-4');
-      const breadcrumbs = document.querySelector('.page-breadcrumbs');
-      const header = document.querySelector('.page-header');
-      const pageheader = document.querySelector('.page-header-wrapper');
-	  const pagecontent = document.querySelector('.page_content');
-	  if(pagecontent){
-		pagecontent.classList.add("py-5");
-		pagecontent.style.setProperty("background-color", "#EAEDED", "important");
-	  }
-      if (pageheader){
-          pageheader.classList.add('p-0');
-      }
-      if (header){
-          header.style.width = "100%";
-      }
-      if (breadcrumbs) {
-          breadcrumbs.style.display = "none";
-      }
-      if (element) {
-        element.classList.remove('container');
-        element.classList.remove('my-4');
-        element.classList.add('bg-white');
-        }
-     }
-  )
-</script>
-{% endblock %}
+		{% block base_scripts %}
+		<!-- js should be loaded in body! -->
+		{{ include_script("frappe-web.bundle.js") }}
+		{{ include_script("controls.bundle.js") }}
+		{{ include_script("dialog.bundle.js") }}
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const element = document.querySelector('.container.my-4');
+				const breadcrumbs = document.querySelector('.page-breadcrumbs');
+				const header = document.querySelector('.page-header');
+				const pageheader = document.querySelector('.page-header-wrapper');
+				const pagecontent = document.querySelector('.page_content');
+				if (pagecontent) {
+					pagecontent.classList.add("py-5");
+					pagecontent.style.setProperty("background-color", "#EAEDED", "important");
+				}
+				if (pageheader) {
+					pageheader.classList.add('p-0');
+				}
+				if (header) {
+					header.style.width = "100%";
+				}
+				if (breadcrumbs) {
+					breadcrumbs.style.display = "none";
+				}
+				if (element) {
+					element.classList.remove('container');
+					element.classList.remove('my-4');
+					element.classList.add('bg-white');
+				}
+			}
+			)
+		</script>
+		{% endblock %}

@@ -6,13 +6,23 @@
 
 <div class="mb-3 frappe-card rounded shadow p-4" data-section="shipping-address">
 	<div class="d-flex">
-		<div class="col-6 address-header text-purple"><h6 >{{ _("Shipping Address") }}</h6></div>
+	<div class="col-6 address-header shipping-title">
+    <h6>{{ _("Shipping Address") }}</h6>
+</div>
+
+<style>
+.shipping-title h6 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+</style>
+
 		<div class="col-6" style="padding: 0;">
 			<a class="ml-4 btn-new-address" role="button">{{ _("Add Address") }}</a>
 		</div>
 	</div>
 
-	<hr style="border:none;">
+	<!-- <hr style="border:none;"> -->
 	{% for address in shipping_addresses %}
 	{% if doc.shipping_address_name == address.name %}
 	<div class="row no-gutters" data-fieldname="shipping_address_name">
@@ -23,6 +33,7 @@
 	{% endif %}
 	{% endfor %}
 </div>
+
 
 <!-- Billing Address -->
 <div class="checkbox ml-1 mb-2">
@@ -41,7 +52,7 @@
 		</div>
 	</div>
 
-	<hr style="border:none;">
+	<!-- <hr style="border:none;"> -->
 	{% for address in billing_addresses %}
 		{% if doc.customer_address == address.name %}
 		<div class="row no-gutters" data-fieldname="customer_address">

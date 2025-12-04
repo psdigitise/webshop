@@ -37,12 +37,20 @@
       </div>
 
       <div class="d-flex w-100" style="flex-direction: column;justify-content: center;gap:0.5rem;">
-        <div
-          class="item-title mb-1 mr-3"
-          style="color: #000; font-size: 18px; font-weight: 500"
-        >
-          {{ d.get("web_item_name") or d.item_name }}
-        </div>
+      <div
+  class="item-title mb-1 mr-3"
+  style="
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.4;
+    padding: 4px 0;
+    display: inline-block;
+  "
+>
+  {{ d.get("web_item_name") or d.item_name }}
+</div>
+
         <div class="item-subtitle mr-2 text-black">
         	{% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
 			{% if website_item_list %}
@@ -53,15 +61,15 @@
 			{% endif %}
         </div>
         
-        <div class="item-subtitle mr-2 text-black">
-        	{% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
-			{% if website_item_list %}
-				{% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
-				{% if website_item.short_description %}
-					{{website_item.short_description}}
-          		{% endif %} 
-			{% endif %}
-        </div>
+          <!-- <div class="item-subtitle mr-2 text-black">
+            {% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
+        {% if website_item_list %}
+          {% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
+          {% if website_item.short_description %}
+            {{website_item.short_description}}
+                {% endif %} 
+        {% endif %}
+          </div> -->
         {%- set variant_of = frappe.db.get_value('Item', d.item_code,
         'variant_of') %} {% if variant_of %}
         <span class="item-subtitle mr-2">
@@ -150,14 +158,14 @@
             style="    width: fit-content;
     height: auto !important;
 	font-weight: 500 !important;
-    background-color: #590088;
+    background-color:#007acc;
 	float:none;
     cursor: pointer;
     margin-top: 0.25rem;
     padding: 2px 20px;
     color: #fff;
     border-radius: 4px !important;
-    border: 1px solid #590088 !important;
+    border: 1px solid white !important;
 	
 	"
           >

@@ -441,8 +441,6 @@ class WebsiteItem(WebsiteGenerator):
 
 		if settings.show_price:
 			is_guest = frappe.session.user == "Guest"
-			# Show Price if logged in.
-			# If not logged in and price is hidden for guest, skip price fetch.
 			if is_guest and settings.hide_price_for_guest:
 				return items
 
@@ -450,6 +448,7 @@ class WebsiteItem(WebsiteGenerator):
 			party = get_party()
 
 			for item in items:
+				# Get detailed price info
 				item.price_info = get_price(
 					item.item_code,
 					selling_price_list,
@@ -458,7 +457,16 @@ class WebsiteItem(WebsiteGenerator):
 					party=party,
 				)
 
+				# Inject direct price for display
+				price = frappe.db.get_value(
+					"Item Price",
+					{"item_code": item.item_code, "selling": 1},
+					"price_list_rate"
+				)
+				item["price"] = price or 0
+
 		return items
+
 
 def attach_image_to_item(item_code, website_image_url):
     """Attach Website Item image to its related Item"""

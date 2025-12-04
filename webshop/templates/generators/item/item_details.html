@@ -1,10 +1,108 @@
+<style>
+	/* Product Details Container */
+.product-details {
+  background: #f2f2f2;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.product-details:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* Title Styling */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 10px;
+}
+
+/* Item Code & Group */
+.product-code {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.product-item-group {
+  font-weight: 600;
+  color: #333;
+}
+
+.product-item-code {
+  margin-left: 10px;
+  color: #333;
+}
+
+/* Description */
+.product-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+  margin-top: 20px;
+}
+
+/* Wishlist Icon */
+.like-action-item-fp {
+  transition: transform 0.2s ease;
+}
+
+.like-action-item-fp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Recommended Items Carousel */
+.all-items-carousel h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: black;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .product-description {
+    font-size: 15px;
+  }
+
+  .carousel-track {
+    gap: 12px;
+  }
+}
+
+</style>
+
+
 {% set width_class = "expand" if not slides else "" %}
 {% set cart_settings = shopping_cart.cart_settings %}
 {% set product_info = shopping_cart.product_info %}
 {% set price_info = product_info.get('price') or {} %}
 {% set show_recommended_items = recommended_items and shopping_cart.cart_settings.enable_recommendations %}
 <div class="col-md-8 product-details {{ width_class }}" 
-     style="padding:30px; background:#f2f2f2; border-radius:10px; font-family:'Jost', sans-serif;">
+     style="padding:30px; background:white; border-radius:10px; font-family:'Jost', sans-serif;">
 
 	<div class="d-flex align-items-start" style="margin-bottom:15px;">
 		<!-- title -->
@@ -49,13 +147,16 @@
 	<!-- description -->
 	<div class="product-description" itemprop="description"
 	     style="font-size:16px; line-height:1.6; color:#444;">
-	{% if frappe.utils.strip_html(doc.web_long_description or '') %}
-		{{ _(doc.web_long_description) | safe }}
+	{% if frappe.utils.strip_html(doc.short_description or '') %}
+		{{ _(doc.short_description) | safe }}
 	{% elif frappe.utils.strip_html(doc.description or '')  %}
-		{{ _(doc.description) | safe }}
+		{{ _(doc.short_description) | safe }}
 	{% else %}
 		{{ "" }}
 	{% endif  %}
+	</div>
+	<div style="margin-top: 10px;">
+		<a class="sar"  id="productDescriptionAnchor"href="/{{doc.route}}#description">Read full Features</a>
 	</div>
 	{% if show_recommended_items %}
 		<div class="all-items-carousel container mt-5">

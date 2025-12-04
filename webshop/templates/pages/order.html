@@ -228,120 +228,144 @@
 
 {% block header %}
 <style>
+	.product-banner {
+		border-top: #cacaca 1px solid;
+		/* background: #a6a6a6; */
+		color: #000;
+		padding: 4rem 0;
+	}
 
-/* Overall modal container */
-.modal-content {
-    background-color: #57860; /* soft violet background */
-    border: 2px solid #8a2be2; /* vibrant violet border */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
-    font-family: 'Segoe UI', sans-serif;
-    color: #4b0082; /* deep violet text */
-}
+	.breadcrumb_a a {
+		font-size: 1rem;
+		color: #000;
+		font-weight: 700;
+		text-decoration: none;
+		/*opacity: 0.8; */
+		transition: opacity 0.3s ease;
+	}
 
-/* Header styling */
-.modal-header {
-    background-color: #8a2be2;
-    color: #000;
-    border-bottom: 1px solid #6837a6 !important;
-    padding: 12px 20px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-}
+	.breadcrumb_a span {
+		margin: 0 9px;
+		color: #000;
+	}
 
-.modal-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-}
+	.product-banner-title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin: 0;
+		/* border-top: 1px solid #cacaca; */
+		/* padding-top: 2rem; */
+	}
 
-/* Close button */
-.modal-header .close {
-    color: #fff !important;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
-}
+	.cart-container .cart-table tr {
+		padding: 10px !important;
+		display: flex;
+	}
 
-.modal-header .close:hover {
-    opacity: 1;
-}
+	.cart-container .cart-table td {
+		/* border-color: var(--border-color); */
+		border-width: 0 !important;
 
-/* Body styling */
-.modal-body {
-    padding: 20px;
-    font-size: 15px;
-    line-height: 1.6;
-}
+	}
 
-/* Message print block */
-.modal-body .msgprint {
-    background-color: #e9ddff;
-    border-left: 4px solid #8a2be2;
-    padding: 12px 16px;
-    border-radius: 4px;
-    font-weight: 500;
-}
+	.marign {
+		margin-left: 40px !important;
+	}
 
+	@media (max-width: 767px) {
+		.marign {
+			margin-left: 0px !important;
+		}
+	}
 
-.modal-footer {
-    padding: 12px 20px;
-    border-top: 1px solid #ddd;
-    background-color: #f0e6ff;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
+	a.btn.btn-primary-light.font-md {
+		inline-size: max-content !important;
+	}
 
-/.modal-footer .btn {
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 4px;
-}
+	.product-banner {
+		border-top: #cacaca 1px solid;
+		/* background: #a6a6a6; */
+		color: #000;
+		padding: 4rem 0;
+	}
 
-.modal-footer .btn-primary {
-    background-color: #8a2be2;
-    border-color: #8a2be2;
-    color: #fff;
-}
+	.breadcrumb_a a {
+		font-size: 1rem;
+		color: #000;
+		font-weight: 700;
+		text-decoration: none;
+		/*opacity: 0.8; */
+		transition: opacity 0.3s ease;
+	}
 
-.modal-footer .btn-secondary {
-    background-color: #d6c2f0;
-    border-color: #cbb6ec;
-    color: #4b0082;
-}
+	.breadcrumb_a span {
+		margin: 0 9px;
+		color: #000;
+	}
+
+	.product-banner-title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin: 0;
+		/* border-top: 1px solid #cacaca; */
+		/* padding-top: 2rem; */
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 
 
-.product-banner {
-    background: linear-gradient(90deg, #570987, #2d2c2c);
-    color: #ffffff;
-    padding: 4rem 0;
-}
-.breadcrumb_a a {
-    font-size: 1rem;
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-.breadcrumb_a span {
-    margin: 0 9px;
-    color: #ffffff;
-}
-.product-banner-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    padding-top: 2rem;
-}
+	/* Banner Wrapper */
+	.product-banner {
+		padding: 40px 0;
+		border-bottom: 1px solid #e5e7eb;
+	}
+
+	/* Breadcrumb */
+	.breadcrumb_a {
+		font-size: 14px;
+		color: #6b7280;
+		margin-bottom: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.breadcrumb_a a {
+		color: #4b5563;
+		text-decoration: none;
+		transition: 0.2s ease-in-out;
+	}
+
+	.breadcrumb_a a:hover {
+		color: #111827;
+		text-decoration: underline;
+	}
+
+	.breadcrumb_a span {
+		margin: 0 6px;
+		color: #9ca3af;
+	}
+
+	/* Page Title */
+	.product-banner-title {
+		font-size: 40px !important;
+		font-weight: 500 !important;
+		color: #111827;
+		/* margin-top: 5px; */
+		letter-spacing: -0.5px;
+	}
 </style>
 <section class="product-banner mb-5">
-    <div class="container-fluid">
+    <div>
         <nav class="breadcrumb_a">
             <a href="/">Home</a> <span>/</span> 
             <a href="/all-products">All Products</a> <span>/</span> 
-            <a href="/orders">Orders</a><span>/</span> 
+            <!-- <a href="/orders">Orders</a><span>/</span>  -->
             <a href="">{{ doc.name }}</a>
         </nav>
+        	<div class="p-0" style="
+border-top: 40px solid #e4002c;
+    position: relative;
+    ">
         <h1 class="product-banner-title">{{ doc.name }}</h1>
     </div>
 </section>
@@ -404,7 +428,7 @@
 	.items-table th {
         padding: 1rem;
         vertical-align: middle;
-		background: #590088;
+		/* background: #590088; */
     }
     .items-table td{
         padding: 1rem;
@@ -484,7 +508,7 @@ input[type="text"], select {
 }
 
 .apply-btn, .pay-btn {
-  background-color: #6a0dad;
+  background-color: black !;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -539,6 +563,346 @@ input[type="text"], select {
 .btn:hover {
   background-color: #4fd1c5 !important;
 }
+.payment-container {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Section Headings */
+.payment-container h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4c1d95; /* purple accent */
+  margin-bottom: 0.5rem;
+}
+
+.payment-container h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+/* Balance Section */
+.balance-section label {
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.balance-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.balance-input input {
+  flex: 1;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.apply-btn {
+  background-color: #4c1d95;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.apply-btn:hover {
+  background-color: #3b0764;
+}
+
+/* Payment Methods Layout */
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* Each method group styled as a card */
+.payment-methods .method-group {
+  flex: 1 1 300px;
+  min-width: 280px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: inset 0 0 0.5px rgba(0,0,0,0.05);
+}
+
+/* Radio labels */
+.payment-methods .method-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+/* Radio inputs */
+.payment-methods .method-group input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #4c1d95;
+}
+
+/* Disabled Option */
+.payment-methods .method-group.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Top section stays full width */
+.balance-section {
+  order: 0;
+}
+
+/* Wrap UPI + Other Payment Methods side by side */
+.payment-methods .method-group:nth-of-type(2),
+.payment-methods .method-group:nth-of-type(3) {
+  order: 1;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(50% - 1rem);
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Cash on Delivery stays full width at bottom */
+.payment-methods .method-group.disabled {
+  order: 2;
+  width: 100%;
+  opacity: 0.6;
+  cursor: not-allowed;
+  margin-top: 1rem;
+}
+
+/* Headings and labels */
+.payment-methods h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color:#000;
+  margin-bottom: 0.5rem;
+}
+
+.payment-methods h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.payment-methods label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.payment-methods input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #4c1d95;
+}
+
+/* Balance input styling */
+.balance-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.balance-input input {
+  flex: 1;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.apply-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.apply-btn:hover {
+  background-color: #3b0764;
+}
+.payment-methods .method-group:nth-of-type(1) {
+  flex: 1 1 300px;
+  min-width: 280px;
+  height: 185px;
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-methods .method-group:nth-of-type(1):hover {
+  border-color: black;
+  box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1);
+}
+
+.payment-methods .method-group:nth-of-type(1) h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+
+.payment-methods .method-group:nth-of-type(1) label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.payment-methods .method-group:nth-of-type(1) input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #4c1d95;
+}
+
+.payment-methods .method-group:nth-of-type(2) {
+  flex: 1 1 300px;
+  min-width: 280px;
+  height: 185px;
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-methods .method-group:nth-of-type(2):hover {
+  border-color: black;
+  box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1);
+}
+
+.payment-methods .method-group:nth-of-type(2) h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+
+.payment-methods .method-group:nth-of-type(2) label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.payment-methods .method-group:nth-of-type(2) input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #4c1d95;
+}
+.payment-methods .method-group:nth-of-type(2) {
+  flex: 1 1 300px;
+  min-width: 280px;
+  height: 185px;
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: 
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease,
+    background-color 0.25s ease;
+}
+/* Shared Hover Effect for UPI & Other Payment Methods */
+.payment-methods .method-group:nth-of-type(1):hover,
+.payment-methods .method-group:nth-of-type(2):hover {
+  border-color: black;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Headings */
+.payment-methods .method-group:nth-of-type(1) h4,
+.payment-methods .method-group:nth-of-type(2) h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.payment-methods .method-group:nth-of-type(1):hover h4,
+.payment-methods .method-group:nth-of-type(2):hover h4 {
+  color: black;
+}
+
+/* Labels */
+.payment-methods .method-group:nth-of-type(1) label,
+.payment-methods .method-group:nth-of-type(2) label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.payment-methods .method-group:nth-of-type(1) label:hover,
+.payment-methods .method-group:nth-of-type(2) label:hover {
+  color: #111827;
+  padding-left: 4px;
+}
+
+/* Radio inputs */
+.payment-methods .method-group:nth-of-type(1) input[type="radio"],
+.payment-methods .method-group:nth-of-type(2) input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: black;
+  transition: transform 0.2s ease;
+}
+
+.payment-methods .method-group:nth-of-type(1) input[type="radio"]:hover,
+.payment-methods .method-group:nth-of-type(2) input[type="radio"]:hover {
+  transform: scale(1.1);
+}
 
 
 </style>
@@ -546,45 +910,163 @@ input[type="text"], select {
 <div class="order-page row mb-5">
   <div class="d-grid col-md-8 col-12 p-0">
      {% if "Corporate Buyer" not in roles %}
-  <div class="payment-container rounded shadow mb-4">
-  <!-- Left: Payment Methods -->
+ <div class="payment-container rounded shadow mb-4">
   <div class="payment-methods">
+
+    <!-- Balance Section (Top) -->
     <div class="balance-section">
-      <h2 class ="text-purple" style="font-size: 18px;font-weight: 700;">Payment method</h2>
-      <label for="balance-code">Your available balance</label>
+      <h2 class="text-purple" style="font-size: 18px; font-weight: 700;">Payment method</h2>
+      <!-- <label for="balance-code">Your available balance</label>
       <div class="balance-input">
-        <input type="text" id="balance-code" style="border: 1px solid #f2f2f2;"placeholder="Enter code">
-        <button class="apply-btn">Apply</button>
+        <input type="text" id="balance-code" style="border: 1px solid #f2f2f2;" placeholder="Enter code">
+        <button class="apply-btn">Apply</button> -->
+      <!-- </div>   -->
+    </div>
+
+    <!-- UPI + Other Payment Methods (Side by Side) -->
+    <div class="method-row" style="display: flex; gap: 2rem; margin-top: 1.5rem;">
+      <div class="method-group" style="flex: 1 1 300px; min-width: 280px; height: 185px;">
+        <h4 style="font-size:16px; font-weight:600;">UPI</h4>
+        <label><input type="radio" name="payment" value="amazon_upi"> Amazon Pay UPI</label>
+        <label><input type="radio" name="payment" value="bob_upi"> Bank of Baroda *5771</label>
+      </div>
+
+      <div class="method-group" style="flex: 1 1 300px; min-width: 280px; height: 185px;">
+        <h4 style="font-size:16px; font-weight:600;">Other Payment Methods</h4>
+        <label><input type="radio" name="payment" value="card"> Credit/Debit Card</label>
+        <label><input type="radio" name="payment" value="netbanking"> Net Banking</label>
+        <label><input type="radio" name="payment" value="other_upi"> Other UPI Apps</label>
+        <label><input type="radio" name="payment" value="emi"> EMI</label>
       </div>
     </div>
 
-    <div class="method-group">
-      <h4 style="font-size:16px; font-weight:600;">UPI</h4>
-      <label><input type="radio" name="payment" value="amazon_upi"> Amazon Pay UPI</label>
-      <label><input type="radio" name="payment" value="bob_upi"> Bank of Baroda *5771</label>
-    </div>
-
-    <div class="method-group">
-      <h4 style="font-size:16px; font-weight:600;">Other Payment Methods</h4>
-      <label><input type="radio" name="payment" value="card"> Credit/Debit Card</label>
-      <label><input type="radio" name="payment" value="netbanking"> Net Banking</label>
-      <!--<select class="bank-select mb-2">
-        <option disabled selected>Choose an Option</option>
-        <option>SBI</option>
-        <option>HDFC</option>
-        <option>ICICI</option>
-      </select>-->
-      <label><input type="radio" name="payment" value="other_upi"> Other UPI Apps</label>
-      <label><input type="radio" name="payment" value="emi"> EMI</label>
-    </div>
-
-    <div class="method-group disabled">
+    <!-- Cash on Delivery (Bottom) -->
+    <div class="method-group disabled" style="opacity: 0.6; cursor: not-allowed; margin-top: 1rem; max-height: fit-content;">
       <label><input type="radio" disabled> Cash on Delivery / Pay on Delivery (Unavailable)</label>
     </div>
+
   </div>
-  
 </div>
+
 {% endif %}
+
+<style>
+.items-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  font-family: 'Inter', sans-serif;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Table Hover Lift */
+.items-table:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Table Head */
+.items-table thead {
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.items-table thead th {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.items-table thead th:hover {
+  color: #111827;
+}
+
+/* Table Body */
+.items-table tbody td {
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: #1f2937;
+  vertical-align: middle;
+  border-top: 1px solid #e5e7eb;
+  transition: color 0.3s ease;
+}
+
+.items-table tbody td:hover {
+  color: #000000;
+}
+
+/* Item Cell with Image */
+.items-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Item Image */
+.items-table .item-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.items-table .item-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Description Text */
+.items-table td small {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+.items-table td small:hover {
+  color: #4c1d95;
+}
+
+/* Hover Row */
+.items-table tbody tr {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.items-table tbody tr:hover {
+  background-color: #f9fafb;
+  transform: scale(1.01);
+}
+
+/* Alignment Helpers */
+.items-table .text-start {
+  text-align: left;
+}
+
+.items-table .text-center {
+  text-align: center;
+}
+
+.items-table .text-end {
+  text-align: right;
+}
+
+.items-table .px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+</style>
 
     <table class="items-table rounded shadow ">
         <thead class="rounded">
@@ -619,6 +1101,96 @@ input[type="text"], select {
         </tbody>
     </table>
   </div>
+
+  <style>
+.card {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(14px) saturate(120%);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.5s ease,
+              background 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* Badge */
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: #6f42c1;
+  border: 1px solid #6f42c1;
+  box-shadow: 0 2px 8px rgba(111, 66, 193, 0.15);
+  transition: all 0.4s ease;
+}
+
+.badge:hover {
+  background: #6f42c1;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Grand Total */
+.card-body h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.card-body h3:hover {
+  color: #6f42c1;
+  transform: scale(1.05);
+}
+
+/* Pay Button */
+.card-body .btn {
+  background: linear-gradient(90deg, #6f42c1, #9b59b6);
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(111, 66, 193, 0.25);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-body .btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.card-body .btn:hover::after {
+  left: 120%;
+}
+
+.card-body .btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(111, 66, 193, 0.35);
+}
+
+  </style>
      {#<div class="header-bar shadow col-md-3 col-12" style="margin-left: 54px;height: fit-content;">
       <div class="col-md-6 mb-2">
         <div class="badge bg-info text-light p-2 text-uppercase me-2" style="border: 1px solid #590088;

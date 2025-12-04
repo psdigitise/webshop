@@ -22,7 +22,7 @@ webshop.ProductList = class {
 
 		this.items.forEach(item => {
 			let title = item.web_item_name || item.item_name || item.item_code || "";
-			title =  title.length > 200 ? title.substr(0, 200) + "..." : title;
+			title = title.length > 200 ? title.substr(0, 200) + "..." : title;
 
 			html += `<div class='row list-row w-100 mb-4 h-100' style="background-color:#f2f2f2;">`;
 			html += me.get_image_html(item, title, me.settings);
@@ -42,23 +42,23 @@ webshop.ProductList = class {
 		if (image) {
 			image_html += `
 				<div class="col-2 border text-center rounded list-image">
-					<a class="product-link product-list-link" href="/${ item.route || '#' }">
-						<img itemprop="image" class="website-image h-100 w-100" alt="${ title }"
-							src="${ image }">
+					<a class="product-link product-list-link" href="/${item.route || '#'}">
+						<img itemprop="image" class="website-image h-100 w-100" alt="${title}"
+							src="${image}">
 					</a>
-					${ wishlist_enabled ? this.get_wishlist_icon(item): '' }
+					${wishlist_enabled ? this.get_wishlist_icon(item) : ''}
 				</div>
 			`;
 		} else {
 			image_html += `
 				<div class="col-2 border text-center rounded list-image">
-					<a class="product-link product-list-link" href="/${ item.route || '#' }"
+					<a class="product-link product-list-link" href="/${item.route || '#'}"
 						style="text-decoration: none">
 						<div class="card-img-top no-image-list">
-							${ frappe.get_abbr(title) }
+							${frappe.get_abbr(title)}
 						</div>
 					</a>
-					${ wishlist_enabled ? this.get_wishlist_icon(item): '' }
+					${wishlist_enabled ? this.get_wishlist_icon(item) : ''}
 				</div>
 			`;
 		}
@@ -73,49 +73,127 @@ webshop.ProductList = class {
 		body_html += `</div>`;
 		return body_html;
 	}
-
 	get_title_html(item, title, settings) {
 		let title_html = `<div style="display: flex; margin-left: -15px;">`;
+
 		title_html += `
-			<div class="col-8" style="margin-right: -15px;">
-				<a class="" href="/${ item.route || '#' }"
-					style="color: var(--gray-800); font-weight: 500;">
-					${ title }
-				</a>
-			</div>
-		`;
+        <div class="col-8" style="margin-right: -15px;">
+            <a href="/${item.route || '#'}"
+                style="
+                    color: #111827;
+                    font-weight: 600;
+                    font-size: 1.125rem;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                    display: inline-block;
+                    margin-bottom: 6px;
+                "
+                onmouseover="this.style.color='#e4002c'"
+                onmouseout="this.style.color='#111827'"
+            >
+                ${title}
+            </a>
+        </div>
+    `;
 
 		if (settings.enabled) {
 			title_html += `<div class="col-4 cart-action-container ${item.in_cart ? 'd-flex' : ''}">`;
 			title_html += this.get_primary_button(item, settings);
 			title_html += `</div>`;
 		}
-		title_html += `</div>`;
 
+		title_html += `</div>`;
 		return title_html;
 	}
 
+	// get_title_html(item, title, settings) {
+	// 	let title_html = `<div style="display: flex; margin-left: -15px;">`;
+	// 	title_html += `
+	// 		<div class="col-8" style="margin-right: -15px;">
+	// 			<a class="" href="/${ item.route || '#' }"
+	// 				style="color: var(--gray-800); font-weight: 500;">
+	// 				${ title }
+	// 			</a>
+	// 		</div>
+	// 	`;
+
+	// 	if (settings.enabled) {
+	// 		title_html += `<div class="col-4 cart-action-container ${item.in_cart ? 'd-flex' : ''}">`;
+	// 		title_html += this.get_primary_button(item, settings);
+	// 		title_html += `</div>`;
+	// 	}
+	// 	title_html += `</div>`;
+
+	// 	return title_html;
+	// }
+
+	// get_item_details(item, settings) {
+	// 	let details = `
+	// 		<p class="product-code">
+	// 			${ item.item_group } | ${ __('Item Code') } : ${ item.item_code }
+	// 		</p>
+	// 		<div class="mt-2" style="color: var(--gray-600) !important; font-size: 13px;">
+	// 			${ item.short_description || '' }
+	// 		</div>
+	// 		<div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
+	// 			${ item.formatted_price || '' }
+	// 	`;
+
+	// 	if (item.formatted_mrp) {
+	// 		details += `
+	// 			<small class="striked-price">
+	// 				<s>${ item.formatted_mrp ? item.formatted_mrp.replace(/ +/g, "") : "" }</s>
+	// 			</small>
+	// 			<small class="ml-1 product-info-green">
+	// 				${ item.discount } ${ __("OFF") }
+	// 			</small>
+	// 		`;
+	// 	}
+
+	// 	details += this.get_stock_availability(item, settings);
+	// 	details += `</div>`;
+
+	// 	return details;
+	// }
+
+
+
 	get_item_details(item, settings) {
 		let details = `
-			<p class="product-code">
-				${ item.item_group } | ${ __('Item Code') } : ${ item.item_code }
-			</p>
-			<div class="mt-2" style="color: var(--gray-600) !important; font-size: 13px;">
-				${ item.short_description || '' }
-			</div>
-			<div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
-				${ item.formatted_price || '' }
-		`;
+        <p class="product-code">
+            ${item.item_group} | ${__('Item Code')} : ${item.item_code}
+        </p>
+        <div class="mt-2 product-description" style="
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4.5em;
+            line-height: 1.5em;
+            color: var(--gray-600) !important;
+            font-size: 13px;
+        ">
+            ${item.short_description || ''}
+        </div>
+      <div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer"
+     style="font-size: 1.125rem; font-weight: 600; color: #e4002c !important; 
+     background-color: transparent; padding: 4px 10px; border:0 ; 
+     display: inline-block; margin-top: 8px; margin-bottom: 4px;">
+  ${item.formatted_price || ''}
+</div>
+
+    `;
 
 		if (item.formatted_mrp) {
 			details += `
-				<small class="striked-price">
-					<s>${ item.formatted_mrp ? item.formatted_mrp.replace(/ +/g, "") : "" }</s>
-				</small>
-				<small class="ml-1 product-info-green">
-					${ item.discount } ${ __("OFF") }
-				</small>
-			`;
+            <small class="striked-price">
+                <s>${item.formatted_mrp ? item.formatted_mrp.replace(/ +/g, "") : ""}</s>
+            </small>
+            <small class="ml-1 product-info-green">
+                ${item.discount} ${__("OFF")}
+            </small>
+        `;
 		}
 
 		details += this.get_stock_availability(item, settings);
@@ -124,25 +202,26 @@ webshop.ProductList = class {
 		return details;
 	}
 
+
 	get_stock_availability(item, settings) {
 		if (settings.show_stock_availability && !item.has_variants) {
 			if (item.on_backorder) {
 				return `
 					<br>
 					<span class="out-of-stock mt-2" style="color: var(--primary-color)">
-						${ __("Available on backorder") }
+						${__("Available on backorder")}
 					</span>
 				`;
 			} else if (!item.in_stock) {
 				return `
 					<br>
-					<span class="out-of-stock mt-2">${ __("Out of stock") }</span>
+					<span class="out-of-stock mt-2">${__("Out of stock")}</span>
 				`;
 			} else if (item.is_stock) {
 				return `
 					<br>
 					<span class="in-stock in-green has-stock mt-2"
-						style="font-size: 14px;">${ __("In stock") }</span>
+						style="font-size: 14px;">${__("In stock")}</span>
 				`;
 			}
 		}
@@ -153,58 +232,136 @@ webshop.ProductList = class {
 		let icon_class = item.wished ? "wished" : "not-wished";
 
 		return `
-			<div class="like-action-list ${ item.wished ? "like-action-wished" : ''}"
-				data-item-code="${ item.item_code }">
+			<div class="like-action-list ${item.wished ? "like-action-wished" : ''}"
+				data-item-code="${item.item_code}">
 				<svg class="icon sm">
-					<use class="${ icon_class } wish-icon" href="#icon-heart"></use>
+					<use class="${icon_class} wish-icon" href="#icon-heart"></use>
 				</svg>
 			</div>
 		`;
 	}
 
+	// get_primary_button(item, settings) {
+	// 	if (item.has_variants) {
+	// 		return `
+	// 			<a href="/${ item.route || '#' }">
+	// 				<div class="btn btn-sm btn-explore-variants btn mb-0 mt-0">
+	// 					${ __("Explore") }
+	// 				</div>
+	// 			</a>
+	// 		`;
+	// 	} else if (settings.enabled && (settings.allow_items_not_in_stock || item.in_stock)) {
+	// 		return `
+	// 			<div id="${ item.name }" class="btn
+	// 				btn-sm btn-primary btn-add-to-cart-list mb-0
+	// 				${ item.in_cart ? 'hidden' : '' }"
+	// 				data-item-code="${ item.item_code }"
+	// 				style="margin-top: 0px !important; max-height: 30px; float: right;
+	// 					padding: 0.25rem 1rem; min-width: 135px;">
+	// 				<span class="mr-2">
+	// 					<svg class="icon icon-md">
+	// 						<use href="#icon-assets"></use>
+	// 					</svg>
+	// 				</span>
+	// 				${ settings.enable_checkout ? __("Add to Cart") :  __("Add to Quote") }
+	// 			</div>
+
+	// 			<div class="cart-indicator list-indicator ${item.in_cart ? '' : 'hidden'}">
+
+	// 			</div>
+
+	// 			<a href="/cart">
+	// 				<div id="${ item.name }" class="btn btn-black
+	// 					btn-sm btn-primary btn-add-to-cart-list
+	// 					ml-4 go-to-cart mb-0 mt-0
+	// 					${ item.in_cart ? '' : 'hidden' }"
+	// 					data-item-code="${ item.item_code }"
+	// 					style="padding: 0.25rem 1rem; min-width: 135px;">
+	// 					${ settings.enable_checkout ? __("View in Cart") :  __("Go to Quote") }
+	// 				</div>
+	// 			</a>
+	// 		`;
+	// 	} else {
+	// 		return ``;
+	// 	}
+	// }
+
 	get_primary_button(item, settings) {
 		if (item.has_variants) {
 			return `
-				<a href="/${ item.route || '#' }">
-					<div class="btn btn-sm btn-explore-variants btn mb-0 mt-0">
-						${ __("Explore") }
-					</div>
-				</a>
-			`;
+            <a href="/${item.route || '#'}">
+                <div class="btn btn-sm btn-explore-variants mb-0 mt-0"
+                    style="
+                        background-color: #374151;
+                        color: #fff;
+                        border: 1px solid #374151;
+                        border-radius: 6px;
+                        padding: 6px 16px;
+                        font-size: 0.875rem;
+                        font-weight: 500;
+                        min-width: 135px;
+                        max-height: 36px;
+                        text-align: center;
+                    ">
+                    ${__("Explore")}
+                </div>
+            </a>
+        `;
 		} else if (settings.enabled && (settings.allow_items_not_in_stock || item.in_stock)) {
 			return `
-				<div id="${ item.name }" class="btn
-					btn-sm btn-primary btn-add-to-cart-list mb-0
-					${ item.in_cart ? 'hidden' : '' }"
-					data-item-code="${ item.item_code }"
-					style="margin-top: 0px !important; max-height: 30px; float: right;
-						padding: 0.25rem 1rem; min-width: 135px;">
-					<span class="mr-2">
-						<svg class="icon icon-md">
-							<use href="#icon-assets"></use>
-						</svg>
-					</span>
-					${ settings.enable_checkout ? __("Add to Cart") :  __("Add to Quote") }
-				</div>
+            <div id="${item.name}" class="btn btn-sm btn-add-to-cart-list mb-0
+                ${item.in_cart ? 'hidden' : ''}"
+                data-item-code="${item.item_code}"
+                style="
+                    background-color: #2563eb !important;
+                    color: #fff !important;
+                    border: 1px solid #2563eb !important;
+                    border-radius: 6px;
+                    padding: 6px 16px;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    min-width: 135px;
+                    max-height: 36px;
+                    text-align: center;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                <span class="mr-2">
+                    <svg class="icon icon-md">
+                        <use href="#icon-assets"></use>
+                    </svg>
+                </span>
+                ${settings.enable_checkout ? __("Add to Cart") : __("Add to Quote")}
+            </div>
 
-				<div class="cart-indicator list-indicator ${item.in_cart ? '' : 'hidden'}">
-					1
-				</div>
+            <div class="cart-indicator list-indicator d-none ${item.in_cart ? '' : 'hidden'}"></div>
 
-				<a href="/cart">
-					<div id="${ item.name }" class="btn btn-black
-						btn-sm btn-primary btn-add-to-cart-list
-						ml-4 go-to-cart mb-0 mt-0
-						${ item.in_cart ? '' : 'hidden' }"
-						data-item-code="${ item.item_code }"
-						style="padding: 0.25rem 1rem; min-width: 135px;">
-						${ settings.enable_checkout ? __("View in Cart") :  __("Go to Quote") }
-					</div>
-				</a>
-			`;
+            <a href="/cart">
+              <div id="${item.name}" 
+     class="btn btn-sm go-to-cart btn-add-to-cart-list ${item.in_cart ? '' : 'hidden'}"
+     data-item-code="${item.item_code}"
+     style="
+        background-color: green !important;
+        color: #ffffff !important;
+        border: 1px solid white !important;
+        border-radius: 6px;
+        padding: 6px 16px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        min-width: 135px;
+        text-align: center;
+        margin-left: 1rem;
+     ">
+    ${settings.enable_checkout ? __("View in Cart") : __("Go to Quote")}
+</div>
+
+            </a>
+        `;
 		} else {
 			return ``;
 		}
 	}
+
 
 };

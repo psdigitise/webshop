@@ -1,45 +1,60 @@
 {#<div class="card address-card h-100" style="padding:15px">
-	<div class="btn btn-sm btn-default btn-change-address font-md" style="position: absolute; right: 15px; top: 15px;">
-		{{ _('Change') }}
-	</div>
-	<div class="card-body p-0">
-		<div class="card-title">{{ address.title }}</div>
-		<div class="card-text mb-2">
-			{{ address.display }}
-		</div>
-		<a href="/address/{{address.name}}" class="card-link">
-			<svg class="icon icon-sm">
-				<use href="#icon-edit"></use>
-			</svg>
-			{{ _('Edit') }}
-		</a>
-	</div>
-</div>#}
-
-<div class="card address-card position-relative shadow-sm rounded-4 p-4 mb-3" style="background-color: #fff;">
-    
-    <!-- Change Button -->
-    <button class="btn btn-sm btn-outline-primary position-absolute" 
-            style="top: 15px; right: 15px;">
+    <div class="btn btn-sm btn-default btn-change-address font-md" style="position: absolute; right: 15px; top: 15px;">
         {{ _('Change') }}
-    </button>
-
+    </div>
     <div class="card-body p-0">
-        <!-- Address Title -->
-        <h6 class="card-title fw-bold mb-2">{{ address.title }}</h6>
-
-        <!-- Address Details -->
-        <p class="card-text text-muted mb-3" style="white-space: pre-line;">
+        <div class="card-title">{{ address.title }}</div>
+        <div class="card-text mb-2">
             {{ address.display }}
-        </p>
-
-        <!-- Edit Link -->
-        <a href="/address/{{ address.name }}" class="text-decoration-none text-primary fw-semibold">
-            <svg class="icon icon-sm me-1" style="width: 16px; height: 16px; vertical-align: text-bottom;">
+        </div>
+        <a href="/address/{{address.name}}" class="card-link">
+            <svg class="icon icon-sm">
                 <use href="#icon-edit"></use>
             </svg>
             {{ _('Edit') }}
         </a>
     </div>
-</div>
+</div>#}
+<div class="card address-card p-4 rounded-4 shadow-sm mb-4" style="border: 1px solid #e5e5e5; background-color: #fff;">
 
+    <!-- Address Content Box -->
+    <div class="p-3 rounded-3" style="border: 1px solid #ddd; background: #fafafa;">
+
+        <h6 class="fw-bold mb-2">{{ address.title }}</h6>
+
+        <p class="mb-3 text-muted" style="white-space: pre-line;">
+            {{ address.display }}
+        </p>
+
+        <!-- Edit + Change row -->
+        <div class="d-flex justify-content-between align-items-center">
+
+            <!-- Edit link -->
+            <a href="/address/{{ address.name }}" class="fw-semibold text-dark" style="text-decoration:none;">
+                {{ _('Edit') }}
+            </a>
+
+            <!-- Change Button -->
+            <button class="btn btn-sm change-btn">
+                {{ _('Change') }}
+            </button>
+
+            <style>
+                .change-btn {
+                    background: #000 !important;
+                    color: #fff !important;
+                    border-radius: 6px;
+                    padding: 4px 12px;
+                    border: none;
+                }
+
+                .change-btn:hover {
+                    background: #222 !important;
+                    color: #fff !important;
+                }
+            </style>
+
+        </div>
+
+    </div>
+</div>

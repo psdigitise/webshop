@@ -8,159 +8,287 @@
 	{% include "templates/includes/breadcrumbs.html" %}
 </div>-->
 {% endblock %}
- {% block header %}
- <style>
+{% block header %}
+<style>
   .product-banner {
     border-top: #cacaca 1px solid;
-    background: #a6a6a6;
+    /* background: #a6a6a6; */
     color: #000;
     padding: 4rem 0;
-}
-.breadcrumb_a a {
+  }
+
+  .breadcrumb_a a {
     font-size: 1rem;
     color: #000;
     font-weight: 700;
     text-decoration: none;
-     /*opacity: 0.8; */
+    /*opacity: 0.8; */
     transition: opacity 0.3s ease;
-}
- 
-.breadcrumb_a span {
+  }
+
+  .breadcrumb_a span {
     margin: 0 9px;
     color: #000;
-}
- 
-.product-banner-title {
+  }
+
+  .product-banner-title {
     font-size: 3rem;
     font-weight: 700;
     margin: 0;
-    border-top: 1px solid #cacaca;
-    padding-top: 2rem;
-}
+    /* border-top: 1px solid #cacaca; */
+    /* padding-top: 2rem; */
+        padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  /* Banner Wrapper */
+  .product-banner {
+    padding: 40px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb_a {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .breadcrumb_a a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+  }
+
+  .breadcrumb_a a:hover {
+    color: #111827;
+    text-decoration: underline;
+  }
+
+  .breadcrumb_a span {
+    margin: 0 6px;
+    color: #9ca3af;
+  }
+
+  /* Page Title */
+  .product-banner-title {
+    font-size: 40px !important;
+    font-weight: 500 !important;
+    color: #111827;
+    margin-top: 5px;
+    letter-spacing: -0.5px;
+  }
 </style>
-<section class="product-banner mb-5">
-<div class="container-fluid">
-  <nav class="breadcrumb_a">
-<a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a><span>/</span> <a>{{ _(doc.web_item_name) }}</a>
-</nav>
-<h1 class="product-banner-title">{{ _(doc.web_item_name) }}</h1>
-</div>
+<section class="product-banner mb-3">
+  <div >
+    <nav class="breadcrumb_a">
+      <a href="/">Home</a> <span>/</span> <a href="/all-products">All Products</a><span>/</span> <a>{{
+        _(doc.web_item_name) }}</a>
+    </nav>
+    <div class="p-0" style="
+border-top: 40px solid #e4002c;
+    position: relative;
+    ">
+
+    <h1 class="product-banner-title">{{ _(doc.web_item_name) }}</h1>
+  </div>
 </section>
 <!-- <div class="mb-6 " style="color: #570987;">{{ _("All Products") }}</div> -->
 {% endblock header %}
 {% block page_content %}
-<div class="product-container container item-main" style="background-color:#f2f2f2 !important;">
-	{% from "webshop/templates/includes/macros.html" import product_image %}
-	<div class="item-content">
-		<div class="product-page-content" itemscope itemtype="http://schema.org/Product">
-			<!-- Image, Description, Add to Cart -->
-			<div class="row">
-				{% include "templates/generators/item/item_image.html" %}
-        
-				{% include "templates/generators/item/item_details.html" %}
-			</div>
-		</div>
-	</div>
+<div class="product-container container item-main" style="background-color:whitesmoke !important; margin-bottom: 50px;">
+  {% from "webshop/templates/includes/macros.html" import product_image %}
+  <div class="item-content">
+    <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
+      <!-- Image, Description, Add to Cart -->
+      <div class="row">
+        {% include "templates/generators/item/item_image.html" %}
+
+        {% include "templates/generators/item/item_details.html" %}
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Additional Info/Reviews, Recommendations -->
 <div class="d-flex">
-	{% set show_recommended_items = recommended_items and shopping_cart.cart_settings.enable_recommendations %}
-	{% set info_col = 'col-12' if show_recommended_items else 'col-12' %}
+  {% set show_recommended_items = recommended_items and shopping_cart.cart_settings.enable_recommendations %}
+  {% set info_col = 'col-12' if show_recommended_items else 'col-12' %}
 
-	{% set padding_top = 'pt-0' if (show_tabs and tabs) else '' %}
+  {% set padding_top = 'pt-0' if (show_tabs and tabs) else '' %}
 
-	<div class="product-container container pt-0 {{ padding_top }} {{ info_col }}" style="background-color:#f2f2f2 !important;">
-		<div class="item-content {{ 'mt-minus-2' if (show_tabs and tabs) else '' }}">
-			<div class="product-page-content row" itemscope itemtype="http://schema.org/Product" style="display:flex">
+  <div class="product-container container pt-0 {{ padding_top }} {{ info_col }}" style="display: none;">
+    <div class="item-content {{ 'mt-minus-2' if (show_tabs and tabs) else '' }}">
+      <div class="product-page-content row" itemscope itemtype="http://schema.org/Product" style="display:flex">
 
-				<!-- Product Specifications Table Section -->
-				{% if show_tabs and tabs %}
-					<div class="category-tabs">
-						<!-- tabs -->
-							{{ web_block("Section with Tabs", values=tabs, add_container=0,
-								add_top_padding=0, add_bottom_padding=0)
-							}}
-					</div>
-				{% elif website_specifications %}
-					{% include "templates/generators/item/item_specifications.html"%}
-				{% endif %}
+        <!-- Product Specifications Table Section -->
+        {% if show_tabs and tabs %}
+        <div class="category-tabs">
+          <!-- tabs -->
+          {{ web_block("Section with Tabs", values=tabs, add_container=0,
+          add_top_padding=0, add_bottom_padding=0)
+          }}
+        </div>
+        {% elif website_specifications %}
+        {% include "templates/generators/item/item_specifications.html"%}
+        {% endif %}
 
-				<!-- Advanced Custom Website Content -->
-				
+        <!-- Advanced Custom Website Content -->
 
-				<!-- Reviews and Comments -->
-				
-			</div>
-		</div>
-	</div>
 
-	<!-- Recommended Items -->
-	<!--{% if show_recommended_items %}
-		<div class="mt-4 col-3 recommended-item-section">
-			<span class="recommendation-header">{{ _("Recommended") }}</span>
-			<div class="product-container mt-2 recommendation-container">
-				{% for item in recommended_items %}
-					{{ recommended_item_row(item) }}
-				{% endfor %}
-			</div>
-		</div>
-	{% endif %}-->
+        <!-- Reviews and Comments -->
+
+      </div>
+    </div>
+  </div>
+
+
 
 </div>
 <style>
-.carousel-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
+	/* Scrollable Reviews */
+.reviews-scroll-container {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-top: 20px;
 }
 
-.carousel-track {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 1rem 0;
-}
-
-.recommended-item {
-  flex: 0 0 auto;
-  width: 190px;
+/* Review Card Style (matches your design) */
+.review-card {
   background: #f2f2f2;
-  border-radius:0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 0;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #000;
+  transition: 0.3s ease;
 }
 
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #570987;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  font-size: 1.5rem;
-  z-index: 1;
-  border-radius: 50%;
+.review-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-.carousel-arrow.left {
-  left: 0.5rem;
+/* Scrollbar */
+.reviews-scroll-container::-webkit-scrollbar {
+  width: 6px;
 }
-
-.carousel-arrow.right {
-  right: 0.5rem;
+.reviews-scroll-container::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #222;
 }
 </style>
+<style>
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
 
+  .carousel-track {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+  }
+
+  .recommended-item {
+    flex: 0 0 auto;
+    width: 190px;
+    background: #f2f2f2;
+    border-radius: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #570987;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carousel-arrow.left {
+    left: 0.5rem;
+  }
+
+  .carousel-arrow.right {
+    right: 0.5rem;
+  }
+
+  /* Banner Section */
+  .product-banner {
+    padding: 27px 0 40px;
+    background: linear-gradient(to right, #f9fafb, #ffffff);
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb_a {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .breadcrumb_a a {
+    color: #4b5563;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  .breadcrumb_a a:hover {
+    color: #111827;
+  }
+
+  .breadcrumb_a span {
+    color: #9ca3af;
+    margin: 0 4px;
+    font-weight: 400;
+  }
+
+  /* Page Title */
+  .product-banner-title {
+    font-size: 46px;
+    font-weight: 800;
+    color: #111827;
+    margin-top: 8px;
+    letter-spacing: -0.6px;
+  }
+
+  /* Add subtle bottom spacing for cleaner view */
+  .product-banner-title+hr {
+    margin-top: 20px;
+  }
+</style>
+<!-- 
 {% if all_items %}
 <div class="all-items-carousel container mt-5">
   <h4 class="mb-3 text-purple">{{ _("Explore More Items") }}</h4>
 
   <div class="carousel-wrapper">
-    <!-- <button class="carousel-arrow left left2">&#10094;</button>-->
+
 
     <div class="carousel-track track2">
       {% for item in all_items %}
@@ -168,13 +296,945 @@
       {% endfor %}
     </div>
 
-    <!-- <button class="carousel-arrow right right2">&#10095;</button>-->
   </div>
 </div>
-{% endif %}
-{% endblock %}
+{% endif %} -->
 
+<style>
+  /* Product Card */
+  .product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Product Image */
+  .product-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    overflow: hidden;
+  }
+
+  .product-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Product Info */
+  .product-info {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .product-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+  }
+
+  .product-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  /* Quantity Input */
+  .qty-input {
+    width: 60px;
+    height: 32px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  /* Add to Basket Button */
+  .add-to-cart-btn {
+    background-color: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 40px;
+    padding: 6px 16px;
+    border: none;
+    transition: none;
+  }
+
+  .add-to-cart-btn i {
+    margin-right: 6px;
+  }
+
+  /* Responsive Tweaks */
+  @media (max-width: 768px) {
+    .product-card {
+      padding: 10px;
+    }
+
+    .product-image-wrapper {
+      height: 120px;
+    }
+
+    .product-name,
+    .product-price {
+      font-size: 13px;
+    }
+
+    .add-to-cart-btn {
+      font-size: 12px;
+      padding: 5px 14px;
+    }
+
+    .qty-input {
+      width: 50px;
+      height: 30px;
+      font-size: 12px;
+    }
+  }
+
+  /* Container Wrapper */
+  .product-grid-container {
+    /* background-color: #f9f9f9; */
+    padding: 40px 20px;
+    border-top: 1px solid #eee;
+  }
+
+  /* Product Card */
+  .product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Product Image */
+  .product-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    overflow: hidden;
+  }
+
+  .product-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Product Info */
+  .product-info {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .product-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+  }
+
+  .product-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    /* text-align: center; */
+  }
+  .product-prices {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+  }
+
+  /* Quantity Input */
+  .qty-input {
+    width: 60px;
+    height: 32px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  /* Add to Basket Button */
+  .add-to-cart-btn {
+    background-color: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 40px;
+    padding: 6px 16px;
+    border: none;
+  }
+
+  .add-to-cart-btn i {
+    margin-right: 6px;
+  }
+
+  /* Responsive Tweaks */
+  @media (max-width: 768px) {
+    .product-card {
+      padding: 12px;
+    }
+
+    .product-image-wrapper {
+      height: 120px;
+    }
+
+    .product-name,
+    .product-price {
+      font-size: 13px;
+    }
+
+    .add-to-cart-btn {
+      font-size: 12px;
+      padding: 5px 14px;
+    }
+
+    .qty-input {
+      width: 50px;
+      height: 30px;
+      font-size: 12px;
+    }
+  }
+
+  .cross-sell-zone__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-top: 20px;
+}
+
+.cross-sell-zone__title-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.cross-sell-zone__title-bar {
+  display: block;
+  width: 100px;
+  height: 4px;
+  background-color: lightblue;
+  border-radius: 2px;
+}
+
+.product-description {
+  margin-top: 20px;
+}
+.product-description-section {
+    background-color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.description-title {
+    font-size: 22px;
+    font-weight: 300;
+    color: #2a2a2a;
+    text-transform: capitalize;
+}
+
+.description-divider {
+    width: 80px;
+    height: 3px;
+    border: none;
+    background-color: #0d6efd; /* Primary theme highlight (blue) */
+    margin-bottom: 20px;
+}
+
+.product-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+}
+
+.product-description p {
+    margin-bottom: 16px;
+}
+
+/* Optional subtle animation for smooth fade-in */
+.product-description-section {
+    animation: fadeInUp 0.6s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Section styling */
+.product-description-section {
+    background: #fff;
+    padding: 5px 0;
+}
+
+/* Title + line design */
+.description-header {
+    margin-bottom: 25px;
+}
+
+.description-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+}
+
+.description-underline {
+    width: 70px;
+    height: 4px;
+    background: lightblue; /* Your brand blue */
+    margin-top: 6px;
+    border-radius: 2px;
+}
+
+/* Main content text */
+.product-description {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #444;
+}
+
+.product-description p {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+/* Feature list styling */
+.product-description ul,
+.product-description ol {
+    margin-top: 10px;
+    padding-left: 0;
+}
+
+.product-description ul li {
+    list-style: none;
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 24px;
+    font-size: 16px;
+}
+
+.product-description ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #0d6efd;
+}
+
+.product-description h3{
+  font-size: 20px !important;
+}
+/* Smooth fade animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.cross-sell-zone__title {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between text and line */
+}
+
+.cross-sell-zone__title-bar {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc; /* soft gray line */
+  margin-top: 4px; /* slight vertical alignment tweak */
+}
+
+
+</style>
+
+<div class="product-grid-container container">
+  <h4 class="cross-sell-zone__title"> <span class="cross-sell-zone__title-text">Customers with similar interests also
+      viewed</span> <span class="cross-sell-zone__title-bar"></span> </h4>
+  <div class="row g-4">
+    {% for item in all_items[:4] %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="product-card h-100 d-flex flex-column justify-content-between">
+        <a href="/{{ item.route }}" class="text-decoration-none">
+          <div class="product-image-wrapper">
+            <img src="{{ item.website_image or '/assets/frappe/images/no-image.png' }}" alt="{{ item.web_item_name }}"
+              class="img-fluid product-image">
+          </div>
+        </a>
+        <div class="product-info text-start mt-3 flex-fill">
+          <p class="product-name mb-1">{{ item.web_item_name }}</p>
+          <p class="product-prices fw-bold text-dark mb-1">£{{ item.price }}</p>
+        </div>
+        <!-- <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
+          <input type="number" min="1" value="1" class="form-control form-control-sm qty-input text-center"
+            data-item-code="{{ item.item_code }}">
+          <button class="btn fw-semibold px-3 py-2 add-to-cart-btn" data-item-code="{{ item.item_code }}">
+            <i class="fa fa-shopping-cart me-1"></i> Add to basket
+          </button>
+        </div> -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+<style>
+  .section-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+    font-weight: 300;
+  margin-bottom: 8px;
+}
+
+.section-underline {
+  width: 60px;
+  height: 2px;
+  background-color: #ccc; /* soft gray line */
+  margin: 0 auto;
+}
+
+</style>
+<section class="product-description-section mt-5" id="description">
+  <div class="container" 
+ style="
+  border: 1px solid #ccc;           /* softer gray for a timeless feel */
+  border-radius: 8px;               /* slightly more rounded corners */
+  margin-bottom: 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* gentle shadow for depth */
+  padding: 24px;                    /* inner spacing for breathing room */
+  background-color: #fdfdfd;        /* off-white for warmth */
+"
+ >
+<div class="section-header">
+  <h4 class="section-title">Description</h4>
+  <div class="section-underline"></div>
+</div>
+
+ 
+
+    <div class="product-description" itemprop="description" >
+      {% if frappe.utils.strip_html(doc.web_long_description or '') %}
+        {{ _(doc.web_long_description) | safe }}
+      {% elif frappe.utils.strip_html(doc.short_description or '') %}
+        {{ _(doc.short_description) | safe }}
+      {% else %}
+        {{ "" }}
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+
+
+<style>
+    
+/* Reviews Container */
+.ratings-reviews-section {
+  background:whitesmoke;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-family: 'Jost', sans-serif;
+  color: #000; /* All text black */
+}
+
+/* Header */
+.reviews-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+    
+}
+
+/* Write Review Button */
+.btn-write-review {
+  background-color: #000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-write-review:hover {
+  background-color: #333;
+}
+
+/* Ratings Summary */
+.ratings-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  color: #000;
+}
+
+/* Review Card */
+.review-card {
+  background: #f2f2f2;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+  color: #000;
+}
+
+.review-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Review Title */
+.review-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #000;
+}
+
+/* Star Rating */
+.rating-stars {
+  color: #f5a623;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* Review Text */
+.review-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reviews-header {
+    font-size: 1.3rem;
+  }
+
+  .btn-write-review {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .review-card {
+    padding: 14px 18px;
+  }
+}
+/* Container */
+.ratings-reviews-section {
+  background:rgb(236, 234, 234);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  font-family: 'Jost', sans-serif;
+  color: #000;
+}
+
+/* Header */
+.reviews-header {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+}
+
+/* Divider */
+.reviews-divider {
+  border: none;
+  border-top: 2px solid lightblue;
+  width: 100px;
+  margin: 20px 0;
+}
+
+/* Write Review Button */
+.btn-write-review {
+  background-color: #000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-write-review:hover {
+  background-color: #333;
+}
+
+/* Ratings Summary */
+.ratings-summary {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  color: #000;
+}
+
+/* Scrollable Reviews */
+.reviews-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-top: 20px;
+  scroll-behavior: smooth;
+}
+
+.reviews-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Review Card */
+.review-card {
+  background: #fff;
+  border-left: 4px solid lightblue;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Review Title */
+.review-card h5,
+.user-review-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+/* Star Rating */
+.rating-stars {
+  color: #f5a623;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* Review Text */
+.review-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Reviewer Signature */
+.review-signature {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reviews-header {
+    font-size: 1.3rem;
+  }
+
+  .btn-write-review {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .review-card {
+    padding: 16px 18px;
+  }
+
+  .review-card p {
+    font-size: 14px;
+  }
+}
+/* Section Title */
+.reviews-header {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+/* Divider */
+.reviews-divider {
+  border: none;
+  border-top: 2px solid #570987;
+  width: 100px;
+  margin: 16px 0 24px;
+}
+
+/* Ratings Summary Block */
+.ratings-summary {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Rating Progress Bars */
+.rating-progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-cosmetic {
+  background-color: #570987;
+}
+
+/* Review Card */
+.review-card {
+  background: #fff;
+  border-left: 4px solid gray;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Review Title */
+.user-review-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+/* Review Text */
+.review-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Reviewer Signature */
+.review-signature {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 12px;
+}
+
+/* Scrollable Container */
+.reviews-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scroll-behavior: smooth;
+}
+
+.reviews-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+.reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .reviews-header {
+    font-size: 1.4rem;
+  }
+
+  .review-card {
+    padding: 16px 18px;
+  }
+
+  .review-card p {
+    font-size: 14px;
+  }
+}
+.reviews-header-wrapper {
+  position: relative;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.reviews-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 8px;
+  margin-left: 450px;
+}
+
+.reviews-underline {
+  width: 60px;
+  height: 2px;
+  background-color: #800080; /* purple */
+  margin: 0 auto;
+}
+
+.review-add-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+</style>
+
+
+{% from "webshop/templates/includes/macros.html" import user_review, ratings_summary %}
+<div class="container">
+  <div class="ratings-reviews-section col-12 hide-top-border-lg mt-4">
+    <!-- Title and Action -->
+    <div class="reviews-header-wrapper position-relative mb-3">
+      <h4 class="reviews-header text-center">Customer Reviews</h4>
+      <div class="reviews-underline"></div>
+      {% if frappe.session.user != "Guest" and user_is_customer %}
+        <button class="btn btn-write-review border review-add-btn" data-web-item="{{ doc.name }}">+</button>
+      {% endif %}
+    </div>
+
+    <!-- Divider -->
+  
+
+    <!-- Summary -->
+    {{ ratings_summary(reviews, reviews_per_rating, average_rating, average_whole_rating, doc, for_summary=True, total_reviews=total_reviews) }}
+
+    <!-- Reviews and Comments -->
+    <!-- You can loop user_review here if needed -->
+  </div>
+</div>
+
+
+<script>
+	frappe.ready(() => {
+    const $pageContent = $('.page_content');
+
+    $pageContent.find('.btn-write-review').one('click', function (e) {
+        const $btn = $(e.currentTarget);
+
+        const d = new frappe.ui.Dialog({
+            title: __("Write a Review"),
+            fields: [
+                { fieldname: "title", fieldtype: "Data", label: __("Headline"), reqd: 1 },
+                { fieldname: "rating", fieldtype: "Rating", label: __("Overall Rating"), reqd: 1 },
+                { fieldtype: "Section Break" },
+                { fieldname: "comment", fieldtype: "Small Text", label: __("Your Review") }
+            ],
+            primary_action: function () {
+                const data = d.get_values();
+                frappe.call({
+                    method: "webshop.webshop.doctype.item_review.item_review.add_item_review",
+                    args: {
+                        web_item: "{{ doc.name }}",
+                        title: data.title,
+                        rating: data.rating,
+                        comment: data.comment
+                    },
+                    freeze: true,
+                    freeze_message: __("Submitting Review ..."),
+                    callback: function (r) {
+                        if (!r.exc) {
+                            frappe.msgprint({
+                                message: __("Thank you for the review"),
+                                title: __("Review Submitted"),
+                                indicator: "green"
+                            });
+                            d.hide();
+                            location.reload();
+                        }
+                    }
+                });
+            },
+            primary_action_label: __("Submit")
+        });
+        d.show();
+    });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
 {% block base_scripts %}
+
+
 <!-- js should be loaded in body! -->
 <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/slick-carousel/slick/slick.min.js"></script>
@@ -206,7 +1266,7 @@
       track2.scrollBy({ left: 240, behavior: 'smooth' });
     });
   });
-</script> --> 
+</script> -->
 <script>
 
 
@@ -236,26 +1296,100 @@
     if (track1) autoScroll(track1);
     if (track2) autoScroll(track2);
   });*/
+
+
+
+
+
+  
   document.addEventListener("DOMContentLoaded", function () {
-     const element = document.querySelector('.container.my-4');
-      const breadcrumbs = document.querySelector('.page-breadcrumbs');
-      const header = document.querySelector('.page-header');
-      const pageheader = document.querySelector('.page-header-wrapper');
-      if (pageheader){
-          pageheader.classList.add('p-0');
-      }
-      if (header){
-          header.style.width = "100%";
-      }
-      if (breadcrumbs) {
-          breadcrumbs.style.display = "none";
-      }
-      if (element) {
-        element.classList.remove('container');
-        element.classList.remove('my-4');
-        element.classList.add('bg-white');
-        }
-     }
+    const element = document.querySelector('.container.my-4');
+    const breadcrumbs = document.querySelector('.page-breadcrumbs');
+    const header = document.querySelector('.page-header');
+    const pageheader = document.querySelector('.page-header-wrapper');
+    if (pageheader) {
+      pageheader.classList.add('p-0');
+    }
+    if (header) {
+      header.style.width = "100%";
+    }
+    if (breadcrumbs) {
+      breadcrumbs.style.display = "none";
+    }
+    if (element) {
+      element.classList.remove('container');
+      element.classList.remove('my-4');
+      element.classList.add('bg-white');
+    }
+  }
   )
+</script>
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    // Simple toast message function
+    function showToast(message, isError = false) {
+      const toast = document.createElement("div");
+      toast.textContent = message;
+      toast.style.position = "fixed";
+      toast.style.bottom = "20px";
+      toast.style.right = "20px";
+      toast.style.background = isError ? "#d9534f" : "#28a745";
+      toast.style.color = "#fff";
+      toast.style.padding = "10px 15px";
+      toast.style.borderRadius = "8px";
+      toast.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+      toast.style.zIndex = "9999";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
+
+    // Add event listener to all "Add to Cart" buttons
+    document.querySelectorAll(".add-to-cart-btn").forEach(function (button) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const item_code = this.dataset.itemCode;
+        const csrfToken = "{{ csrf_token }}"; // Jinja will replace this
+        const qtyInput = document.querySelector(`.qty-input[data-item-code="${item_code}"]`);
+        const qty = parseInt(qtyInput?.value || 1);
+        console.log( "sdsds",csrfToken)
+        if (!csrfToken) {
+          showToast("⚠️ Security token missing. Please refresh the page.", true);
+          return;
+        }
+
+        if (isNaN(qty) || qty < 1) {
+          showToast("Please enter a valid quantity.", true);
+          return;
+        }
+
+        fetch("/api/method/webshop.webshop.shopping_cart.cart.update_cart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Frappe-CSRF-Token": csrfToken,
+          },
+          body: JSON.stringify({ item_code, qty }),
+          credentials: "include",
+        })
+          .then((r) => r.json())
+          .then((data) => {
+            console.log("Fetch error:", data);
+            if (data.message || !data.exc) {
+              showToast(`✅ Added ${qty} × ${item_code} to cart`);
+            } else {
+              showToast("❌ Error adding item", true);
+             
+            }
+          })
+          .catch((err) => {
+            console.error("Fetch error:", err);
+            showToast("Something went wrong. Please try again.", true);
+          });
+      });
+    });
+  });
 </script>
 {% endblock %}
