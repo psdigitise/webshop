@@ -1,3 +1,16 @@
+<style>
+.item-subtitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #222;
+  max-height: 3em;             /* 2 lines × 1.5 line-height */
+}
+</style>
 
 {% macro item_subtotal(item) %}
 <div>{{ item.get_formatted('amount') }}</div>
@@ -61,15 +74,15 @@
 			{% endif %}
         </div>
         
-          <!-- <div class="item-subtitle mr-2 text-black">
-            {% set website_item_list = frappe.get_all("Website Item",filters={"item_code": d.item_code}, limit=1) %}
-        {% if website_item_list %}
-          {% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
-          {% if website_item.short_description %}
-            {{website_item.short_description}}
-                {% endif %} 
-        {% endif %}
-          </div> -->
+         <div class="item-subtitle mr-2 text-black">
+  {% set website_item_list = frappe.get_all("Website Item", filters={"item_code": d.item_code}, limit=1) %}
+  {% if website_item_list %}
+    {% set website_item = frappe.get_doc("Website Item", website_item_list[0].name) %}
+    {% if website_item.short_description %}
+      {{ website_item.short_description }}
+    {% endif %}
+  {% endif %}
+</div>
         {%- set variant_of = frappe.db.get_value('Item', d.item_code,
         'variant_of') %} {% if variant_of %}
         <span class="item-subtitle mr-2">
