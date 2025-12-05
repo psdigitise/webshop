@@ -98,6 +98,12 @@ border-top: 40px solid #e4002c;
 <!-- <div class="mb-6 " style="color: #570987;">{{ _("All Products") }}</div> -->
 {% endblock header %}
 {% block page_content %}
+      <div class="container">
+        <div class="section-title text-purple col-11 p-0 m-0" itemprop="name">
+        {{ _(doc.web_item_name) }}
+        </div>
+    </div>
+    
 <div class="product-container container item-main" style="background-color:whitesmoke !important; margin-bottom: 50px;">
   {% from "webshop/templates/includes/macros.html" import product_image %}
   <div class="item-content">

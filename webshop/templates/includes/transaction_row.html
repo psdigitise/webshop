@@ -73,14 +73,8 @@
 
         <div class="col-sm-3 mb-2 text-start">
             <span class="indicator-pill {{ doc.indicator_color or ("blue" if doc.docstatus==1 else "gray") }}">
-                {{ _(doc.status) }}
+                {{ _(doc.workflow_state) }}
             </span>
-        </div>
-
-        <div class="transaction-preview mb-2">
-            <small class="d-block text-truncate">
-                {{ doc.items_preview }}
-            </small>
         </div>
 
         <div class="transaction-total mb-2 text-end">
