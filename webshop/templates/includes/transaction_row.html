@@ -72,9 +72,20 @@
         </div>
 
         <div class="col-sm-3 mb-2 text-start">
-            <span class="indicator-pill {{ doc.indicator_color or ("blue" if doc.docstatus==1 else "gray") }}">
-                {{ _(doc.workflow_state) }}
-            </span>
+            <span class="indicator-pill
+    {% if doc.workflow_state == "Approved" %}
+        green
+    {% elif doc.workflow_state == "Pending L1 Approval" %}
+        red
+    {% elif doc.workflow_state == "Pending L2 Approval" %}
+        yellow
+    {% else %}
+        blue
+    {% endif %}
+">
+    {{ _(doc.workflow_state) }}
+</span>
+
         </div>
 
         <div class="transaction-total mb-2 text-end">

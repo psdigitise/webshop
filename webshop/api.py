@@ -124,5 +124,58 @@ def get_random_products(limit=10):
         item["price"] = price or 0
 
     return items
+
+@frappe.whitelist()
+def send_level2_notification(sales_order,user):
+    """Send emails after Level 2 approval"""
+
+    doc = frappe.get_doc("Sales Order", sales_order)
+
+    super_admin_email = "santhaashwinpsdigitise@gmail.com"
+
+    customer_email = doc.contact_email or doc.customer_email or None
+
+    level2_admin = frappe.db.sql("""
+        SELECT email 
+        FROM `tabUser`
+        WHERE name = %s
+    """,(user,), as_dict=True)
+
+    level2_admin_email =level2_admin[0].get("email") if level2_admin else None
+
+    subject = f"Sales Order {doc.name} Approved"
+    message = f"""
+        <p>Hello,</p>
+        <p>The Sales Order <b>{doc.name}</b> has been fully approved by Manager.</p>
+        <p>Customer: {doc.customer_name}</p>
+        <p>Total Amount: £{doc.grand_total}</p>
+    """
+
+    frappe.sendmail(
+        recipients=[super_admin_email],
+        subject=subject,
+        message=message
+    )
+
+    if level2_admin_email:
+        frappe.sendmail(
+            recipients=level2_admin_email,
+            subject=f"[L2 Notification] {subject}",
+            message=message
+        )
+
+    if customer_email:
+        frappe.sendmail(
+            recipients=[customer_email],
+            subject=f"Your Order {doc.name} is Approved",
+            message=f"""
+                <p>Dear Customer,</p>
+                <p>Your order <b>{doc.name}</b> has been approved successfully.</p>
+                <p>Thank you for choosing us.</p>
+            """
+        )
+
+    return "Emails Sent"
+
 # dc45c90cb2cd813    
 # 761fa577fbe0b23

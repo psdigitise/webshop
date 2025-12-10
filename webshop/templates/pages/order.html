@@ -1410,7 +1410,7 @@ input[type="text"], select {
     </div>
 
     <!-- Party Name -->
-    <div class="mb-3">
+    <!--<div class="mb-3">
       <h5 class="fw-semibold mb-0">
         {%- set party_name = doc.supplier_name if doc.doctype in ['Supplier Quotation', 'Purchase Invoice', 'Purchase Order'] else doc.customer_name -%}
         {{ party_name }}
@@ -1418,7 +1418,7 @@ input[type="text"], select {
       {% if doc.contact_display and doc.contact_display != party_name %}
         <div class="text-muted small">{{ doc.contact_display }}</div>
       {% endif %}
-    </div>
+    </div>-->
 
     <!-- Taxes & Payment Summary -->
     <!--<div class="mb-4">

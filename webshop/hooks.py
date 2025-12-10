@@ -17,6 +17,11 @@ app_include_css = [
     "/assets/webshop/css/desk.css"
     ]
 
+app_include_js = [
+    "assets/webshop/js/toolbar_override.js"
+]
+
+
 web_include_js = "web.bundle.js"
 
 
