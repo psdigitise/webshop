@@ -206,24 +206,42 @@ webshop.ProductView =  class {
 		`);
 	}
 
-	render_view_toggler() {
-		$(".toolbar").append(`<div class="toggle-container col-4 p-0"></div>`);
+render_view_toggler() {
+  $(".toolbar").append(`<div class="toggle-container col-4 p-0 d-flex gap-2"></div>`);
 
-		["btn-list-view", "btn-grid-view"].forEach(view => {
-			let icon = view === "btn-list-view" ? "list" : "image-view";
-			$(".toggle-container").append(`
-				<div class="form-group mb-0" id="toggle-view">
-					<button id="${ icon }" class="btn ${ view } mr-2">
-						<span>
-							<svg class="icon icon-md">
-								<use href="#icon-${ icon }"></use>
-							</svg>
-						</span>
-					</button>
-				</div>
-			`);
-		});
-	}
+  // Grid view button (visible only on mobile)
+  $(".toggle-container").append(`
+    <div class="form-group mb-0 d-block d-lg-none" id="toggle-view-mobile">
+      <button id="image-view" class="btn btn-grid-view" style="
+    margin-left: 10px;
+    background: #4290ee;
+">
+        <span>
+          <svg class="icon icon-md">
+            <use href="#icon-image-view"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  `);
+
+  // List view button (visible only on laptop)
+  $(".toggle-container").append(`
+    <div class="form-group mb-0 d-none d-lg-block" id="toggle-view-laptop" s>
+      <button id="list" class="btn btn-list-view" style="
+    margin-left: 10px;
+    background: #4290ee;
+">
+        <span>
+          <svg class="icon icon-md">
+            <use href="#icon-list"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  `);
+}
+
 
 	bind_view_toggler_actions() {
 		$("#list").click(function() {

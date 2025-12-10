@@ -212,6 +212,85 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
+.filters-sidebar {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  margin-top: 15px;
+}
+
+.filters-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.filters-clear-link {
+  font-size: 0.875rem;
+  color: #888;
+  text-decoration: none;
+}
+
+.filters-clear-link:hover {
+  text-decoration: underline;
+}
+
+.top-rated-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #e4002c;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.product-card {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.product-image {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-link {
+  color: black;
+  text-decoration: none;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.product-rating {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0;
+}
+.product-name-below {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-link {
+  text-decoration: none;
+  color: black;
+}
+
+.product-rating {
+  font-size: 0.875rem;
+  color: #555;
+}
+
 </style>
 
 
@@ -233,72 +312,60 @@ border-top: 40px solid #e4002c;
 <div class="container-fluid">
 
  <div class="row px-3">
-  
-  <!-- Filters Section (left) -->
+
+
  
  <!-- Filters Section (left) -->
 <div class="col-lg-2 col-md-3 col-12">
-  <div class="filters-sidebar" style="
-      background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    width: 210px;
-    margin-top: 15px;
-  ">
+  <div class="filters-sidebar">
+    
     <!-- Filters Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <div class="filters-title" style="font-size: 1.25rem; font-weight: 600; color: #333;">
+    <div class="filters-header d-flex justify-content-between align-items-center mb-4">
+      <div class="filters-title">
         {{ _('Filters') }}
       </div>
-      <a class="filters-clear-link" href="/all-products" style="font-size: 0.875rem; color: #888; text-decoration: none;">
+      <a class="filters-clear-link" href="/all-products">
         {{ _('Clear All') }}
       </a>
     </div>
 
     {% if field_filters %}
-    <div>
+    <div class="filters-section">
       {{ field_filter_section(field_filters) }}
     </div>
     {% endif %}
 
     <!-- Top Rated Products Title -->
-    <div class="top-rated-title" style="
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #000;
-      margin-bottom: 16px;
-      border-bottom: 2px solid #e4002c;
-      display: inline-block;
-      padding-bottom: 4px;
-    ">
+    <div class="top-rated-title">
       Top Rated Products
     </div>
 
     {% for item in frappe.call('webshop.api.get_top_rated_items') %}
-    <div class="product-card mb-3 pb-3" style="border-bottom: 1px solid #eaeaea;">
-      <div class="row">
-        <div class="col-lg-4 col-4 p-0">
-          <img src="{{ item.website_image }}" style="width:100%; height:80px; object-fit:cover; border-radius: 4px;" />
-        </div>
-        <div class="col-lg-8 col-8">
-          <a href="{{ item.route }}" style="color: black; text-decoration: none;">
-            <h5 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px;">{{ item.web_item_name }}</h5>
-          </a>
-          <p style="font-size: 0.875rem; color: #555; margin: 0;">Rating: {{ item.average_rating }}</p>
-        </div>
-      </div>
+  <div class="product-card mb-3 pb-3">
+  <div class="row g-2 align-items-center">
+    <div class="col-12 text-center">
+      <img src="{{ item.website_image }}" class="product-image" alt="{{ item.web_item_name }}">
+      <h5 class="product-name-below d-none d-lg-block mt-2">{{ item.web_item_name }}</h5>
     </div>
+    <div class="col-4">
+      <a href="{{ item.route }}" class="product-link d-lg-none">
+        <h5 class="product-name">{{ item.web_item_name }}</h5>
+      </a>
+    </div>
+  </div>
+</div>
+
     {% endfor %}
 
     {% if attribute_filters %}
-    <div>
+    <div class="filters-section">
       {{ attribute_filter_section(attribute_filters) }}
     </div>
     {% endif %}
+    
   </div>
 </div>
+
 
 
   <!-- Items Section (right) -->

@@ -297,45 +297,115 @@ $.extend(shopping_cart, {
 	}
 });
 
+// function showCustomToast(message) {
+//     // Remove existing toast if present
+//     const oldToast = document.getElementById("custom-toast");
+//     if (oldToast) oldToast.remove();
+
+//     // Create toast element
+//     const toast = document.createElement("div");
+//     toast.id = "custom-toast";
+//     toast.innerText = message;   // ✅ use the dynamic message
+
+//     // Styling
+//     toast.style.cssText = `
+//         position: fixed;
+//         bottom: 24px;
+//         right: 24px;
+//         background-color: #d1fae5;
+//         color: #065f46;
+//         font-size: 0.875rem;
+//         font-weight: 600;
+//         padding: 10px 16px;
+//         border-radius: 8px;
+//         box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+//         z-index: 9999;
+//         max-width: 260px;
+//         text-align: center;
+//         opacity: 0;
+//         transition: opacity 0.3s ease;
+//     `;
+
+//     document.body.appendChild(toast);
+
+//     // Fade in
+//     setTimeout(() => {
+//         toast.style.opacity = "1";
+//     }, 10);
+
+//     // Auto remove after 3 seconds
+//     setTimeout(() => {
+//         toast.style.opacity = "0";
+//         setTimeout(() => toast.remove(), 300);
+//     }, 3000);
+// }
+
 function showCustomToast(message) {
-    // Remove existing toast if present
-    const oldToast = document.getElementById("custom-toast");
-    if (oldToast) oldToast.remove();
+  // Remove existing toast if present
+  const oldToast = document.getElementById("custom-toast");
+  if (oldToast) oldToast.remove();
 
-    // Create toast element
-    const toast = document.createElement("div");
-    toast.id = "custom-toast";
-    toast.innerText = message;   // ✅ use the dynamic message
+  // Create toast element
+  const toast = document.createElement("div");
+  toast.id = "custom-toast";
+  toast.innerHTML = `
+    <div class="toast-message">${message}</div>
+    <button class="toast-ok-btn">OK</button>
+  `;
 
-    // Styling
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        background-color: #d1fae5;
-        color: #065f46;
-        font-size: 0.875rem;
-        font-weight: 600;
-        padding: 10px 16px;
-        border-radius: 8px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-        z-index: 9999;
-        max-width: 260px;
-        text-align: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    `;
+  // Styling
+  toast.style.cssText = `
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    background-color: #d1fae5;
+    color: #065f46;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    z-index: 9999;
+    max-width: 280px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  `;
 
-    document.body.appendChild(toast);
+  // OK button styling
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .toast-ok-btn {
+      background-color: #065f46;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .toast-ok-btn:hover {
+      background-color: #047857;
+    }
+  `;
+  document.head.appendChild(style);
 
-    // Fade in
-    setTimeout(() => {
-        toast.style.opacity = "1";
-    }, 10);
+  document.body.appendChild(toast);
 
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-        toast.style.opacity = "0";
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
+  // Fade in
+  setTimeout(() => {
+    toast.style.opacity = "1";
+  }, 10);
+
+  // Remove on OK click
+  toast.querySelector(".toast-ok-btn").addEventListener("click", () => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  });
 }
+

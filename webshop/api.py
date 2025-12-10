@@ -88,7 +88,7 @@ def get_stripe_redirect_url(sales_order):
     return f"{base_url}?{urlencode(params)}"
 
 @frappe.whitelist(allow_guest=True)
-def get_top_rated_items(limit=6):
+def get_top_rated_items(limit=7):
     return frappe.get_all('Website Item',
         fields=['name', 'web_item_name', 'thumbnail', 'average_rating','route','website_image'],
         filters={'published': 1},

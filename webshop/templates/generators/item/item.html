@@ -129,10 +129,9 @@ border-top: 40px solid #e4002c;
     <div class="item-content {{ 'mt-minus-2' if (show_tabs and tabs) else '' }}">
       <div class="product-page-content row" itemscope itemtype="http://schema.org/Product" style="display:flex">
 
-        <!-- Product Specifications Table Section -->
         {% if show_tabs and tabs %}
         <div class="category-tabs">
-          <!-- tabs -->
+        
           {{ web_block("Section with Tabs", values=tabs, add_container=0,
           add_top_padding=0, add_bottom_padding=0)
           }}
@@ -140,11 +139,6 @@ border-top: 40px solid #e4002c;
         {% elif website_specifications %}
         {% include "templates/generators/item/item_specifications.html"%}
         {% endif %}
-
-        <!-- Advanced Custom Website Content -->
-
-
-        <!-- Reviews and Comments -->
 
       </div>
     </div>
@@ -671,8 +665,8 @@ border-top: 40px solid #e4002c;
 </style>
 
 <div class="product-grid-container container">
-  <h4 class="cross-sell-zone__title"> <span class="cross-sell-zone__title-text">Customers with similar interests also
-      viewed</span> <span class="cross-sell-zone__title-bar"></span> </h4>
+  <h4 class="cross-sell-zone__title"> <span class="cross-sell-zone__title-text"> similar Product
+      </span> <span class="cross-sell-zone__title-bar"></span> </h4>
   <div class="row g-4">
     {% for item in all_items[:4] %}
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -1132,7 +1126,7 @@ border-top: 40px solid #e4002c;
   font-weight: 600;
   color: #000;
   margin-bottom: 8px;
-  margin-left: 540px;
+  justify-content: center !important;
 }
 
 .reviews-underline {
