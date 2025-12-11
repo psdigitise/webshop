@@ -328,7 +328,7 @@ webshop.ProductList = class {
                     justify-content: center;
                 ">
                 <span class="mr-2">
-                    <svg class="icon icon-md">
+                    <svg class="icon icon-md d-none">
                         <use href="#icon-assets"></use>
                     </svg>
                 </span>

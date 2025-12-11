@@ -4863,6 +4863,16 @@
     .logout-link {
       color: #d9534f !important;
     }
+        .styled-logout {
+  background: none;
+  border: none;
+  color: #e63946; /* soft red */
+  font-size: 16px;
+  padding: 8px 0px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
   </style>
 </head>
 
@@ -4940,16 +4950,21 @@
 
           <!-- Account -->
           <div class="account-dropdown-wrapper">
-            <button class="tk-icon-circle position-relative account-toggle">
+            {% if user_test %}
+            <button class="tk-icon-circle position-relative account-toggle" style="border: 1px solid #d8d8ff;">
               <i class="fa-regular fa-user tk-header-icon"></i>
             </button>
-
+            {% else %}
+              <button class="tk-icon-circle position-relative" onclick="window.location.href='/login'" style="border: 1px solid #d8d8ff;">
+              <i class="fa-regular fa-user tk-header-icon"></i>
+            </button>
+            {% endif %}
             <div class="account-dropdown">
               <div class="acc-header">
               
                 <div>
                  
-                  <a href="/update-profile">Edit Profile</a>
+                  <a href="/profile-edit/?user={{ user }}">Edit Profile</a>
                 </div>
               </div>
 
@@ -4957,7 +4972,7 @@
                 <li><a href="/update-password">Reset Password</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/orders">View Your Orders</a></li>
-                <li><button onclick="logoutUser()" class="logout-link">Logout</button></li>
+                <li><button onclick="logoutUser()" class="logout-link styled-logout">Logout</button></li>
               </ul>
             </div>
           </div>

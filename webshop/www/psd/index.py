@@ -164,9 +164,10 @@ def get_context(context):
 	context.top_rated = top_rated
 	context.cleaning_items = cleaning_items
 	if frappe.session.user != "Guest":
-		context.user_test = 0
+		context.user_test = True
+		context.user = frappe.session.user
 	else:
-		context.user_test = 1
+		context.user_test = False
   
 	reviews = frappe.get_all(
 			"Item Review",

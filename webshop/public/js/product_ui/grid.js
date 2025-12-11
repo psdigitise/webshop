@@ -177,7 +177,7 @@ webshop.ProductGrid = class {
      data-item-code="${item.item_code}"
      style="background-color:#2563eb !important;">
   <span class="mr-2">
-    <svg class="icon icon-md">
+    <svg class="icon icon-md d-none">
       <use href="#icon-assets"></use>
     </svg>
   </span>

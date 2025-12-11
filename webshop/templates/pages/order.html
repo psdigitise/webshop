@@ -1393,7 +1393,11 @@ input[type="text"], select {
     <div class="mb-3">
       <span class="badge border border-primary text-primary fw-semibold text-uppercase px-3 py-1 rounded-pill" 
             style="background: #fff; color: #6f42c1; border-color: #6f42c1;">
-        {{ _(doc.workflow_state) or _("Submitted") }}
+            {% if "Corporate Buyer" in roles %}
+              {{ _(doc.workflow_state) or _("Submitted") }}
+              {% else %}
+              {{ _(doc.status) or _("Submitted") }}
+              {% endif %}
       </span>
       <p class="mt-3 small text-muted">
         {{ frappe.utils.format_date(doc.transaction_date, "medium") }}

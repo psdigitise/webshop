@@ -117,3 +117,15 @@ def get_website_items(search=None, page=1, page_size=12):
 def assign_default_role(doc, method):
     if doc.user_type == "Website User":
         doc.add_roles("Customer", "Retail Buyer")
+
+
+
+@frappe.whitelist(allow_guest=False)
+def update_profile(user, first_name, middle_name, last_name, phone):
+    u = frappe.get_doc("User", user)
+    u.first_name = first_name
+    u.middle_name = middle_name
+    u.last_name = last_name
+    u.phone = phone
+    u.save()
+    return "Profile Updated Successfully!"

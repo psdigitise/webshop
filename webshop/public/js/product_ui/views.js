@@ -209,13 +209,12 @@ webshop.ProductView =  class {
 render_view_toggler() {
   $(".toolbar").append(`<div class="toggle-container col-4 p-0 d-flex gap-2"></div>`);
 
-  // Grid view button (visible only on mobile)
   $(".toggle-container").append(`
-    <div class="form-group mb-0 d-block d-lg-none" id="toggle-view-mobile">
+    <div class="form-group mb-0" id="toggle-view-grid">
       <button id="image-view" class="btn btn-grid-view" style="
-    margin-left: 10px;
-    background: #4290ee;
-">
+        margin-left: 10px;
+        background: #4290ee;
+      ">
         <span>
           <svg class="icon icon-md">
             <use href="#icon-image-view"></use>
@@ -225,13 +224,12 @@ render_view_toggler() {
     </div>
   `);
 
-  // List view button (visible only on laptop)
   $(".toggle-container").append(`
-    <div class="form-group mb-0 d-none d-lg-block" id="toggle-view-laptop" s>
+    <div class="form-group mb-0 d-none d-lg-block" id="toggle-view-list">
       <button id="list" class="btn btn-list-view" style="
-    margin-left: 10px;
-    background: #4290ee;
-">
+        margin-left: 10px;
+        background: #4290ee;
+      ">
         <span>
           <svg class="icon icon-md">
             <use href="#icon-list"></use>
@@ -269,14 +267,31 @@ render_view_toggler() {
 	}
 
 	set_view_state() {
+		if (window.innerWidth < 992) {
+			this.preference = "Grid View";
+			localStorage.setItem("product_view", "Grid View");
+		} else {
+			this.preference = localStorage.getItem("product_view") || this.view_type;
+		}
+
 		if (this.preference === "List View") {
 			$("#list").addClass('btn-primary');
 			$("#image-view").removeClass('btn-primary');
+			$("#products-grid-area").addClass("hidden");
+			$("#products-list-area").removeClass("hidden");
 		} else {
 			$("#image-view").addClass('btn-primary');
 			$("#list").removeClass('btn-primary');
+			$("#products-list-area").addClass("hidden");
+			$("#products-grid-area").removeClass("hidden");
 		}
-	}
+		}
+
+	bind_resize_listener() {
+		$(window).on("resize", () => {
+			this.set_view_state();
+		});
+		}
 
 	bind_paging_action() {
 		let me = this;
