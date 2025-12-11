@@ -177,5 +177,27 @@ def send_level2_notification(sales_order,user):
 
     return "Emails Sent"
 
+from frappe.model.workflow import apply_workflow
+
+@frappe.whitelist()
+def reorder_sales_order(order):
+    old = frappe.get_doc("Sales Order", order)
+
+    new = frappe.copy_doc(old)
+    new.workflow_state = "Draft"
+    new.status = "Draft"
+    new.name = None
+
+    new.flags.ignore_validate = True
+    new.flags.ignore_mandatory = True
+    new.flags.ignore_permissions = True
+
+    new.insert(ignore_permissions=True)
+    frappe.db.commit() 
+    apply_workflow(new, "Submit for Approval")  # action name, NOT state
+    frappe.db.commit() 
+    new = frappe.get_doc("Sales Order", new.name)  # fresh DB state
+    return new.name
+
 # dc45c90cb2cd813    
 # 761fa577fbe0b23

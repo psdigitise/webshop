@@ -1407,6 +1407,7 @@ input[type="text"], select {
       </p>
     </div>
 
+
     <!-- Grand Total -->
     <div class="mb-4">
       <p class="text-sm fw-medium text-secondary mb-1">{{ _("Grand Total") }}</p>
@@ -1437,6 +1438,12 @@ input[type="text"], select {
          {{ _("Pay") }} {{ doc.get_formatted("grand_total") }}
       </a>
     {% endif %}
+        {% if doc.workflow_state == "Rejected" %}
+    <a onclick="reorder('{{ doc.name }}')"
+       class="btn btn-primary mt-3">
+        Replace Order
+    </a>
+{% endif %}
 
   </div>
 </div>
@@ -1489,6 +1496,83 @@ input[type="text"], select {
     object-fit: cover;
     border-radius: 4px;
 }
+/* Overall modal content */
+.modal-content {
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+    overflow: hidden !important;
+    font-family: "Segoe UI", sans-serif !important;
+}
+
+/* Header styling */
+.modal-header {
+    background: #f0fff4 !important; /* light green background */
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px 16px !important;
+}
+
+.modal-title {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #2f855a !important; /* success green */
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important; 
+}
+
+/* Close button */
+.modal-header .close {
+    background: transparent !important;
+    border: none !important;
+    color: #4a5568 !important;
+    transition: color 0.2s ease !important;
+}
+.modal-header .close:hover {
+    color: #2d3748 !important;
+}
+
+/* Body styling */
+.modal-body {
+    padding: 20px !important;
+    text-align: left !important;
+    background: #ffffff !important;
+}
+
+.order-popup p {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #2d3748 !important;
+    margin: 0 !important;
+}
+
+/* Footer styling */
+.modal-footer {
+    border-top: 1px solid #e2e8f0 !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    justify-content: right !important;
+    background: #f9fafb !important;
+}
+
+/* Okay button */
+.modal-footer .btn-primary {
+    background-color: #38a169 !important; /* green */
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 6px 18px !important;
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease !important;
+}
+.modal-footer .btn-primary:hover {
+    background-color: #2f855a !important !important;
+}
+
+/* Hidden secondary button stays invisible */
+.modal-footer .btn-secondary.hidden {
+    display: none !important;
+}
+
 </style>
 {% endblock %}
 
@@ -1533,17 +1617,29 @@ input[type="text"], select {
 		}
      }
   )
-  frappe.ready(() => {
+frappe.ready(() => {
     const msg = localStorage.getItem("order_message");
     if (msg) {
         frappe.msgprint({
             title: "Order Submitted",
-            message: msg,
+            message: `<div class="order-popup">
+                        <p>${msg}</p>
+                      </div>`,
             indicator: "green"
         });
         localStorage.removeItem("order_message");
     }
 });
 
+</script>
+<script>
+async function reorder(order) {
+    const r = await fetch(`/api/method/webshop.api.reorder_sales_order?order=${order}`);
+    const res = await r.json();
+
+    if (res.message) {
+        window.location.href = `/orders/${res.message}`;
+    }
+}
 </script>
 {% endblock %} 
