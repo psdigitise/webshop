@@ -125,57 +125,112 @@ def get_random_products(limit=10):
 
     return items
 
+import frappe
+from frappe.utils import get_url
+ 
 @frappe.whitelist()
-def send_level2_notification(sales_order,user):
-    """Send emails after Level 2 approval"""
-
+def send_level2_notification(sales_order, user):
+    """Send Sales Order approval email with full product details"""
+ 
+    # -------------------------
+    # GET DOCUMENT
+    # -------------------------
     doc = frappe.get_doc("Sales Order", sales_order)
-
+    site_url = get_url()
+ 
     super_admin_email = "santhaashwinpsdigitise@gmail.com"
-
-    customer_email = doc.contact_email or doc.customer_email or None
-
+    customer_email = doc.contact_email or doc.customer_email
+ 
+    # Level 2 admin email
     level2_admin = frappe.db.sql("""
-        SELECT email 
-        FROM `tabUser`
-        WHERE name = %s
-    """,(user,), as_dict=True)
-
-    level2_admin_email =level2_admin[0].get("email") if level2_admin else None
-
+        SELECT email FROM `tabUser` WHERE name = %s
+    """, (user,), as_dict=True)
+ 
+    level2_admin_email = level2_admin[0]["email"] if level2_admin else None
+ 
+    # -------------------------
+    # BUILD ITEMS HTML (MULTIPLE ITEMS)
+    # -------------------------
+    items_html = ""
+ 
+    for item in doc.items:
+        image_url = ""
+        item_doc = frappe.get_doc("Website Item", {"item_code": item.item_code})
+        if item_doc.website_image:
+            image_url = get_url(item_doc.website_image)
+        print("Image URL:", image_url)
+        line_total = item.qty * item.rate
+ 
+        items_html += f"""
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:10px; width:80px;">
+        {f'<img src="{image_url}" width="60" style="border-radius:6px; border:1px solid #ddd;">' if image_url else ''}
+</td>
+<td style="padding:10px; vertical-align:top;">
+<div style="font-size:14px; font-weight:bold;">{item.item_name}</div>
+<div style="font-size:13px; color:#555;">Product ID: {item.item_code}</div>
+<div style="font-size:13px;">Qty: {item.qty}</div>
+<div style="font-size:13px;">Price: £{item.rate}</div>
+<div style="font-size:13px; font-weight:bold;">Line Total: £{line_total}</div>
+</td>
+</tr>
+"""
+ 
+    # -------------------------
+    # EMAIL SUBJECT
+    # -------------------------
     subject = f"Sales Order {doc.name} Approved"
+ 
+    # -------------------------
+    # EMAIL MESSAGE (USED FOR ALL)
+    # -------------------------
     message = f"""
-        <p>Hello,</p>
-        <p>The Sales Order <b>{doc.name}</b> has been fully approved by Manager.</p>
-        <p>Customer: {doc.customer_name}</p>
-        <p>Total Amount: £{doc.grand_total}</p>
-    """
-
+<div style="font-family:Arial, sans-serif; color:#333; max-width:700px; margin:auto; padding:20px; border:1px solid #eee; border-radius:8px;">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+<h2 style="margin:0; font-size:20px;">Sales Order <span style="color:#007bff;">{doc.name}</span> Approved</h2>
+</div>
+ 
+    <p style="font-size:15px;">Hello,</p>
+<p style="font-size:15px;">Your Sales Order <b>{doc.name}</b> has been successfully approved.</p>
+<p style="font-size:15px;"><b>Customer:</b> {doc.customer_name}</p>
+ 
+    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; margin-top:20px;">
+        {items_html}
+</table>
+ 
+    <div style="margin-top:20px; font-size:16px;">
+<b>Total Amount:</b> £{doc.grand_total}
+</div>
+ 
+    <p style="margin-top:20px; font-size:15px;">Thank you for choosing us.</p>
+<p style="font-size:15px;">Regards,<br><b>ERPNext Team</b></p>
+</div>
+"""
+ 
+    # -------------------------
+    # SEND EMAILS
+    # -------------------------
     frappe.sendmail(
         recipients=[super_admin_email],
         subject=subject,
         message=message
     )
-
+ 
     if level2_admin_email:
         frappe.sendmail(
-            recipients=level2_admin_email,
+            recipients=[level2_admin_email],
             subject=f"[L2 Notification] {subject}",
             message=message
         )
-
+ 
     if customer_email:
         frappe.sendmail(
             recipients=[customer_email],
             subject=f"Your Order {doc.name} is Approved",
-            message=f"""
-                <p>Dear Customer,</p>
-                <p>Your order <b>{doc.name}</b> has been approved successfully.</p>
-                <p>Thank you for choosing us.</p>
-            """
+            message=message
         )
-
-    return "Emails Sent"
+ 
+    return "Emails Sent Successfully"
 
 from frappe.model.workflow import apply_workflow
 
