@@ -340,7 +340,76 @@ $.extend(shopping_cart, {
 //     }, 3000);
 // }
 
-function showCustomToast(message) {
+// function showCustomToast(message) {
+//   // Remove existing toast if present
+//   const oldToast = document.getElementById("custom-toast");
+//   if (oldToast) oldToast.remove();
+
+//   // Create toast element
+//   const toast = document.createElement("div");
+//   toast.id = "custom-toast";
+//   toast.innerHTML = `
+//     <div class="toast-message">${message}</div>
+//     <button class="toast-ok-btn">OK</button>
+//   `;
+
+//   // Styling
+//   toast.style.cssText = `
+//     position: fixed;
+//     top: 30px;
+//     right: 20px;
+//     background-color: #d1fae5;
+//     color: #065f46;
+//     font-size: 0.875rem;
+//     font-weight: 600;
+//     padding: 12px 16px;
+//     border-radius: 8px;
+//     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+//     z-index: 9999;
+//     max-width: 280px;
+//     text-align: center;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     gap: 12px;
+//     opacity: 0;
+//     transition: opacity 0.3s ease;
+//   `;
+
+//   // OK button styling
+//   const style = document.createElement("style");
+//   style.innerHTML = `
+//     .toast-ok-btn {
+//       background-color: #065f46;
+//       color: #fff;
+//       border: none;
+//       padding: 6px 12px;
+//       border-radius: 4px;
+//       font-size: 0.75rem;
+//       font-weight: 600;
+//       cursor: pointer;
+//     }
+//     .toast-ok-btn:hover {
+//       background-color: #047857;
+//     }
+//   `;
+//   document.head.appendChild(style);
+
+//   document.body.appendChild(toast);
+
+//   // Fade in
+//   setTimeout(() => {
+//     toast.style.opacity = "1";
+//   }, 10);
+
+//   // Remove on OK click
+//   toast.querySelector(".toast-ok-btn").addEventListener("click", () => {
+//     toast.style.opacity = "0";
+//     setTimeout(() => toast.remove(), 300);
+//   });
+// }
+
+function showCustomToast(productName) {
   // Remove existing toast if present
   const oldToast = document.getElementById("custom-toast");
   if (oldToast) oldToast.remove();
@@ -349,63 +418,69 @@ function showCustomToast(message) {
   const toast = document.createElement("div");
   toast.id = "custom-toast";
   toast.innerHTML = `
-    <div class="toast-message">${message}</div>
-    <button class="toast-ok-btn">OK</button>
+    <div class="toast-message">${productName}</div>
+    <button class="toast-view-btn">View Cart</button>
   `;
 
-  // Styling
+  // Toast styling
   toast.style.cssText = `
     position: fixed;
-    top: 30px;
-    right: 20px;
-    background-color: #d1fae5;
-    color: #065f46;
-    font-size: 0.875rem;
+	top:100px;
+    right: 3px;
+    background-color: #ffffff;
+    color: #111;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 12px 16px;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    padding: 15px 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.20);
     z-index: 9999;
-    max-width: 280px;
+    max-width: 340px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translateY(-10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
   `;
 
-  // OK button styling
+  // Button styling
   const style = document.createElement("style");
   style.innerHTML = `
-    .toast-ok-btn {
-      background-color: #065f46;
+    .toast-view-btn {
+      background-color: #2563eb;
       color: #fff;
       border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.75rem;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.25s ease;
     }
-    .toast-ok-btn:hover {
-      background-color: #047857;
+    .toast-view-btn:hover {
+      background-color: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
     }
   `;
   document.head.appendChild(style);
 
   document.body.appendChild(toast);
 
-  // Fade in
+  // Fade + slide in
   setTimeout(() => {
     toast.style.opacity = "1";
+    toast.style.transform = "translateY(0)";
   }, 10);
 
-  // Remove on OK click
-  toast.querySelector(".toast-ok-btn").addEventListener("click", () => {
-    toast.style.opacity = "0";
-    setTimeout(() => toast.remove(), 300);
+  // Redirect to cart on button click
+  toast.querySelector(".toast-view-btn").addEventListener("click", () => {
+    window.location.href = "/cart";
   });
 }
+
+
 

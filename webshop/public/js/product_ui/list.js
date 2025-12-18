@@ -352,6 +352,7 @@ webshop.ProductList = class {
         min-width: 135px;
         text-align: center;
         margin-left: 1rem;
+		display:none !important;
      ">
     ${settings.enable_checkout ? __("View in Cart") : __("Go to Quote")}
 </div>
@@ -365,3 +366,5 @@ webshop.ProductList = class {
 
 
 };
+
+

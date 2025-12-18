@@ -28,6 +28,40 @@
 	.payment-total span:first-child {
 		color: #000;
 	}
+
+	.net-total-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1f2937; /* Tailwind slate-800 */
+}
+
+.net-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.net-label-group .net-label {
+  font-weight: 600;
+  color: #111827; /* Tailwind slate-900 */
+}
+
+.net-label-group .net-items {
+  font-size: 0.875rem;
+  color: #6b7280; /* Tailwind slate-500 */
+  margin-top: 2px;
+}
+
+.net-amount {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #111827;
+  white-space: nowrap;
+}
+
 </style>
 
 
@@ -93,12 +127,16 @@
 	<div class="card payment-card">
 		<div class="card-body p-4">
 
-			<!-- Net Total -->
 			{% set total_items = frappe.utils.cstr(frappe.utils.flt(doc.total_qty, 0)) %}
-			<div class="d-flex justify-content-between align-items-center mb-3">
-				<span class="fw-semibold text-dark">{{ _("Net Total (") + total_items + _(" Items)") }}</span>
-				<span class="fw-bold">{{ doc.get_formatted("net_total") }}</span>
-			</div>
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div class="d-flex flex-column">
+    <span class="fw-semibold text-dark">{{ _("Net Total") }}</span>
+    <span class="text-muted" style="font-size: 0.875rem;">({{ total_items }} {{ _("Items") }})</span>
+  </div>
+  <div class="fw-bold text-dark" style="font-size: 1rem;">
+     {{ doc.get_formatted("net_total") }}
+  </div>
+</div>
 
 			<!-- Stylish Divider Line -->
 			<hr class="summary-divider my-3">

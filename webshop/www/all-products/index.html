@@ -291,7 +291,269 @@
   color: #555;
 }
 
+
+
+    /* Hide on mobile */
+    @media (max-width: 991px) {
+      .feedback-container {
+        display: none;
+      }
+    }
+
+    /* Sidebar container */
+    .feedback-container {
+      position: fixed !important;
+      right: 0;
+      top: 40%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 9999;
+      /* highest level */
+    }
+
+    /* Slide panel */
+    .feedback-panel {
+      width: 260px;
+      background: white;
+      border-radius: 6px 0 0 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+
+      position: relative;
+      z-index: 10000;
+      /* higher than container */
+      pointer-events: auto;
+    }
+
+    .feedback-panel.open {
+      transform: translateX(0);
+    }
+
+    /* Vertical tab */
+    .feedback-tab {
+      position: absolute;
+      left: -30px;
+      z-index: 10001;
+      /* top-most */
+      pointer-events: auto;
+      background: #f7b733;
+      color: white;
+      font-weight: 600;
+      padding: 10px 8px;
+      width: 35px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      border-radius: 6px 0 0 6px;
+      border-bottom-left-radius: 9px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+      height: 100%;
+      /* top: 220px; */
+    }
+
+    .feedback-tab::before {
+      content: '';
+    }
+
+    /* Panel content */
+    .panel-content {
+      padding: 14px;
+    }
+
+    .section {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title .icon {
+      margin-right: 6px;
+      font-size: 14px;
+    }
+
+    .section-desc {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .section-phone {
+      margin-top: 6px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .feedback-btn,
+    .contact-btn {
+      margin-top: 8px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      width: 120px;
+      text-align: center;
+    }
+
+    /* Popup Form Styling - Frosted Glass Theme */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 11000;
+    }
+
+    /* Form box */
+    .popup-form {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 10px;
+      width: 360px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Form title */
+    .popup-form h3 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #333;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Inputs and textarea */
+    .popup-form input,
+    .popup-form textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f9f9f9;
+      transition: border 0.3s ease;
+    }
+
+    .popup-form input:focus,
+    .popup-form textarea:focus {
+      border-color: #1a73e8;
+      outline: none;
+    }
+
+    /* Send button */
+    .popup-form button[type="submit"] {
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      width: 100%;
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .popup-form button[type="submit"]:hover {
+      background: #1558c0;
+    }
+
+    /* Close button */
+    .popup-form button[type="button"] {
+      background: transparent;
+      color: #555;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Support line */
+    .popup-form .support-line {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+    }
+
+    .reviews-section {
+      background-color: #f2f2f2;
+      padding: 50px 20px;
+      border-radius: 12px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .reviews-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+      text-align: center;
+    }
+
+
+
+
+
 </style>
+
+
+
+ <!-- Feedback Sidebar -->
+  <div class="feedback-container">
+    <div id="feedback-panel" class="feedback-panel">
+      <div class="feedback-tab" onclick="toggleFeedback()">✖ Customer service & Feedback</div>
+
+      <div class="panel-content" style="margin-top: 325px;">
+        <div class="section">
+          <p class="section-title" style="font-size: 14px !important;"> Customer service ›</p>
+          <p class="section-desc">Click here for help with a wide range of topics such as your account, ordering and
+            delivery.</p>
+          <p class="section-phone">Call: 02034355200</p>
+        </div>
+
+        <div class="section">
+          <p class="section-title" style="font-size: 14px !important ; text-align: start;"><span class="icon ms-0">💬</span> Contact Us ›</p>
+          <button class="contact-btn" onclick="window.location.href='/contact'">
+  Contact Now
+</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <section class="product-banner mb-5">
@@ -411,5 +673,21 @@ function closeModal() {
   });
 </script>
 </div>
+
+
+
+  <script>
+    function toggleFeedback() {
+      document.getElementById("feedback-panel").classList.toggle("open");
+    }
+
+    function openContactForm() {
+      document.getElementById("contactPopup").style.display = "flex";
+    }
+
+    function closeContactForm() {
+      document.getElementById("contactPopup").style.display = "none";
+    }
+  </script>
 
 {% endblock %}

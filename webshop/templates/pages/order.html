@@ -353,6 +353,36 @@
 		/* margin-top: 5px; */
 		letter-spacing: -0.5px;
 	}
+
+
+  .banner-wrapper {
+    position: relative;
+    padding-top: 40px;          /* space for red band */
+}
+
+.banner-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 10;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #e4002c; /* red band */
+}
+
+.product-banner-title {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 40px;
+    line-height: 40px;          /* vertical center */
+    margin: 10px;
+    color: #ffffff;            /* white text */
+    font-size: 22px;
+    font-weight: 600;
+    z-index: 1;
+}
+
 </style>
 <section class="product-banner mb-5">
     <div>
@@ -362,12 +392,10 @@
             <!-- <a href="/orders">Orders</a><span>/</span>  -->
             <a href="">{{ doc.name }}</a>
         </nav>
-        	<div class="p-0" style="
-border-top: 40px solid #e4002c;
-    position: relative;
-    ">
-        <h1 class="product-banner-title">{{ doc.name }}</h1>
-    </div>
+        	<div class="p-0 banner-wrapper">
+    <h1 class="product-banner-title" style="color: white;">{{ doc.name }}</h1>
+</div>
+
 </section>
 {% endblock %}
 {% block page_content %}

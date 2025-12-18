@@ -45,7 +45,7 @@
 	{% endif %}
 	<div class="product-image-container d-flex">
 		<div class="main-image-wrapper">
-			<img src="{{ slides[0].image if slides else doc.website_image }}" class="main-image website-image h-100 w-100" alt="{{ doc.item_name }}">
+			<img src="{{ slides[0].image if slides else doc.website_image }}" class="main-image website-image h-100 w-100" alt="{{ doc.item_name }}"  data-item-code="{{ doc.item_code }}">
 		</div>
 		<div class="zoom-viewer"></div>
 		</div>

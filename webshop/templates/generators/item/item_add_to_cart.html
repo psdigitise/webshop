@@ -69,7 +69,139 @@
     height: 16px;
   }
 }
+/* Quantity input */
+.qty-input {
+  height: 42px;
+  font-size: 14px;
+  border-radius: 6px;
+}
 
+/* Add to Cart button (no change in color, only consistency) */
+.add-to-cart-btn {
+  height: 42px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0 16px;
+}
+
+/* Contact Us button style (matching Add to Cart) */
+.btn-inquiry {
+  height: 42px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+}
+
+.btn-inquiry:hover {
+  background-color: #1e4ed8;
+}
+
+/* View cart button consistency */
+.btn-view-in-cart {
+  height: 42px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+/* Force Contact Us button to next line */
+.btn-inquiry {
+  display: block;        /* moves it to new line */
+  margin-top: 10px;      /* spacing from Add to Cart */
+  width: fit-content;    /* keep pill size (not full width) */
+}
+
+/* Optional: align with Add to Cart */
+@media (min-width: 768px) {
+  .btn-inquiry {
+ /* aligns under qty box */
+  }
+}
+/* Quantity input */
+.qty-input {
+  width: 80px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Add to Cart button */
+.add-to-cart-btn {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #1e4ed8;
+  color: white !important;
+}
+
+/* Contact button wrapper (forces next line + center) */
+.contact-btn-wrapper {
+  display: flex;
+  
+  margin-top: 12px;
+}
+
+/* Contact Us button (black pill) */
+.btn-inquiry {
+  min-width: 140px;
+  height: 40px;
+  border-radius: 999px;
+  /* background-color: #000; */
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+/* .btn-inquiry:hover {
+  background-color: #111;
+} */
+/* Add to Cart button */
+.add-to-cart-btn {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 8px;        /* reduced radius */
+  background-color: #2563eb; /* blue */
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #1e4ed8;
+}
+
+/* Contact Us button (same style, slightly wider) */
+.btn-inquiry {
+  min-width: 140px;
+  height: 40px;
+  border-radius: 8px;        /* reduced radius */
+  background-color: #2563eb; /* same blue */
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-inquiry:hover {
+  background-color: #1e4ed8;
+}
+
+
+.add-to-cart-btn{
+	background-color: #1e4ed8 !important; 
+	    border-radius: 9px !important;
+}
+
+
+qty-input {
+    width: 52px;
+    height: 39px !important;}
 </style>
 
 {% if shopping_cart and shopping_cart.cart_settings.enabled %}
@@ -86,9 +218,9 @@
 			<div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
 				<!-- Final Price -->
 				{% if price_info.formatted_mrp %}
-					<span itemprop="lowPrice" content="{{ price_info.formatted_price_sales_uom }}">{{ price_info.formatted_price_sales_uom }}</span>
+					<span itemprop="lowPrice"  data-item-code="{{ doc.item_code }}" content="{{ price_info.formatted_price_sales_uom }}">{{ price_info.formatted_price_sales_uom }}</span>
 				{% else %}
-					<span itemprop="highPrice" content="{{ price_info.formatted_price_sales_uom }}">{{ price_info.formatted_price_sales_uom }}</span>
+					<span itemprop="highPrice"  data-item-code="{{ doc.item_code }}" content="{{ price_info.formatted_price_sales_uom }}">{{ price_info.formatted_price_sales_uom }}</span>
 				{% endif %}
 
 				<!-- Striked Price and Discount  -->
@@ -164,14 +296,21 @@
 				{% endfor %}
 			</div>
 		{% endif %}
+ <!-- <div class="d-flex align-items-center justify-content-start gap-2 mt-2">
+            <input type="number" min="1" value="1" class="form-control form-control-sm qty-input text-center"
+              data-item-code="{{ doc.item_code }}">
+            <button class="btn fw-semibold px-3 py-2 add-to-cart-btn" data-item-code="{{ doc.item_code }}">
+              <i class="fa fa-shopping-cart me-1"></i> Add to basket
+            </button>
+          </div> -->
 
 		<!-- Add to Cart / View in Cart, Contact Us -->
-	<div class="mt-6 mb-5">
+	<!-- <div class="mt-6 mb-5">
   <div class="mb-4 d-flex flex-lg-row flex-column gy-4">
-    <!-- Add to Cart -->
+   
     <div class="flex w-100">
       {% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.get("in_stock")) %}
-        <!-- View in Cart -->
+        
         <a href="/cart" 
            class="btn btn-light btn-view-in-cart hidden mr-2 font-md mb-lg-0 mb-3"
            role="button"
@@ -179,7 +318,6 @@
           {{ _("View in Cart") if cart_settings.enable_checkout else _("View in Quote") }}
         </a>
 
-        <!-- Add to Cart -->
         <button
           data-item-code="{{item_code}}"
           class="btn btn-primary btn-add-to-cart mr-2 mb-lg-0 mb-3"
@@ -188,7 +326,7 @@
         </button>
       {% endif %}
 
-      <!-- Contact Us -->
+   
       {% if cart_settings.show_contact_us_button %}
         {% if shopping_cart and shopping_cart.cart_settings.enabled %}
           {% set cart_settings = shopping_cart.cart_settings %}
@@ -207,7 +345,59 @@
       {% endif %}
     </div>
   </div>
+</div> -->
+
+<div class="mt-6 mb-5">
+  <div class="mb-4">
+    <div class="w-100">
+
+      {% if product_info.price and (cart_settings.allow_items_not_in_stock or product_info.get("in_stock")) %}
+
+        <!-- Qty + Add to Cart (same row) -->
+        <div class="d-flex align-items-center gap-2 mb-2">
+
+          <input
+            type="number"
+            min="1"
+            value="1"
+            class="form-control form-control-sm qty-input text-center"
+            data-item-code="{{ item_code }}">
+
+          <button
+            data-item-code="{{ item_code }}"
+            class="btn add-to-cart-btn">
+            <i class="fa fa-shopping-cart me-1"></i>
+            {{ _("Add to Cart") if cart_settings.enable_checkout else _("Add to Quote") }}
+          </button>
+
+        </div>
+
+      {% endif %}
+
+      <!-- Contact Us BELOW (centered) -->
+      {% if cart_settings.show_contact_us_button %}
+        {% if shopping_cart and shopping_cart.cart_settings.enabled %}
+          {% set cart_settings = shopping_cart.cart_settings %}
+          {% if cart_settings.show_contact_us_button | int %}
+            <div class="contact-btn-wrapper">
+              <button
+                class="btn btn-inquiry"
+                data-item-code="{{ doc.name }}">
+                {{ _('Contact Us') }}
+              </button>
+            </div>
+          {% endif %}
+          <script>
+            {% include "templates/generators/item/item_inquiry.js" %}
+          </script>
+        {% endif %}
+      {% endif %}
+
+    </div>
+  </div>
 </div>
+
+
 
 	</div>
 </div>
