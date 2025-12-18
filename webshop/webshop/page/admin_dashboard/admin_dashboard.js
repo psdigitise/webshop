@@ -1,4 +1,6 @@
-// frappe.pages['admin-dashboard'].on_page_load = function (wrapper) {
+
+
+//frappe.pages['admin-dashboard'].on_page_load = function (wrapper) {
 // 	let page = frappe.ui.make_app_page({
 // 		parent: wrapper,
 // 		title: 'Admin Approval Dashboard',
@@ -139,6 +141,7 @@
 
 
 
+
 frappe.pages['admin-dashboard'].on_page_load = function (wrapper) {
 	let page = frappe.ui.make_app_page({
 		parent: wrapper,
@@ -164,7 +167,20 @@ frappe.pages['admin-dashboard'].on_page_load = function (wrapper) {
 				</div>
 						<div class="col-md-3 d-flex justify-content-end gap-2">
     <button id="filter_btn" class="btn btn-info mt-auto">Filter</button>
-    <button id="export_btn" class="btn btn-outline-secondary mt-auto">Export</button>
+<button id="export_btn" class="btn mt-auto"
+  style="
+    background-color: rgb(23, 162, 184);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 4px 4px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+  margin-left:5px"
+>
+  Export
+</button>
+
 </div>
 
 			</div>
