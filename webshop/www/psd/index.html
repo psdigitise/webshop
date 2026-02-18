@@ -4864,16 +4864,27 @@
     .logout-link {
       color: #d9534f !important;
     }
-        .styled-logout {
-  background: none;
-  border: none;
-  color: #e63946; /* soft red */
-  font-size: 16px;
-  padding: 8px 0px;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-}
+
+    .styled-logout {
+      background: none;
+      border: none;
+      color: #e63946;
+      /* soft red */
+      font-size: 16px;
+      padding: 8px 0px;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+
+    .dropdown-item {
+      flex: 1 1 180px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: wrap !important;
+    }
   </style>
 </head>
 
@@ -4947,7 +4958,7 @@
             <i class="fa fa-shopping-cart tk-header-icon"></i>
             <span class="tk-cart-count">{{cart_item_count}}</span>
           </a>
-      
+
 
           <!-- Account -->
           <div class="account-dropdown-wrapper">
@@ -4956,15 +4967,16 @@
               <i class="fa-regular fa-user tk-header-icon"></i>
             </button>
             {% else %}
-              <button class="tk-icon-circle position-relative" onclick="window.location.href='/login'" style="border: 1px solid #d8d8ff;">
+            <button class="tk-icon-circle position-relative" onclick="window.location.href='/login'"
+              style="border: 1px solid #d8d8ff;">
               <i class="fa-regular fa-user tk-header-icon"></i>
             </button>
             {% endif %}
             <div class="account-dropdown">
               <div class="acc-header">
-              
+
                 <div>
-                 
+
                   <a href="/profile-edit/?user={{ user }}">Edit Profile</a>
                 </div>
               </div>
@@ -5174,15 +5186,15 @@ border-top: 40px solid #e4002c;
       </article>
 
       <!-- RIGHT: product promo -->
-      <article class="right-hero" aria-labelledby="right-title"  >
+      <article class="right-hero" aria-labelledby="right-title">
         <div class="details">
-        <video autoplay muted loop playsinline class="bg-video" style="
+          <video autoplay muted loop playsinline class="bg-video" style="
     width: 100%;
     height: 200px !important;
     object-fit: cover;
 ">
-    <source src="../psd/assets/img/E-commerce 1.mp4" type="video/mp4">
-</video>
+            <source src="../psd/assets/img/E-commerce 1.mp4" type="video/mp4">
+          </video>
 
         </div>
       </article>
@@ -5206,8 +5218,8 @@ border-top: 40px solid #e4002c;
         <div class="section">
           <p class="section-title"><span class="icon">💬</span> Contact Us ›</p>
           <button class="contact-btn" onclick="window.location.href='/contact'">
-  Contact Now
-</button>
+            Contact Now
+          </button>
 
         </div>
       </div>
@@ -6079,33 +6091,33 @@ border-top: 40px solid #e4002c;
         }
       });
     });
- function logoutUser() {
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+    function logoutUser() {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
 
-  if (!csrfToken) {
-    console.error("CSRF token missing. Please refresh the page.");
-    return;
-  }
+      if (!csrfToken) {
+        console.error("CSRF token missing. Please refresh the page.");
+        return;
+      }
 
-  fetch('/api/method/logout', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Frappe-CSRF-Token': csrfToken   // include CSRF token here
-    },
-    credentials: 'include' // ensure cookies/session are sent
-  })
-  .then(response => {
-    if (response.ok) {
-      window.location.href = '/login';  // redirect after successful logout
-    } else {
-      console.error('Logout failed:', response.statusText);
+      fetch('/api/method/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Frappe-CSRF-Token': csrfToken   // include CSRF token here
+        },
+        credentials: 'include' // ensure cookies/session are sent
+      })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = '/login';  // redirect after successful logout
+          } else {
+            console.error('Logout failed:', response.statusText);
+          }
+        })
+        .catch(error => {
+          console.error('Error during logout:', error);
+        });
     }
-  })
-  .catch(error => {
-    console.error('Error during logout:', error);
-  });
-}
 
 
   </script>
