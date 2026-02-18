@@ -671,6 +671,7 @@
     .dropdown-item span {
       color: #444;
       font-size: 14px;
+      text-align: left !important;
     }
 
     .dropdown-item:hover span {
@@ -5056,7 +5057,7 @@
           <div class="category-dropdown">
             <div class="dropdown-inner">
               {% for item in cleaning_items %}
-              <div class="dropdown-item">
+              <div class="dropdown-item text-wrap">
                 <a href="/{{ item.route }}">
                   {% if item.website_image %}
                   <img src="{{ item.website_image }}" alt="{{ item.web_item_name or item.item_name }}">
@@ -5832,11 +5833,11 @@ border-top: 40px solid #e4002c;
             Need help? Just ask. Contact us on any of the below or via our
             instant chat service:
           </p>
-          <p><i class="fas fa-phone-alt"></i>02034355200</p>
+          <p><i class="fas fa-phone-alt"></i> 02034355200</p>
           <p><i class="fas fa-envelope"></i> orders@tekstag.co.uk</p>
           <!-- <p><a href="#" class="text-black">See more contact details</a></p> -->
           <div class="d-flex gap-3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" width="40" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Visa_Inc._logo_%282005%E2%80%932014%29.svg" alt="Visa" width="40" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
               width="40" />
           </div>
@@ -5845,12 +5846,12 @@ border-top: 40px solid #e4002c;
         <div class="col-md-4 mb-4">
           <div class="footer-link">
             <h5>USEFUL LINKS</h5>
-            <a href="/all-products"><i class="fa-solid fa-chevron-right"></i>All products</a>
-            <a href="/shop-by-category"><i class="fa-solid fa-chevron-right"></i>Shop By Category</a>
-            <a href="/cleaning-items"><i class="fa-solid fa-chevron-right"></i>Cleaning Items</a>
-            <a href="/office-supplies"><i class="fa-solid fa-chevron-right"></i>Office Supplies</a>
-            <a href="/refreshment-supplies"><i class="fa-solid fa-chevron-right"></i>Refreshment Supplies</a>
-            <a href="/print-consumables"><i class="fa-solid fa-chevron-right"></i>Print Consumables</a>
+            <a href="/all-products"><i class="fa-solid fa-chevron-right"></i> All products</a>
+            <a href="/shop-by-category"><i class="fa-solid fa-chevron-right"></i> Shop By Category</a>
+            <a href="/cleaning-items"><i class="fa-solid fa-chevron-right"></i> Cleaning Items</a>
+            <a href="/office-supplies"><i class="fa-solid fa-chevron-right"></i> Office Supplies</a>
+            <a href="/refreshment-supplies"><i class="fa-solid fa-chevron-right"></i> Refreshment Supplies</a>
+            <a href="/print-consumables"><i class="fa-solid fa-chevron-right"></i> Print Consumables</a>
           </div>
         </div>
 
